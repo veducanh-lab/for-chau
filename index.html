@@ -1,0 +1,1871 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth"><head><script data-bard-client-injected="true">(function(firebaseConfig, initialAuthToken, appId) {
+        window.__firebase_config = firebaseConfig;
+        window.__initial_auth_token = initialAuthToken;
+        window.__app_id = appId;
+            })("\n{\n  \"apiKey\": \"AIzaSyCqyCcs2R2e7AegGjvFAwG98wlamtbHvZY\",\n  \"authDomain\": \"bard-frontend.firebaseapp.com\",\n  \"projectId\": \"bard-frontend\",\n  \"storageBucket\": \"bard-frontend.firebasestorage.app\",\n  \"messagingSenderId\": \"175205271074\",\n  \"appId\": \"1:175205271074:web:2b7bd4d34d33bf38e6ec7b\"\n}\n","eyJhbGciOiJSUzI1NiIsImtpZCI6IjExNjRiNzdiNDMzZDdhMDAyMWI4NjE4YjhjYTU3ZTMyZGI5MWUxMTMiLCJ0eXAiOiJKV1QifQ.eyJzdWIiOiJmaXJlYmFzZS1hZG1pbnNkay1mYnN2Y0BiYXJkLWZyb250ZW5kLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiaHR0cHM6Ly9pZGVudGl0eXRvb2xraXQuZ29vZ2xlYXBpcy5jb20vZ29vZ2xlLmlkZW50aXR5LmlkZW50aXR5dG9vbGtpdC52MS5JZGVudGl0eVRvb2xraXQiLCJ1aWQiOiIxNjAxNzY5ODA1ODg2NTgwMTMwOCIsImlzcyI6ImZpcmViYXNlLWFkbWluc2RrLWZic3ZjQGJhcmQtZnJvbnRlbmQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLCJjbGFpbXMiOnsiYXBwSWQiOiJjXzdkNDk4MTg3ZDE5MDMzZGVfYmlydGhkYXlfdmlldG5hbV9jYW5hZGEuaHRtbC01MTAifSwiZXhwIjoxNzkzODY2OTIzLCJpYXQiOjE3OTM4NjMzMjMsImFsZyI6IlJTMjU2In0.G0xisFW3zmKS5T3tYC-LeBEvdXoRxC1xWSB-7kPUFSqIH5xCcmNM2BIY4mYNgQ8ItlUUg_0cmW0Zs9cHAMU3OMLPiHl3CPvbfIbJtLJC4TLzEljzmW6XtnnGPF9Fi5pDTwnO5rx8c5uvppNdEHgMCoM_lRH3JQ1VV6EKBS2fowYgKIPfCkDkYHM9SLj5GTs5R1WOPpfuvgfL8QmZSUyZEF9ZFNzzTV5EKrp0ZqjHKkGeleCDjnuTUI0d5UdWLMhfpm9_Rz4243wSIHRAX3-nN4WO1uVhkAmegaSM0iwNuhdiQO8hbteD-s01dOoIBMVbaZZYkY29fDigx5fzAX3gyg","c_7d498187d19033de_birthday_vietnam_canada.html-510")</script><script data-bard-client-injected="true">
+  document.addEventListener('input', (event) => {
+    if (event.target && (event.target.isContentEditable || event.target.hasAttribute('contenteditable'))) {
+      const clonedDoc = document.cloneNode(true);
+      const injectedScripts = clonedDoc.querySelectorAll('[data-bard-client-injected="true"]');
+      injectedScripts.forEach(el => el.remove());
+      window.parent.postMessage({
+        type: 'inlineEdit',
+        html: '<!DOCTYPE html>\n' + clonedDoc.documentElement.outerHTML
+      }, '*');
+    }
+  });
+</script><script data-bard-client-injected="true">(function(){'use strict';window.addEventListener("message",a=>{a.data&&a.data.type==="SUPPLEMENTAL_DATA_UPDATE"&&window.dispatchEvent(new CustomEvent("supplementaldataupdate",{detail:a.data.data}))});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  const SCROLL_KEYS = new Set([
+    'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight',
+    ' ', 'Spacebar', 'PageUp', 'PageDown', 'Home', 'End',
+  ]);
+  const HORIZONTAL_KEYS = new Set(['ArrowLeft', 'ArrowRight']);
+
+  function isTextEntryTarget(target) {
+    if (!target) return false;
+    const tagName = target.tagName;
+    return tagName === 'INPUT' || tagName === 'TEXTAREA' ||
+        tagName === 'SELECT' || target.isContentEditable === true;
+  }
+
+  // An element absorbs the key only if it both overflows on the axis being
+  // scrolled and is configured to scroll on that axis. The cheap dimension
+  // test runs first because getComputedStyle forces a style recalc, and this
+  // runs on every keypress. Each axis is read from its own longhand: the
+  // 'overflow' shorthand serializes as two values when the axes differ, which
+  // is the common 'overflow-x: hidden; overflow-y: auto' pane.
+  function canScroll(node, horizontal) {
+    const overflows = horizontal ? node.scrollWidth > node.clientWidth
+                                 : node.scrollHeight > node.clientHeight;
+    if (!overflows) return false;
+    const style = window.getComputedStyle(node);
+    const overflow = horizontal ? style.overflowX : style.overflowY;
+    return overflow === 'auto' || overflow === 'scroll';
+  }
+
+  // Walks up from the event target so nested scrollers keep their behavior.
+  // <body> is included because pages that pin the root height make it the
+  // scroll container.
+  function hasScrollableAncestor(target, horizontal) {
+    let node = target;
+    while (node && node !== document.documentElement) {
+      if (canScroll(node, horizontal)) return true;
+      node = node.parentElement;
+    }
+    return false;
+  }
+
+  function rootCanScroll(horizontal) {
+    const scroller = document.scrollingElement || document.documentElement;
+    if (!scroller) return false;
+    // Tolerate a pixel of rounding so subpixel layouts do not look scrollable.
+    return horizontal ? scroller.scrollWidth > window.innerWidth + 1
+                      : scroller.scrollHeight > window.innerHeight + 1;
+  }
+
+  window.addEventListener('keydown', function(event) {
+    if (!SCROLL_KEYS.has(event.key)) return;
+    if (event.defaultPrevented) return;
+    // Alt and Meta turn arrows into browser history navigation, and Ctrl is
+    // reserved for shortcuts, so none of them are scroll intent.
+    if (event.altKey || event.metaKey || event.ctrlKey) return;
+
+    const target = event.target;
+    if (isTextEntryTarget(target)) return;
+
+    // Anything that can still absorb the scroll gets to keep it.
+    const horizontal = HORIZONTAL_KEYS.has(event.key);
+    if (rootCanScroll(horizontal)) return;
+    if (hasScrollableAncestor(target, horizontal)) return;
+
+    event.preventDefault();
+  }, {capture: true, passive: false});
+})();</script><script data-bard-client-injected="true">(function() {
+  // Ensure this script is executed only once
+  if (window.firebaseAuthBridgeScriptLoaded) {
+    return;
+  }
+  window.firebaseAuthBridgeScriptLoaded = true;
+
+  let nextTokenPromiseId = 0;
+
+  // Stores { resolve, reject } for ongoing token requests
+  const pendingTokenPromises = {};
+
+  // Listen for messages from the Host Application
+  window.addEventListener('message', function(event) {
+
+    const messageData = event.data;
+
+  if (messageData && messageData.type === 'RESOLVE_NEW_FIREBASE_TOKEN') {
+      const { success, token, error, promiseId } = messageData ?? {};
+      if (pendingTokenPromises[promiseId]) {
+        if (success) {
+          pendingTokenPromises[promiseId].resolve(token);
+        } else {
+          pendingTokenPromises[promiseId].reject(new Error(error || 'Token refresh failed from host.'));
+        }
+        delete pendingTokenPromises[promiseId];
+      }
+    }
+  });
+
+  // Expose a function for the Generated App to request a new Firebase token
+  window.requestNewFirebaseToken = function() {
+    const currentPromiseId = nextTokenPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingTokenPromises[currentPromiseId] = { resolve, reject };
+    });
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({
+        type: 'REQUEST_NEW_FIREBASE_TOKEN',
+        promiseId: currentPromiseId
+      }, '*');
+    } else {
+      pendingTokenPromises[currentPromiseId].reject(new Error('No parent window to request token from.'));
+      delete pendingTokenPromises[currentPromiseId];
+    }
+    return promise;
+  };
+})();</script><script data-bard-client-injected="true">
+let realOriginalGetUserMedia = null;
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  realOriginalGetUserMedia = navigator.mediaDevices.getUserMedia.bind(navigator.mediaDevices);
+}
+
+(function() {
+  if (navigator.mediaDevices && navigator.mediaDevices.__proto__) {
+    try {
+      Object.defineProperty(navigator.mediaDevices.__proto__, 'getUserMedia', {
+        get: function() {
+          return undefined; // Or throw an error
+        },
+        configurable: false
+      });
+    } catch (error) {
+      console.error("Error defining prototype getter:", error);
+    }
+  }
+})();
+
+(function() {
+  const pendingMediaResolvers = {};
+  let nextMediaPromiseId = 0;
+
+  function requestMediaPermissions(constraints) {
+    const mediaPromiseId = nextMediaPromiseId++;
+    const promise = new Promise((resolve, reject) => {
+      pendingMediaResolvers[mediaPromiseId] = (granted) => {
+        delete pendingMediaResolvers[mediaPromiseId];
+        resolve(granted);
+      };
+    });
+
+    window.parent.postMessage({
+      type: 'requestMediaPermission',
+      constraints: constraints,
+      promiseId: mediaPromiseId,
+    }, '*');
+
+    return promise;
+  }
+
+  let originalGetUserMedia = realOriginalGetUserMedia;
+
+  function interceptGetUserMedia() {
+    if (navigator.mediaDevices) {
+      Object.defineProperty(navigator.mediaDevices, 'getUserMedia', {
+        value: function(constraints) {
+          return requestMediaPermissions(constraints).then((granted) => {
+            if (granted) {
+              if (originalGetUserMedia) {
+                return originalGetUserMedia(constraints);
+              } else {
+                throw new Error("Original getUserMedia not available.");
+              }
+            } else {
+              throw new DOMException('Permission denied', 'NotAllowedError');
+            }
+          });
+        },
+        writable: false,
+        configurable: false
+      });
+    }
+  }
+
+  interceptGetUserMedia();
+
+  const observer = new MutationObserver(function(mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      if (mutation.type === 'reconfigured' && mutation.name === 'getUserMedia' && mutation.object === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'attributes' && mutation.attributeName === 'getUserMedia' && mutation.target === navigator.mediaDevices) {
+        interceptGetUserMedia();
+      } else if (mutation.type === 'childList' && mutation.addedNodes) {
+        mutation.addedNodes.forEach(node => {
+          if (node === navigator.mediaDevices) {
+            interceptGetUserMedia();
+          }
+        });
+      }
+    }
+  });
+
+  function interceptSpeechRecognition() {
+    if (!window.SpeechRecognition && !window.webkitSpeechRecognition) {
+      return;
+    }
+
+    const OriginalSpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+    const SpeechRecognitionWrapper = function(...args) {
+      const recognizer = new OriginalSpeechRecognition(...args);
+      const originalStart = recognizer.start.bind(recognizer);
+
+      recognizer.start = function() {
+        requestMediaPermissions({ audio: true }).then(granted => {
+          if (granted) {
+            originalStart();
+          } else {
+            const errorEvent = new SpeechRecognitionErrorEvent('error');
+            errorEvent.error = 'not-allowed'; // This is the standard error for permission denial.
+            recognizer.dispatchEvent(errorEvent);
+          }
+        });
+      };
+
+      return recognizer;
+    };
+
+    SpeechRecognitionWrapper.prototype = OriginalSpeechRecognition.prototype;
+    SpeechRecognitionWrapper.prototype.constructor = SpeechRecognitionWrapper;
+
+    if (window.SpeechRecognition) {
+      window.SpeechRecognition = SpeechRecognitionWrapper;
+    }
+    if (window.webkitSpeechRecognition) {
+      window.webkitSpeechRecognition = SpeechRecognitionWrapper;
+    }
+  }
+
+  interceptSpeechRecognition();
+
+  window.addEventListener('message', function(event) {
+    if (event.data) {
+      if (event.data.type === 'resolveMediaPermission') {
+        const { promiseId, granted } = event.data;
+        if (pendingMediaResolvers[promiseId]) {
+          pendingMediaResolvers[promiseId](granted);
+        }
+      }
+    }
+  });
+
+})();</script><script ws-interception-config="{&quot;parentOrigin&quot;:&quot;https://gemini.google.com&quot;,&quot;proxiedDomains&quot;:[]}" data-bard-client-injected="true">(function(){'use strict';var u=typeof Object.defineProperties=="function"?Object.defineProperty:function(b,d,e){if(b==Array.prototype||b==Object.prototype)return b;b[d]=e.value;return b};function v(b){b=["object"==typeof globalThis&&globalThis,b,"object"==typeof window&&window,"object"==typeof self&&self,"object"==typeof global&&global];for(var d=0;d<b.length;++d){var e=b[d];if(e&&e.Math==Math)return e}throw Error("Cannot find global object");}var w=v(this);
+function y(b,d){if(d)a:{var e=w;b=b.split(".");for(var h=0;h<b.length-1;h++){var k=b[h];if(!(k in e))break a;e=e[k]}b=b[b.length-1];h=e[b];d=d(h);d!=h&&d!=null&&u(e,b,{configurable:!0,writable:!0,value:d})}}function z(b){function d(h){return b.next(h)}function e(h){return b.throw(h)}return new Promise(function(h,k){function m(n){n.done?h(n.value):Promise.resolve(n.value).then(d,e).then(m,k)}m(b.next())})}y("globalThis",function(b){return b||w});/*
+
+ Copyright The Closure Library Authors.
+ SPDX-License-Identifier: Apache-2.0
+*/
+function A(b,d){function e(){}e.prototype=d.prototype;b.j=d.prototype;b.prototype=new e;b.prototype.constructor=b;b.h=function(h,k,m){for(var n=Array(arguments.length-2),p=2;p<arguments.length;p++)n[p-2]=arguments[p];return d.prototype[k].apply(h,n)}};function B(b,d,e="*"){function h(a){if(typeof a==="string")return F.encode(a).buffer;if(a instanceof ArrayBuffer)return a.slice(0);if(ArrayBuffer.isView(a))return a.buffer.slice(a.byteOffset,a.byteOffset+a.byteLength);throw Error("Invalid data type");}function k(a){a=h(a);var f={type:"send",data:new Uint8Array(a)},g;(g=r)==null||g.postMessage(f,[a])}function m(){if(!r)throw Error("Data port not captured yet.");r.onmessage=a=>{if(a.data.type==="message"){a=new MessageEvent("message",{data:G.decode(a.data.data)});
+let f;(f=c.onmessage)==null||f.call(c,a);c.dispatchEvent(a)}}}function n(){if(!t)throw Error("Control port not captured yet.");t.onmessage=a=>{switch(a.data.type){case "open":l=1;var f=new Event("open"),g;(g=c.onopen)==null||g.call(c,f);c.dispatchEvent(f);q.forEach(H=>{k(H)});q=[];break;case "close":g=a.data;l=3;g=new CloseEvent("close",{code:g.code,reason:g.reason,wasClean:g.wasClean});(f=c.onclose)==null||f.call(c,g);c.dispatchEvent(g);break;case "error":l=3;f=new Event("error");let x;(x=c.onerror)==
+null||x.call(c,f);c.dispatchEvent(f)}}}function p(a){return z(function*(){var f=new MessageChannel;t=f.port1;var g=new MessageChannel;r=g.port1;n();m();window.parent.postMessage({type:"websocket_open",portOrdering:["control","data"],url:b,protocols:a||[],connectionId:I},e,[f.port2,g.port2])}())}var c=Reflect.construct(EventTarget,[],new.target);c.CONNECTING=0;c.OPEN=1;c.CLOSING=2;c.CLOSED=3;c.url=b;c.binaryType="arraybuffer";c.protocol="";c.i="";var l=0,t=null,r=null,q=[],F=new TextEncoder,G=new TextDecoder;
+c.onopen=null;c.onmessage=null;c.onclose=null;c.onerror=null;Object.defineProperty(c,"readyState",{get:()=>l,enumerable:!0,configurable:!0});Object.defineProperty(c,"bufferedAmount",{get:()=>{var a=0;q.forEach(f=>{a+=typeof f==="string"?f.length:f.byteLength});return a},enumerable:!0,configurable:!0});var I=function(){var a;return((a=globalThis.crypto)==null?0:a.randomUUID)?globalThis.crypto.randomUUID():"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,f=>{var g=Math.random()*16|0;return(f===
+"x"?g:g&3|8).toString(16)})}();c.send=a=>{if(l===1)a instanceof Blob?a.arrayBuffer().then(f=>{k(f)}):k(a);else if(l===0)if(typeof a==="string")q.push(a);else if(a instanceof ArrayBuffer||ArrayBuffer.isView(a))q.push(h(a));else throw Error("Sending Blob is not supported before the connection is open.");else console.debug("WebSocket send called in CLOSING or CLOSED state; ignored.")};c.close=(a=1E3,f="")=>{if(l!==2&&l!==3){l=2;a={type:"close",code:a,reason:f,wasClean:a===1E3};var g;(g=t)==null||g.postMessage(a)}};
+Promise.resolve().then(()=>p(d));return c}A(B,EventTarget);var C=document.currentScript,D=C==null?void 0:C.getAttribute("ws-interception-config");if(!D)throw Error("WebSocket Interceptor: Missing ws-interception-config attribute in the script tag.");var E=JSON.parse(D);if(!E.parentOrigin||typeof E.parentOrigin!=="string")throw Error("WebSocket Interceptor: Invalid parentOrigin in ws-interception-config");
+(function(b){var d=Object.getOwnPropertyDescriptor(window,"WebSocket");if(!d||d.writable||d.configurable)d=Object.assign(function(e,h){try{let k=(new URL(e)).hostname;if(b.proxiedDomains.some(m=>k===m||k.endsWith(`.${m}`)))return new B(e,h,b.parentOrigin)}catch(k){throw window.parent.postMessage({type:"websocket_blocked",url:e,reason:"blocked_invalid_url"},b.parentOrigin),new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");}window.parent.postMessage({type:"websocket_blocked",
+url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMException(`WebSocket connection to '${e}' is not allowed in Canvas.`,"SecurityError");},{CONNECTING:0,OPEN:1,CLOSING:2,CLOSED:3}),Object.defineProperty(window,"WebSocket",{value:d,writable:!1,configurable:!1})})({proxiedDomains:E.proxiedDomains||[],parentOrigin:E.parentOrigin});}).call(this);
+</script><script data-bard-client-injected="true">((function(modelInformation) {
+  const originalFetch = window.fetch;
+  // TODO: b/421908508 - Move these out of the script and match all generative AI model calls.
+  let googleLlmBaseApiUrls = [
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':streamGenerateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.textModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageEditModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.imageTransformModelName + ':generateContent',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predict',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.videoModelName + ':predictLongRunning',
+    'https://generativelanguage.googleapis.com/v1beta/models/' + modelInformation.ttsModelName + ':generateContent',
+  ];
+  modelInformation.deprecatedTextModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+    );
+  });
+  modelInformation.deprecatedImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predict',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':predictLongRunning',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedGenerateImageModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+  modelInformation.deprecatedImageTransformModelNames.forEach((modelName) => {
+    googleLlmBaseApiUrls.push(
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':generateContent',
+      'https://generativelanguage.googleapis.com/v1beta/models/' + modelName + ':streamGenerateContent',
+    );
+  });
+
+  const pendingFetchResolvers = {};
+  let nextPromiseId = 0;
+
+  function handleStringInput(input, optionsArgument) {
+    const actualUrl = input;
+    const fetchCallArgs = [actualUrl, optionsArgument];
+    const effectiveOptions = optionsArgument || {};
+    const bodyForApiKeyCheck = effectiveOptions.body;
+    const bodyForPostMessage = effectiveOptions.body;
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  function handleRequestInput(input, optionsArgument) {
+    const actualUrl = input.url;
+    const fetchCallArgs = [input, optionsArgument];
+    const effectiveOptions = { method: input.method, headers: new Headers(input.headers) };
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (optionsArgument) {
+      if (optionsArgument.method) effectiveOptions.method = optionsArgument.method;
+      if (optionsArgument.headers) effectiveOptions.headers = new Headers(optionsArgument.headers);
+      if ('body' in optionsArgument) {
+        bodyForApiKeyCheck = optionsArgument.body;
+        bodyForPostMessage = optionsArgument.body;
+      } else {
+        bodyForApiKeyCheck = undefined;
+        bodyForPostMessage = input.body;
+      }
+    } else {
+      bodyForApiKeyCheck = undefined;
+      bodyForPostMessage = input.body;
+    }
+    return { actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage };
+  }
+
+  window.fetch = function(input, optionsArgument) {
+    let actualUrl;
+    let fetchCallArgs;
+    let effectiveOptions = {};
+    let bodyForApiKeyCheck;
+    let bodyForPostMessage;
+
+    if (typeof input === 'string') {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleStringInput(input, optionsArgument));
+    } else if (input instanceof Request) {
+      ({actualUrl, fetchCallArgs, effectiveOptions, bodyForApiKeyCheck, bodyForPostMessage} = handleRequestInput(input, optionsArgument));
+    } else {
+      return originalFetch.apply(window, [input, optionsArgument]);
+    }
+
+    effectiveOptions.method = effectiveOptions.method || 'GET';
+    if (!effectiveOptions.headers) {
+      effectiveOptions.headers = new Headers();
+    }
+
+
+    if (typeof actualUrl === 'string' && googleLlmBaseApiUrls.some((url) => actualUrl.startsWith(url))) {
+      let apiKeyIsNull = true;
+
+      const regex = new RegExp("models/([^:]+)");
+      const modelNameMatch = actualUrl.match(regex);
+      const modelName = modelNameMatch ? modelNameMatch[1] : 'unspecified';
+
+
+      try {
+        const urlObject = new URL(actualUrl);  // Use URL object for robust parsing
+        const apiKeyParam = urlObject.searchParams.get('key');
+        if (apiKeyParam) {
+          apiKeyIsNull = false;
+        }
+      } catch (e) {
+        // Continue checks even if URL parsing fails
+      }
+
+      if (apiKeyIsNull && effectiveOptions.headers) {
+        const h = new Headers(effectiveOptions.headers);
+        const apiKeyHeaderValue = h.get('X-API-Key') || h.get('x-api-key');
+        if (apiKeyHeaderValue) {
+          apiKeyIsNull = false;
+          return originalFetch.apply(window, fetchCallArgs);
+        }
+      }
+
+      if (apiKeyIsNull && effectiveOptions.method && ['POST', 'PUT', 'PATCH'].includes(effectiveOptions.method.toUpperCase()) && typeof bodyForApiKeyCheck === 'string') {
+        try {
+          const bodyData = JSON.parse(bodyForApiKeyCheck);
+          if (bodyData && bodyData.apiKey) {
+            apiKeyIsNull = false;
+            return originalFetch.apply(window, fetchCallArgs);
+          }
+        } catch (e) {
+          // Ignore JSON parsing errors
+        }
+      }
+
+      if(apiKeyIsNull) {
+        const promiseId = nextPromiseId++;
+        const promise = new Promise((resolve) => {
+          pendingFetchResolvers[promiseId] = (resolvedResponse) => {
+            delete pendingFetchResolvers[promiseId];
+            resolve(resolvedResponse);
+          };
+        });
+
+        let serializedBodyForPostMessage;
+        if (typeof bodyForPostMessage === 'string' || bodyForPostMessage == null) {
+            serializedBodyForPostMessage = bodyForPostMessage;
+        } else if (bodyForPostMessage instanceof ReadableStream) {
+            serializedBodyForPostMessage = null;
+        } else {
+            try {
+                serializedBodyForPostMessage = JSON.stringify(bodyForPostMessage);
+            } catch (e) {
+                serializedBodyForPostMessage = null;
+            }
+        }
+
+        const messageOptions = {
+            method: effectiveOptions.method,
+            headers: Object.fromEntries(new Headers(effectiveOptions.headers).entries()),
+            body: serializedBodyForPostMessage
+        };
+
+        window.parent.postMessage({
+          type: 'requestFetch',
+          url: actualUrl,
+          modelName: modelName,
+          options: messageOptions,
+          promiseId: promiseId,
+        }, '*');
+
+        return promise;
+      }
+      return originalFetch.apply(window, fetchCallArgs);
+    }
+    return originalFetch.apply(window, fetchCallArgs);
+  };
+
+  window.addEventListener('message', function(event) {
+    if (event.data && event.data.type === 'resolveFetch') {
+      const { promiseId, response } = event.data;
+      if (pendingFetchResolvers[promiseId]) {
+        try {
+          const reconstructedResponse = new Response(response.body, {
+            status: response.status,
+            statusText: response.statusText,
+            headers: new Headers(response.headers),
+          });
+          pendingFetchResolvers[promiseId](reconstructedResponse);
+        } catch (error) {
+          pendingFetchResolvers[promiseId](new Response(null, { status: 500, statusText: "Interceptor Response Reconstruction Error" }));
+        }
+      }
+    }
+  });
+
+}))({"textModelName":"gemini-3-flash-preview","imageModelName":"imagen-4.0-generate-001","imageEditModelName":"gemini-3.1-flash-image","imageTransformModelName":"gemini-3-pro-image","videoModelName":"veo-2.0-generate-001","ttsModelName":"gemini-2.5-flash-preview-tts","deprecatedTextModelNames":["gemini-2.0-flash","gemini-2.5-flash","gemini-2.5-flash-preview-04-17","gemini-2.5-flash-preview-05-20","gemini-2.5-flash-preview-09-2025"],"deprecatedImageModelNames":["imagen-3.0-generate-001","imagen-3.0-generate-002"],"deprecatedGenerateImageModelNames":["gemini-2.5-flash-image-preview","gemini-2.5-flash-image","gemini-3.1-flash-image-preview"],"deprecatedImageTransformModelNames":["gemini-3-pro-image-preview-11-2025"]})</script><script data-bard-client-injected="true">(function() {
+  function normalizeSlug(str) {
+    try {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^p{L}p{N}s_-]/gu, '')
+        .replace(/s+/g, '-');
+    } catch (e) {
+      return str
+        .trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9s_-]/g, '')
+        .replace(/s+/g, '-');
+    }
+  }
+
+  function findTargetElement(hash) {
+    if (!hash || hash === '#') {
+      return null;
+    }
+    const rawId = hash.startsWith('#') ? hash.slice(1) : hash;
+    let decodedId = rawId;
+    try {
+      decodedId = decodeURIComponent(rawId);
+    } catch (e) {
+      // Ignore URI malformed errors.
+    }
+
+    // 1. Direct ID match (raw and decoded).
+    let target = document.getElementById(rawId) || document.getElementById(decodedId);
+    if (target) {
+      return target;
+    }
+
+    // 2. Name attribute match (<a name="...">).
+    try {
+      if (typeof CSS !== 'undefined' && CSS.escape) {
+        target =
+          document.querySelector('[name="' + CSS.escape(rawId) + '"]') ||
+          document.querySelector('[name="' + CSS.escape(decodedId) + '"]');
+      } else {
+        const namedElements = document.getElementsByName(rawId);
+        if (namedElements && namedElements.length > 0) {
+          return namedElements[0];
+        }
+      }
+    } catch (e) {
+      // Ignore querySelector syntax errors.
+    }
+    if (target) {
+      return target;
+    }
+
+    // 3. Match heading text by slug (for Markdown TOCs where headings lack explicit IDs).
+    const targetSlug = normalizeSlug(decodedId);
+    if (targetSlug) {
+      for (const heading of document.querySelectorAll('h1, h2, h3, h4, h5, h6')) {
+        if (normalizeSlug(heading.textContent || '') === targetSlug) {
+          return heading;
+        }
+      }
+    }
+
+    return null;
+  }
+
+  document.addEventListener('click', function(event) {
+    const target = event.target;
+    const anchor = target && typeof target.closest === 'function' ? target.closest('a') : null;
+    if (!anchor) {
+      return;
+    }
+
+    const href = anchor.getAttribute('href');
+    if (
+      !href ||
+      href.trim().toLowerCase().startsWith('javascript:') ||
+      anchor.hasAttribute('download')
+    ) {
+      return;
+    }
+
+    // Check if the link is an in-page hash / anchor link.
+    if (href.startsWith('#')) {
+      event.preventDefault();
+      const targetElement = findTargetElement(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+      return;
+    }
+
+    // Check if the URL has the same origin/pathname but with a hash.
+    try {
+      const url = new URL(anchor.href, window.location.href);
+      if (
+        url.hash &&
+        url.origin === window.location.origin &&
+        url.pathname === window.location.pathname
+      ) {
+        event.preventDefault();
+        const targetElement = findTargetElement(url.hash);
+        if (targetElement) {
+          targetElement.scrollIntoView({behavior: 'smooth', block: 'start'});
+        }
+        return;
+      }
+    } catch (e) {
+      // Fall through if URL parsing fails.
+    }
+
+    // For all external or full navigation links, prevent iframe-level navigation
+    // (which breaks in AGSA WebView or sandboxed iframes) and ensure they open
+    // safely in a new tab/window.
+    if (anchor.target !== '_blank') {
+      event.preventDefault();
+      window.open(anchor.href, '_blank', 'noopener,noreferrer');
+    }
+  }, {capture: true});
+})();</script><script data-bard-client-injected="true">(function(){'use strict';function a(){window.parent.postMessage({type:"interaction"},"*")}window.addEventListener("click",a,{capture:!0,passive:!0});window.addEventListener("touchstart",a,{capture:!0,passive:!0});window.addEventListener("keydown",a,{capture:!0,passive:!0});}).call(this);
+</script><script data-bard-client-injected="true">(function() {
+  const originalConsoleLog = console.log;
+  const originalConsoleError = console.error;
+
+    /**
+   * Normalizes an error event or a promise rejection reason into a structured error object.
+   * @param {*} errorEventOrReason The error object or reason.
+   * @return {object} Structured error data { message, name, stack }.
+   */
+  function getErrorObject(errorEventOrReason) {
+    if (errorEventOrReason instanceof Error) {
+      return {
+        message: errorEventOrReason.message,
+        name: errorEventOrReason.name,
+        stack: errorEventOrReason.stack,
+      };
+    }
+    // Fallback for non-Error objects.
+    try {
+      return {
+        message: JSON.stringify(errorEventOrReason),
+        name: 'UnknownErrorType',
+        stack: null,
+      };
+    } catch (e) {
+      return {
+        message: String(errorEventOrReason),
+        name: 'UnknownErrorTypeNonStringifiable',
+        stack: null,
+      };
+    }
+  }
+
+  /**
+   * Converts an array of arguments (from log/error) into a single string.
+   * Handles Error objects specially to include their message and stack.
+   * @param {Array<*>} args - Arguments passed to console methods.
+   * @return {string} A string representation of the arguments.
+   */
+  function stringifyArgs(args) {
+    return args
+      .map((arg) => {
+        if (arg instanceof Error) {
+          const {message, stack} = arg;
+          return `Error: ${message}${stack ? ('\nStack: ' + stack) : ''}`;
+        }
+        if (typeof arg === 'object' && arg !== null) {
+          try {
+            return JSON.stringify(arg);
+          } catch (error) {
+            return '[Circular Object]';
+          }
+        } else {
+          return String(arg);
+        }
+      })
+      .join(' ');
+  }
+
+  console.log = function(...args) {
+    const logString = stringifyArgs(args);
+    window.parent.postMessage({ type: 'log', message: logString }, '*');
+    originalConsoleLog.apply(console, args);
+  };
+
+  console.error = function(...args) {
+    let errorData;
+    if (args.length > 0 && args[0] instanceof Error) {
+      const err = args[0];
+      // If the first arg is an Error, capture its details.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        ...getErrorObject(err),
+        rawArgsString: stringifyArgs(args.slice(1)),
+        timestamp: new Date().toISOString(),
+      };
+    } else {
+      // If not an Error object, treat all args as a general error message.
+      errorData = {
+        type: 'error',
+        source: 'CONSOLE_ERROR',
+        message: stringifyArgs(args),
+        name: 'ConsoleLoggedError',
+        stack: null,
+        timestamp: new Date().toISOString(),
+      };
+    }
+    window.parent.postMessage(errorData, '*');
+    originalConsoleError.apply(console, args);
+  };
+
+  // Listen for global unhandled synchronous errors.
+  window.addEventListener('error', function(event) {
+    const errorDetails = event.error ? getErrorObject(event.error) : {
+      message: event.message,
+      name: 'GlobalError',
+      stack: null,
+      filename: event.filename,
+      lineno: event.lineno,
+      colno: event.colno,
+    };
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'global',
+      ...errorDetails,
+      message: errorDetails.message || event.message,
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+  // Listen for unhandled promise rejections (asynchronous errors).
+  window.addEventListener('unhandledrejection', function(event) {
+    const errorDetails = getErrorObject(event.reason);
+
+    window.parent.postMessage({
+      type: 'error',
+      source: 'unhandledrejection',
+      ...errorDetails,
+      message: errorDetails.message || 'Unhandled Promise Rejection',
+      timestamp: new Date().toISOString(),
+    }, '*');
+  });
+
+})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Châu ❤️ From Saigon to Canada</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&amp;family=Dancing+Script:wght@600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" crossorigin="anonymous"></script>
+    <!-- Tone.js for gentle romantic sound effects & birthday melody -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js" crossorigin="anonymous"></script>
+    <!-- QRCode.js for generating romantic mobile QR cards -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" crossorigin="anonymous"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#FDFBF7',
+                        parchment: '#F5EFE6',
+                        rosegold: '#C97A7E',
+                        rosedark: '#9E5256',
+                        warmgold: '#D4A359',
+                        charcoal: '#2C2627',
+                        starbucks: '#00704A'
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        script: ['"Dancing Script"', 'cursive']
+                    }
+                }
+            }
+        };
+    </script>
+
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #2C2627;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .bg-editorial {
+            background-image:
+                radial-gradient(circle at 15% 20%, rgba(201, 122, 126, 0.10) 0%, transparent 45%),
+                radial-gradient(circle at 85% 75%, rgba(212, 163, 89, 0.12) 0%, transparent 50%);
+        }
+
+        @keyframes floatPlane {
+            0%, 100% { transform: translateY(0px) rotate(4deg); }
+            50% { transform: translateY(-6px) rotate(8deg); }
+        }
+        .plane-icon {
+            animation: floatPlane 3.2s ease-in-out infinite;
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
+            25% { transform: scale(1.06, 0.96) rotate(2deg); opacity: 1; }
+            50% { transform: scale(0.95, 1.05) rotate(-2deg); opacity: 0.9; }
+            75% { transform: scale(1.04, 0.98) rotate(1deg); opacity: 1; }
+        }
+        .flame-flicker {
+            animation: flicker 1.4s infinite ease-in-out;
+            transform-origin: bottom center;
+        }
+
+        @keyframes riseSmoke {
+            0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
+            100% { transform: translateY(-45px) scale(1.6); opacity: 0; }
+        }
+        .smoke-puff {
+            animation: riseSmoke 2s ease-out forwards;
+        }
+
+        .polaroid-card {
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .polaroid-card:hover {
+            transform: translateY(-8px) rotate(0deg) scale(1.02) !important;
+            box-shadow: 0 20px 35px -10px rgba(44, 38, 39, 0.18);
+            z-index: 20;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 122, 126, 0.5); }
+            50% { box-shadow: 0 0 0 14px rgba(201, 122, 126, 0); }
+        }
+        .wax-seal {
+            animation: pulseGlow 2.5s infinite;
+        }
+
+        @keyframes shakeError {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .shake-anim {
+            animation: shakeError 0.4s ease-in-out;
+        }
+
+        body.mobile-frame-preview {
+            background-color: #1E191A;
+            display: flex;
+            justify-content: center;
+            padding: 20px 0;
+        }
+        body.mobile-frame-preview #appWrapper {
+            width: 390px;
+            max-width: 100vw;
+            min-height: 844px;
+            background-color: #FDFBF7;
+            border-radius: 42px;
+            border: 10px solid #3A3234;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+            overflow-x: hidden;
+            position: relative;
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:"Plus Jakarta Sans", sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-10{bottom:-2.5rem}.-left-10{left:-2.5rem}.-right-10{right:-2.5rem}.-right-6{right:-1.5rem}.-top-10{top:-2.5rem}.-top-6{top:-1.5rem}.bottom-2{bottom:0.5rem}.bottom-4{bottom:1rem}.right-2{right:0.5rem}.right-4{right:1rem}.top-0{top:0px}.top-10{top:2.5rem}.z-10{z-index:10}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.z-\[60\]{z-index:60}.mx-1{margin-left:0.25rem;margin-right:0.25rem}.mx-auto{margin-left:auto;margin-right:auto}.my-2{margin-top:0.5rem;margin-bottom:0.5rem}.my-6{margin-top:1.5rem;margin-bottom:1.5rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[4\/5\]{aspect-ratio:4/5}.h-0\.5{height:0.125rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-2\.5{height:0.625rem}.h-24{height:6rem}.h-3{height:0.75rem}.h-4{height:1rem}.h-56{height:14rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-96{height:24rem}.h-full{height:100%}.max-h-\[90vh\]{max-height:90vh}.min-h-screen{min-height:100vh}.w-14{width:3.5rem}.w-16{width:4rem}.w-2\.5{width:0.625rem}.w-20{width:5rem}.w-24{width:6rem}.w-3{width:0.75rem}.w-4{width:1rem}.w-44{width:11rem}.w-56{width:14rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-96{width:24rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-5xl{max-width:64rem}.max-w-\[240px\]{max-width:240px}.max-w-lg{max-width:32rem}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-rotate-2{--tw-rotate:-2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-1{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-2{--tw-rotate:2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.scroll-mt-20{scroll-margin-top:5rem}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-12 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(3rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(3rem * var(--tw-space-y-reverse))}.space-y-16 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(4rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(4rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-3\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.875rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.875rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-visible{overflow:visible}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.whitespace-pre-line{white-space:pre-line}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-charcoal\/10{border-color:rgb(44 38 39 / 0.1)}.border-charcoal\/20{border-color:rgb(44 38 39 / 0.2)}.border-rosegold\/15{border-color:rgb(201 122 126 / 0.15)}.border-rosegold\/20{border-color:rgb(201 122 126 / 0.2)}.border-rosegold\/25{border-color:rgb(201 122 126 / 0.25)}.border-rosegold\/30{border-color:rgb(201 122 126 / 0.3)}.border-rosegold\/40{border-color:rgb(201 122 126 / 0.4)}.border-rosegold\/50{border-color:rgb(201 122 126 / 0.5)}.border-starbucks\/15{border-color:rgb(0 112 74 / 0.15)}.border-starbucks\/20{border-color:rgb(0 112 74 / 0.2)}.border-starbucks\/30{border-color:rgb(0 112 74 / 0.3)}.border-starbucks\/40{border-color:rgb(0 112 74 / 0.4)}.border-warmgold\/20{border-color:rgb(212 163 89 / 0.2)}.border-warmgold\/30{border-color:rgb(212 163 89 / 0.3)}.border-warmgold\/40{border-color:rgb(212 163 89 / 0.4)}.border-warmgold\/50{border-color:rgb(212 163 89 / 0.5)}.bg-\[\#F2F8F5\]{--tw-bg-opacity:1;background-color:rgb(242 248 245 / var(--tw-bg-opacity, 1))}.bg-\[\#FCF8EE\]{--tw-bg-opacity:1;background-color:rgb(252 248 238 / var(--tw-bg-opacity, 1))}.bg-charcoal{--tw-bg-opacity:1;background-color:rgb(44 38 39 / var(--tw-bg-opacity, 1))}.bg-charcoal\/50{background-color:rgb(44 38 39 / 0.5)}.bg-charcoal\/60{background-color:rgb(44 38 39 / 0.6)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(253 251 247 / var(--tw-bg-opacity, 1))}.bg-cream\/85{background-color:rgb(253 251 247 / 0.85)}.bg-gray-300\/60{background-color:rgb(209 213 219 / 0.6)}.bg-gray-400\/50{background-color:rgb(156 163 175 / 0.5)}.bg-parchment{--tw-bg-opacity:1;background-color:rgb(245 239 230 / var(--tw-bg-opacity, 1))}.bg-parchment\/40{background-color:rgb(245 239 230 / 0.4)}.bg-parchment\/60{background-color:rgb(245 239 230 / 0.6)}.bg-parchment\/70{background-color:rgb(245 239 230 / 0.7)}.bg-parchment\/80{background-color:rgb(245 239 230 / 0.8)}.bg-parchment\/90{background-color:rgb(245 239 230 / 0.9)}.bg-rosegold{--tw-bg-opacity:1;background-color:rgb(201 122 126 / var(--tw-bg-opacity, 1))}.bg-rosegold\/15{background-color:rgb(201 122 126 / 0.15)}.bg-rosegold\/20{background-color:rgb(201 122 126 / 0.2)}.bg-starbucks{--tw-bg-opacity:1;background-color:rgb(0 112 74 / var(--tw-bg-opacity, 1))}.bg-starbucks\/10{background-color:rgb(0 112 74 / 0.1)}.bg-starbucks\/15{background-color:rgb(0 112 74 / 0.15)}.bg-warmgold{--tw-bg-opacity:1;background-color:rgb(212 163 89 / var(--tw-bg-opacity, 1))}.bg-warmgold\/15{background-color:rgb(212 163 89 / 0.15)}.bg-warmgold\/20{background-color:rgb(212 163 89 / 0.2)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/15{background-color:rgb(255 255 255 / 0.15)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--tw-gradient-stops))}.from-\[\#231924\]{--tw-gradient-from:#231924 var(--tw-gradient-from-position);--tw-gradient-to:rgb(35 25 36 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-\[\#35222E\]{--tw-gradient-to:rgb(53 34 46 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #35222E var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-\[\#FDFBF7\]{--tw-gradient-to:#FDFBF7 var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.pb-2{padding-bottom:0.5rem}.pb-20{padding-bottom:5rem}.pb-3{padding-bottom:0.75rem}.pb-4{padding-bottom:1rem}.pb-6{padding-bottom:1.5rem}.pl-2\.5{padding-left:0.625rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.pt-4{padding-top:1rem}.pt-5{padding-top:1.25rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.font-sans{font-family:"Plus Jakarta Sans", sans-serif}.font-script{font-family:"Dancing Script", cursive}.font-serif{font-family:"Cormorant Garamond", Georgia, serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.not-italic{font-style:normal}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.25em\]{letter-spacing:0.25em}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-\[0\.55em\]{letter-spacing:0.55em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-\[\#9B6B21\]{--tw-text-opacity:1;color:rgb(155 107 33 / var(--tw-text-opacity, 1))}.text-charcoal{--tw-text-opacity:1;color:rgb(44 38 39 / var(--tw-text-opacity, 1))}.text-charcoal\/50{color:rgb(44 38 39 / 0.5)}.text-charcoal\/60{color:rgb(44 38 39 / 0.6)}.text-charcoal\/65{color:rgb(44 38 39 / 0.65)}.text-charcoal\/70{color:rgb(44 38 39 / 0.7)}.text-charcoal\/75{color:rgb(44 38 39 / 0.75)}.text-charcoal\/80{color:rgb(44 38 39 / 0.8)}.text-charcoal\/85{color:rgb(44 38 39 / 0.85)}.text-cream{--tw-text-opacity:1;color:rgb(253 251 247 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-rosedark{--tw-text-opacity:1;color:rgb(158 82 86 / var(--tw-text-opacity, 1))}.text-rosegold{--tw-text-opacity:1;color:rgb(201 122 126 / var(--tw-text-opacity, 1))}.text-starbucks{--tw-text-opacity:1;color:rgb(0 112 74 / var(--tw-text-opacity, 1))}.text-warmgold{--tw-text-opacity:1;color:rgb(212 163 89 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.opacity-90{opacity:0.9}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-rosegold\/25{--tw-shadow-color:rgb(201 122 126 / 0.25);--tw-shadow:var(--tw-shadow-colored)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-500{transition-duration:500ms}.duration-700{transition-duration:700ms}.duration-75{transition-duration:75ms}.selection\:bg-rosegold\/20 *::selection{background-color:rgb(201 122 126 / 0.2)}.selection\:text-rosedark *::selection{--tw-text-opacity:1;color:rgb(158 82 86 / var(--tw-text-opacity, 1))}.selection\:bg-rosegold\/20::selection{background-color:rgb(201 122 126 / 0.2)}.selection\:text-rosedark::selection{--tw-text-opacity:1;color:rgb(158 82 86 / var(--tw-text-opacity, 1))}.hover\:bg-\[\#00593B\]:hover{--tw-bg-opacity:1;background-color:rgb(0 89 59 / var(--tw-bg-opacity, 1))}.hover\:bg-\[\#008c5c\]:hover{--tw-bg-opacity:1;background-color:rgb(0 140 92 / var(--tw-bg-opacity, 1))}.hover\:bg-\[\#B8883E\]:hover{--tw-bg-opacity:1;background-color:rgb(184 136 62 / var(--tw-bg-opacity, 1))}.hover\:bg-red-100:hover{--tw-bg-opacity:1;background-color:rgb(254 226 226 / var(--tw-bg-opacity, 1))}.hover\:bg-rosedark:hover{--tw-bg-opacity:1;background-color:rgb(158 82 86 / var(--tw-bg-opacity, 1))}.hover\:bg-rosegold\/10:hover{background-color:rgb(201 122 126 / 0.1)}.hover\:bg-rosegold\/15:hover{background-color:rgb(201 122 126 / 0.15)}.hover\:bg-rosegold\/20:hover{background-color:rgb(201 122 126 / 0.2)}.hover\:bg-rosegold\/25:hover{background-color:rgb(201 122 126 / 0.25)}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/25:hover{background-color:rgb(255 255 255 / 0.25)}.hover\:text-rosedark:hover{--tw-text-opacity:1;color:rgb(158 82 86 / var(--tw-text-opacity, 1))}.hover\:shadow-2xl:hover{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-rosegold:focus{--tw-border-opacity:1;border-color:rgb(201 122 126 / var(--tw-border-opacity, 1))}.focus\:bg-parchment\/50:focus{background-color:rgb(245 239 230 / 0.5)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-\[0\.99\]:active{--tw-scale-x:0.99;--tw-scale-y:0.99;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:opacity-100{opacity:1}@media (min-width: 640px){.sm\:inline-block{display:inline-block}.sm\:h-64{height:16rem}.sm\:w-64{width:16rem}.sm\:-translate-y-3{--tw-translate-y:-0.75rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:gap-3{gap:0.75rem}.sm\:gap-8{gap:2rem}.sm\:space-y-24 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(6rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(6rem * var(--tw-space-y-reverse))}.sm\:p-10{padding:2.5rem}.sm\:p-12{padding:3rem}.sm\:p-5{padding:1.25rem}.sm\:p-6{padding:1.5rem}.sm\:p-7{padding:1.75rem}.sm\:p-8{padding:2rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:px-8{padding-left:2rem;padding-right:2rem}.sm\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:justify-start{justify-content:flex-start}.md\:justify-end{justify-content:flex-end}.md\:text-left{text-align:left}.md\:text-right{text-align:right}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style></head>
+<body class="bg-editorial min-h-screen selection:bg-rosegold/20 selection:text-rosedark">
+<div id="appWrapper" class="w-full min-h-screen relative pb-20">
+
+    <!-- ==========================================
+         TOP CREATOR QUICK-EXPORT BANNER (HIDDEN IN DOWNLOADED FILE)
+    =========================================== -->
+    
+
+    <!-- ==========================================
+         1. PASSCODE LOCK SCREEN OVERLAY
+    =========================================== -->
+    <div id="lockScreen" class="fixed inset-0 z-50 bg-gradient-to-b from-[#231924] via-[#35222E] to-[#FDFBF7] flex flex-col items-center justify-center p-4 sm:p-6 transition-all duration-700">
+        <div class="absolute w-96 h-96 rounded-full bg-rosegold/20 blur-3xl -top-10 -left-10 pointer-events-none"></div>
+        <div class="absolute w-96 h-96 rounded-full bg-warmgold/20 blur-3xl -bottom-10 -right-10 pointer-events-none"></div>
+
+        <div id="lockCard" class="max-w-md w-full bg-white/95 backdrop-blur-md border border-rosegold/30 rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative z-10">
+            <div class="w-14 h-14 rounded-full bg-rosegold/15 text-rosegold flex items-center justify-center mx-auto mb-3 shadow-inner">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+            </div>
+
+            <span class="text-[11px] uppercase tracking-[0.25em] text-rosegold font-semibold block mb-1">Special Delivery • Saigon to Canada</span>
+            <h1 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal mb-1.5">Trạm Gửi Yêu Thương</h1>
+            <p id="lockQuestionText" class="text-xs sm:text-sm text-charcoal/70 mb-4 leading-relaxed">
+                Nhập mật mã kỷ niệm 4 số của tụi mình để mở món quà sinh nhật từ bên kia bán cầu nhé!
+            </p>
+            <div class="inline-block px-3 py-1 rounded-full bg-parchment text-[11px] text-rosedark font-medium mb-4">
+                💡 Gợi ý: <span id="displayPasscodeHint">Ngày đặc biệt của tụi mình (4 chữ số)</span>
+            </div>
+
+            <!-- 4-Digit Display Input -->
+            <div class="flex justify-center gap-3 mb-4">
+                <input type="tel" inputmode="numeric" pattern="[0-9]*" id="pinInput" maxlength="4" placeholder="••••" class="w-44 text-center text-2xl tracking-[0.55em] font-serif font-bold py-2.5 px-4 rounded-2xl bg-parchment/80 border-2 border-rosegold/30 focus:border-rosegold focus:outline-none text-charcoal transition" oninput="handlePinTyping(this.value)" value="">
+            </div>
+
+            <!-- Touch-Friendly Mobile Numeric Keypad -->
+            <div class="grid grid-cols-3 gap-2 max-w-[240px] mx-auto mb-5 select-none">
+                <button type="button" onclick="pressKeypad('1')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">1</button>
+                <button type="button" onclick="pressKeypad('2')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">2</button>
+                <button type="button" onclick="pressKeypad('3')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">3</button>
+                <button type="button" onclick="pressKeypad('4')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">4</button>
+                <button type="button" onclick="pressKeypad('5')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">5</button>
+                <button type="button" onclick="pressKeypad('6')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">6</button>
+                <button type="button" onclick="pressKeypad('7')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">7</button>
+                <button type="button" onclick="pressKeypad('8')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">8</button>
+                <button type="button" onclick="pressKeypad('9')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">9</button>
+                <button type="button" onclick="pressKeypad('CLR')" class="py-2.5 rounded-xl bg-parchment/40 hover:bg-red-100 active:scale-95 text-xs font-semibold text-charcoal/70 transition">Xóa</button>
+                <button type="button" onclick="pressKeypad('0')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">0</button>
+                <button type="button" onclick="pressKeypad('DEL')" class="py-2.5 rounded-xl bg-parchment/40 hover:bg-rosegold/20 active:scale-95 text-sm font-semibold text-charcoal/70 transition">⌫</button>
+            </div>
+
+            <p id="pinError" class="text-xs text-red-500 font-medium mb-3 hidden">
+                Ủa chưa đúng rồi bé ơi! Thử lại mật mã gợi ý bên trên nha ❤️
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col gap-2.5">
+                <button onclick="verifyPin()" class="w-full py-3.5 px-6 rounded-2xl bg-rosegold hover:bg-rosedark active:scale-[0.99] text-white font-semibold text-sm tracking-wide shadow-md shadow-rosegold/25 transition flex items-center justify-center gap-2">
+                    <span>Mở Khóa Trái Tim</span>
+                </button>
+                
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         TOP FLOATING NAVIGATION & AUDIO BAR
+    =========================================== -->
+    <header class="sticky top-0 z-30 backdrop-blur-md bg-cream/85 border-b border-rosegold/15 px-4 sm:px-8 py-3.5">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-rosegold animate-ping"></span>
+                <span class="font-serif font-bold text-lg sm:text-xl tracking-wide text-charcoal">
+                    SGN <span class="text-rosegold mx-1">✈</span> YYZ
+                </span>
+                <span class="hidden sm:inline-block text-xs text-charcoal/60 border-l border-charcoal/20 pl-2.5">
+                    13,500 km • Cùng một bầu trời
+                </span>
+            </div>
+
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button id="musicToggleBtn" onclick="toggleBirthdayMelody()" class="px-3.5 py-2 rounded-full bg-parchment hover:bg-rosegold/20 text-charcoal text-xs font-semibold flex items-center gap-2 transition shadow-sm">
+                    <span id="musicIcon">🎵</span>
+                    <span id="musicLabel">Bật nhạc sinh nhật</span>
+                </button>
+
+                <button onclick="triggerCelebrationConfetti()" class="p-2 rounded-full bg-rosegold/15 hover:bg-rosegold/25 text-rosegold transition" title="Bắn pháo giấy chúc mừng">
+                    🎉
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN CONTENT CONTAINER
+    =========================================== -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-16 sm:space-y-24">
+
+        <!-- ==========================================
+             2. HERO SECTION & LIVE DUAL TIME-ZONE BRIDGE
+        =========================================== -->
+        <section class="text-center space-y-8">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rosegold/15 text-rosedark text-xs font-semibold tracking-wider uppercase">
+                <span>🎂 Happy Birthday Special Edition</span>
+            </div>
+
+            <div class="space-y-3 max-w-3xl mx-auto">
+                <h2 class="font-serif text-4xl sm:text-6xl font-bold text-charcoal leading-tight">
+                    Chúc Mừng Sinh Nhật <br>
+                    <span id="displayGirlfriendName" class="italic text-rosegold font-serif">Châu Yêu Của Anh</span>
+                </h2>
+                <p id="displayHeroSubtitle" class="text-sm sm:text-base text-charcoal/75 max-w-xl mx-auto leading-relaxed">
+                    Dù Việt Nam đi trước Canada cả nửa vòng trái đất, nhưng hôm nay mọi múi giờ của anh đều xoay quanh ngày em ra đời.
+                </p>
+            </div>
+
+            <!-- Interactive Flight Bridge & Dual Live Clocks Card -->
+            <div class="bg-white/90 backdrop-blur-md border border-rosegold/25 rounded-3xl p-6 sm:p-8 shadow-xl max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+
+                    <!-- Vietnam Clock -->
+                    <div class="bg-parchment/60 rounded-2xl p-4 sm:p-5 text-center md:text-left border border-warmgold/20">
+                        <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-semibold uppercase tracking-wider text-charcoal/60 mb-1">
+                            <span>🇻🇳 Nơi anh đang nhớ em</span>
+                        </div>
+                        <div class="text-lg font-serif font-bold text-charcoal" id="displayVietnamCity">Sài Gòn, Việt Nam</div>
+                        <div class="mt-2 flex items-baseline justify-center md:justify-start gap-1.5">
+                            <span id="vnClock" class="font-mono text-2xl sm:text-3xl font-bold text-rosegold">14:22:10</span>
+                            <span class="text-xs text-charcoal/60 font-medium">GMT+7</span>
+                        </div>
+                        <p id="vnDate" class="text-xs text-charcoal/60 mt-1">Thứ Năm, 05/11/2026</p>
+                    </div>
+
+                    <!-- Animated Flight Path Bridge -->
+                    <div class="flex flex-col items-center justify-center py-2">
+                        <div class="text-xs font-semibold text-rosedark tracking-widest uppercase mb-2">
+                            Khoảng cách <span id="displayDistanceKm">13,500</span> km
+                        </div>
+                        <div class="w-full flex items-center gap-2">
+                            <div class="w-3 h-3 rounded-full bg-rosegold shrink-0"></div>
+                            <div class="h-0.5 flex-1 border-b-2 border-dashed border-rosegold/50 relative flex items-center justify-center">
+                                <span class="plane-icon bg-cream px-2 text-xl">✈️</span>
+                            </div>
+                            <div class="w-3 h-3 rounded-full bg-warmgold shrink-0"></div>
+                        </div>
+                        <div class="mt-3 text-xs text-charcoal/70 font-medium">
+                            Đang gửi <span class="text-rosegold font-bold">100% thương nhớ</span> sang Canada
+                        </div>
+                    </div>
+
+                    <!-- Canada Clock -->
+                    <div class="bg-parchment/60 rounded-2xl p-4 sm:p-5 text-center md:text-right border border-warmgold/20">
+                        <div class="flex items-center justify-center md:justify-end gap-2 text-xs font-semibold uppercase tracking-wider text-charcoal/60 mb-1">
+                            <span>🇨🇦 Nơi công chúa đón tuổi mới</span>
+                        </div>
+                        <div class="text-lg font-serif font-bold text-charcoal" id="displayCanadaCity">Toronto, Canada</div>
+                        <div class="mt-2 flex items-baseline justify-center md:justify-end gap-2">
+                            <span id="caClock" class="font-mono text-2xl sm:text-3xl font-bold text-warmgold">02:22:10</span>
+                            <select id="tzSelect" onchange="changeCanadaTimezone(this.value)" class="text-xs bg-white border border-warmgold/30 rounded-lg px-1.5 py-0.5 text-charcoal/70 focus:outline-none cursor-pointer" title="Đổi múi giờ Canada">
+                                <option value="America/Toronto">EST/EDT (Toronto)</option>
+                                <option value="America/Vancouver">PST/PDT (Vancouver)</option>
+                                <option value="America/Edmonton">MST/MDT (Calgary)</option>
+                                <option value="America/Winnipeg">CST/CDT (Winnipeg)</option>
+                            </select>
+                        </div>
+                        <p id="caDate" class="text-xs text-charcoal/60 mt-1">Thứ Năm, 05/11/2026</p>
+                    </div>
+
+                </div>
+
+                <!-- Days Together Counter Bar -->
+                <div class="mt-6 pt-5 border-t border-rosegold/15 flex flex-wrap items-center justify-between gap-4 text-xs sm:text-sm">
+                    <div class="flex items-center gap-2 text-charcoal/80">
+                        <span>❤️ Tụi mình đã đi cùng nhau:</span>
+                        <span id="daysTogetherCount" class="px-3 py-1 rounded-full bg-rosegold text-white font-bold">365</span>
+                        <span class="font-medium">ngày yêu thương</span>
+                    </div>
+                    <div class="text-charcoal/65 italic">
+                        "Hôm nay có 3 trạm bất ngờ đang đợi em mở khóa bên dưới..."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             3. THE 3 SURPRISE TOUCHPOINT STATIONS
+        =========================================== -->
+        <section class="space-y-8">
+            <div class="text-center space-y-2 max-w-2xl mx-auto">
+                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-rosegold">Birthday Itinerary</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal">3 Trạm Quà Tặng Hôm Nay Của Em</h2>
+                <p class="text-xs sm:text-sm text-charcoal/70">
+                    Mỗi khung giờ trong ngày sinh nhật, anh đã chuẩn bị sẵn một điểm chạm. Em hãy bấm vào từng phong bì để xem mật thư nhé!
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+
+                <!-- TOUCHPOINT 1: 08:30 AM STARBUCKS -->
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-rosegold/25 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-starbucks/10 pointer-events-none"></div>
+
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-starbucks/15 text-starbucks font-bold text-xs">
+                                ☀️ Trạm 1 • 08:30 Sáng
+                            </span>
+                            <span class="text-xs text-charcoal/50 font-medium">Điểm chạm vị giác</span>
+                        </div>
+
+                        <h3 class="font-serif text-2xl font-bold text-charcoal mb-2">Năng Lượng Sáng Sinh Nhật</h3>
+                        <p class="text-xs sm:text-sm text-charcoal/70 leading-relaxed mb-5">
+                            Bắt đầu ngày tuổi mới thật tỉnh táo và ấm áp với món đồ uống quen thuộc anh đặt riêng gửi tới cửa nhà em.
+                        </p>
+
+                        <!-- Closed State -->
+                        <div id="station1Closed" class="bg-parchment/70 rounded-2xl p-5 text-center border border-dashed border-starbucks/40 my-2">
+                            <div class="text-3xl mb-2">☕🥐</div>
+                            <p class="text-xs text-charcoal/70 font-medium mb-3">
+                                Mở phong bì này vào buổi sáng khi thức dậy nhé!
+                            </p>
+                            <button onclick="openTouchpoint(1)" class="w-full py-2.5 px-4 rounded-xl bg-starbucks hover:bg-[#00593B] text-white text-xs font-semibold transition shadow">
+                                Mở Phong Bì 08:30 Sáng
+                            </button>
+                        </div>
+
+                        <!-- Opened State -->
+                        <div id="station1Opened" class="hidden bg-[#F2F8F5] rounded-2xl p-5 border border-starbucks/30 space-y-3 my-2">
+                            <div class="flex items-center justify-between border-b border-starbucks/15 pb-2">
+                                <span class="font-bold text-xs text-starbucks uppercase tracking-wider">Starbucks Order • Canada</span>
+                                <span class="text-[11px] bg-starbucks text-white px-2 py-0.5 rounded-full">Pre-ordered ❤️</span>
+                            </div>
+                            <div class="space-y-1.5 text-xs text-charcoal">
+                                <div class="font-semibold">🥤 1x Món nước yêu thích của Châu</div>
+                                <div class="font-semibold">🍰 1x Birthday Cake Pop / Butter Croissant</div>
+                                <div class="p-2.5 rounded-xl bg-white border border-starbucks/20 mt-2 text-charcoal/85 italic">
+                                    Ghi chú trên ly: <br>
+                                    <strong id="starbucksCupText" class="text-starbucks not-italic">"Happy Birthday Châu ❤️ From Vietnam"</strong>
+                                </div>
+                            </div>
+                            <p class="text-[11px] text-charcoal/70 pt-1">
+                                💡 <strong>Nhiệm vụ của em:</strong> Nghe tiếng chuông hoặc kiểm tra trước cửa nhà để nhận phần ăn sáng ấm nóng từ anh nha!
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-charcoal/10 mt-4 flex items-center justify-between text-[11px] text-charcoal/50">
+                        <span>Giao tận cửa qua UberEats / DoorDash</span>
+                        <span>#MorningLove</span>
+                    </div>
+                </div>
+
+                <!-- TOUCHPOINT 2: 14:00 PM LOVE VOUCHERS -->
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-rosegold/25 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-rosegold/15 pointer-events-none"></div>
+
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-rosegold/15 text-rosedark font-bold text-xs">
+                                💌 Trạm 2 • 14:00 Chiều
+                            </span>
+                            <span class="text-xs text-charcoal/50 font-medium">Đặc quyền công chúa</span>
+                        </div>
+
+                        <h3 class="font-serif text-2xl font-bold text-charcoal mb-2">Hộp Thẻ Đặc Quyền Yêu Xa</h3>
+                        <p class="text-xs sm:text-sm text-charcoal/70 leading-relaxed mb-5">
+                            Những tấm vé "quyền lực" không thời hạn dành riêng cho em để sử dụng bất cứ lúc nào em muốn.
+                        </p>
+
+                        <!-- Closed State -->
+                        <div id="station2Closed" class="bg-parchment/70 rounded-2xl p-5 text-center border border-dashed border-rosegold/40 my-2">
+                            <div class="text-3xl mb-2">🎟️✨</div>
+                            <p class="text-xs text-charcoal/70 font-medium mb-3">
+                                Bao gồm 3 tấm thẻ quyền lực nhất vũ trụ!
+                            </p>
+                            <button onclick="openTouchpoint(2)" class="w-full py-2.5 px-4 rounded-xl bg-rosegold hover:bg-rosedark text-white text-xs font-semibold transition shadow">
+                                Mở Hộp Voucher Của Em
+                            </button>
+                        </div>
+
+                        <!-- Opened State -->
+                        <div id="station2Opened" class="hidden space-y-2.5 my-2">
+                            <div onclick="claimCoupon(this, 'Thẻ Miễn Phí Giận Dỗi (Anh xin lỗi trước 100%)')" class="cursor-pointer p-3 rounded-xl bg-parchment/80 hover:bg-rosegold/15 border border-rosegold/30 transition flex items-center justify-between">
+                                <div class="text-xs">
+                                    <div class="font-bold text-charcoal">🎟️ 01 Thẻ "Anh Sai Rồi"</div>
+                                    <div class="text-charcoal/65 text-[11px]">Dùng để thắng mọi cuộc tranh luận ngay lập tức</div>
+                                </div>
+                                <span class="coupon-badge text-[10px] font-bold px-2 py-1 rounded-lg bg-rosegold text-white shrink-0">Nhận thẻ</span>
+                            </div>
+
+                            <div onclick="claimCoupon(this, '01 Chuyến Foodtour / Trà Sữa Full Topping')" class="cursor-pointer p-3 rounded-xl bg-parchment/80 hover:bg-rosegold/15 border border-rosegold/30 transition flex items-center justify-between">
+                                <div class="text-xs">
+                                    <div class="font-bold text-charcoal">🧋 01 Ngày Ăn Sập Tiệm</div>
+                                    <div class="text-charcoal/65 text-[11px]">Tài trợ 100% mọi món em thèm bất kỳ lúc nào</div>
+                                </div>
+                                <span class="coupon-badge text-[10px] font-bold px-2 py-1 rounded-lg bg-rosegold text-white shrink-0">Nhận thẻ</span>
+                            </div>
+
+                            <div onclick="claimCoupon(this, '1000 Cái Ôm Bù Ngay Khi Gặp Lại')" class="cursor-pointer p-3 rounded-xl bg-parchment/80 hover:bg-rosegold/15 border border-rosegold/30 transition flex items-center justify-between">
+                                <div class="text-xs">
+                                    <div class="font-bold text-charcoal">✈️ 1000 Cái Ôm Sân Bay</div>
+                                    <div class="text-charcoal/65 text-[11px]">Quy đổi ngay giây phút tụi mình gặp lại nhau</div>
+                                </div>
+                                <span class="coupon-badge text-[10px] font-bold px-2 py-1 rounded-lg bg-rosegold text-white shrink-0">Nhận thẻ</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-charcoal/10 mt-4 flex items-center justify-between text-[11px] text-charcoal/50">
+                        <span>Hiệu lực: Trọn đời</span>
+                        <span>#UnlimitedLove</span>
+                    </div>
+                </div>
+
+                <!-- TOUCHPOINT 3: 20:00 PM CAKE & HOUSEMATE REVEAL -->
+                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-warmgold/40 shadow-lg flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-warmgold/15 pointer-events-none"></div>
+
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-4">
+                            <span class="px-3 py-1 rounded-full bg-warmgold/20 text-[#9B6B21] font-bold text-xs">
+                                🌙 Trạm 3 • 20:00 Tối
+                            </span>
+                            <span class="text-xs text-charcoal/50 font-medium">Điểm chạm bất ngờ nhất</span>
+                        </div>
+
+                        <h3 class="font-serif text-2xl font-bold text-charcoal mb-2">Điều Ước Đêm Sinh Nhật</h3>
+                        <p class="text-xs sm:text-sm text-charcoal/70 leading-relaxed mb-5">
+                            Lên đồ thật xinh vào lúc 8h tối nay, gọi video cho anh và mở chiếc phong bì cuối cùng này nhé!
+                        </p>
+
+                        <!-- Closed State -->
+                        <div id="station3Closed" class="bg-parchment/70 rounded-2xl p-5 text-center border border-dashed border-warmgold/50 my-2">
+                            <div class="text-3xl mb-2">🎂🕯️</div>
+                            <p class="text-xs text-charcoal/70 font-medium mb-3">
+                                Chỉ mở khi tụi mình đã bật Camera thấy nhau lúc 20:00 tối!
+                            </p>
+                            <button onclick="openTouchpoint(3)" class="w-full py-2.5 px-4 rounded-xl bg-warmgold hover:bg-[#B8883E] text-white text-xs font-semibold transition shadow">
+                                Mở Mật Thư 20:00 Tối
+                            </button>
+                        </div>
+
+                        <!-- Opened State -->
+                        <div id="station3Opened" class="hidden bg-[#FCF8EE] rounded-2xl p-5 border border-warmgold/40 space-y-3 my-2">
+                            <div class="flex items-center gap-2 text-xs font-bold text-[#9B6B21]">
+                                <span>🤫 BÍ MẬT ĐƯỢC BẬT MÍ:</span>
+                            </div>
+                            <p id="cakeRevealMessage" class="text-xs text-charcoal leading-relaxed">
+                                Sao sinh nhật công chúa của anh mà thiếu bánh kem thật được! Anh đã nhờ <strong>"đồng minh cùng nhà"</strong> chuẩn bị sẵn một chiếc bánh kem thật xinh cho em rồi.
+                            </p>
+                            <div class="p-3 rounded-xl bg-white border border-warmgold/30 text-xs text-rosedark font-semibold text-center animate-pulse">
+                                🚪✨ Em thử lắng nghe xem... hình như có ai đang cầm bánh kem gõ cửa phòng em kìa!
+                            </div>
+                            <div class="pt-1 flex flex-col gap-2">
+                                <a id="videoCallLinkBtn" href="https://meet.google.com" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-rosegold hover:bg-rosedark text-white text-xs font-semibold text-center transition shadow">
+                                    📹 Vào phòng Video Call với Anh
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-charcoal/10 mt-4 flex items-center justify-between text-[11px] text-charcoal/50">
+                        <span>Special Spy: Bạn cùng nhà 🕵️‍♀️</span>
+                        <span>#20:00Date</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. INTERACTIVE VIRTUAL BIRTHDAY CAKE
+        =========================================== -->
+        <section id="virtualCakeSection" class="bg-white rounded-3xl p-6 sm:p-12 border border-rosegold/20 shadow-lg text-center max-w-3xl mx-auto scroll-mt-20">
+            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-warmgold">Make A Wish Together</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal mt-1">Thổi Nến Tuổi Mới Cùng Anh</h2>
+            <p id="cakeInstruction" class="text-xs sm:text-sm text-charcoal/70 max-w-md mx-auto mt-2">
+                Nhắm mắt lại ước một điều thật đẹp cho tuổi mới, sau đó <strong>chạm vào ngọn nến</strong> hoặc <strong>bật Micro thổi nhẹ vào điện thoại</strong> để thổi tắt nến cùng anh nhé!
+            </p>
+
+            <!-- Microphone Blow Detection Control for Mobile -->
+            <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
+                <button id="micBlowBtn" onclick="toggleMicBlowDetection()" class="px-4 py-2.5 rounded-full bg-parchment hover:bg-rosegold/20 border border-rosegold/30 text-charcoal text-xs font-semibold transition flex items-center gap-2 shadow-sm active:scale-95">
+                    <span id="micBtnIcon">🎙️</span>
+                    <span id="micBtnText">Bật Micro để thổi nến thật trên điện thoại</span>
+                </button>
+                <div id="micLevelWrap" class="hidden items-center gap-2 bg-parchment/80 px-3 py-1.5 rounded-full border border-rosegold/20">
+                    <span class="text-[11px] text-rosedark font-medium">Hơi thổi:</span>
+                    <div class="w-20 h-2 bg-white rounded-full overflow-hidden">
+                        <div id="micLevelBar" class="h-full bg-rosegold transition-all duration-75" style="width: 5%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive SVG Cake & Candle -->
+            <div class="my-6 flex flex-col items-center justify-center relative select-none">
+                <div onclick="blowOutCandle()" class="cursor-pointer group relative flex flex-col items-center pt-6" title="Chạm vào đây để thổi nến!">
+
+                    <div id="blowHintBadge" class="mb-3 px-3.5 py-1.5 rounded-full bg-rosegold/15 text-rosedark text-xs font-semibold animate-bounce">
+                        👆 Chạm vào ngọn lửa (hoặc thổi vào Micro)
+                    </div>
+
+                    <div id="candleSmoke" class="hidden absolute top-10 flex gap-2 pointer-events-none">
+                        <div class="w-3 h-3 rounded-full bg-gray-400/50 smoke-puff"></div>
+                        <div class="w-4 h-4 rounded-full bg-gray-300/60 smoke-puff" style="animation-delay: 0.2s;"></div>
+                    </div>
+
+                    <svg class="w-56 h-56 sm:w-64 sm:h-64 overflow-visible" viewBox="0 0 200 200">
+                        <circle id="flameGlow" cx="100" cy="42" r="24" fill="rgba(255, 196, 86, 0.35)" class="flame-flicker"></circle>
+                        <g id="candleFlame" class="flame-flicker">
+                            <path d="M100 22 C92 35, 90 48, 100 54 C110 48, 108 35, 100 22 Z" fill="#FF9800"></path>
+                            <path d="M100 30 C96 38, 95 46, 100 51 C105 46, 104 38, 100 30 Z" fill="#FFF176"></path>
+                        </g>
+                        <line x1="100" y1="53" x2="100" y2="59" stroke="#3E2723" stroke-width="2" stroke-linecap="round"></line>
+                        <rect x="93" y="58" width="14" height="36" rx="4" fill="#FDFBF7" stroke="#C97A7E" stroke-width="2"></rect>
+                        <path d="M93 68 L107 74 M93 80 L107 86" stroke="#C97A7E" stroke-width="2.5"></path>
+                        <rect x="52" y="94" width="96" height="42" rx="10" fill="#FCE4EC" stroke="#C97A7E" stroke-width="2.5"></rect>
+                        <path d="M52 108 Q64 120 76 108 T100 108 T124 108 T148 108" fill="none" stroke="#C97A7E" stroke-width="3.5" stroke-linecap="round"></path>
+                        <rect x="36" y="132" width="128" height="48" rx="12" fill="#F5EFE6" stroke="#C97A7E" stroke-width="2.5"></rect>
+                        <path d="M36 148 Q52 162 68 148 T100 148 T132 148 T164 148" fill="none" stroke="#D4A359" stroke-width="3.5" stroke-linecap="round"></path>
+                        <circle cx="72" cy="92" r="5" fill="#C97A7E"></circle>
+                        <circle cx="128" cy="92" r="5" fill="#C97A7E"></circle>
+                        <ellipse cx="100" cy="182" rx="82" ry="7" fill="#E6DEC8"></ellipse>
+                    </svg>
+                </div>
+
+                <div id="wishSuccessBox" class="hidden mt-4 p-5 rounded-2xl bg-parchment/90 border border-warmgold/40 max-w-lg mx-auto space-y-3">
+                    <div class="text-xl font-serif font-bold text-rosedark">
+                        🌟 Điều ước tuổi mới của Châu đã được gửi vào vũ trụ!
+                    </div>
+                    <p class="text-xs sm:text-sm text-charcoal/80 leading-relaxed">
+                        Ở đầu dây bên này, anh cũng vừa thổi nến cùng em. Chúc cô gái của anh tuổi mới luôn rạng rỡ, bình an tại Canada và sớm về trong vòng tay anh nhé!
+                    </p>
+                    <button onclick="relightCandle()" class="text-xs font-semibold text-rosegold underline hover:text-rosedark">
+                        🔥 Thắp lại nến để ước thêm điều nữa
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             5. POLAROID MEMORY GALLERY & LOVE LETTER
+        =========================================== -->
+        <section class="space-y-12">
+            <div class="text-center space-y-2 max-w-2xl mx-auto">
+                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-rosegold">Our Moments</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal">Cuộn Phim Kỷ Niệm Của Tụi Mình</h2>
+                <p class="text-xs sm:text-sm text-charcoal/70">
+                    Những khoảnh khắc anh luôn giữ trong tim để mỗi khi nhớ em lại mở ra xem.
+                </p>
+            </div>
+
+            <!-- 3 Tilted Polaroid Frames -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-4 px-2">
+
+                <!-- Polaroid 1 -->
+                <div class="polaroid-card bg-white p-4 pb-6 rounded-2xl shadow-md border border-charcoal/10 transform -rotate-2 relative group">
+                    <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-parchment mb-4">
+                        <img id="polaroidImg1" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 1" onerror="this.src='https://placehold.co/600x750/F5EFE6/C97A7E?text=Ky+Niem+1'" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        
+                    </div>
+                    <p id="polaroidCap1" class="font-script text-xl text-center text-charcoal focus:outline-none focus:bg-parchment/50 rounded px-1" title="Bấm vào chữ để sửa chú thích">
+                        Những ngày bình yên bên nhau ❤️
+                    </p>
+                </div>
+
+                <!-- Polaroid 2 -->
+                <div class="polaroid-card bg-white p-4 pb-6 rounded-2xl shadow-md border border-charcoal/10 transform rotate-1 sm:-translate-y-3 relative group">
+                    <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-parchment mb-4">
+                        <img id="polaroidImg2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 2" onerror="this.src='https://placehold.co/600x750/F5EFE6/C97A7E?text=Ky+Niem+2'" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        
+                    </div>
+                    <p id="polaroidCap2" class="font-script text-xl text-center text-charcoal focus:outline-none focus:bg-parchment/50 rounded px-1" title="Bấm vào chữ để sửa chú thích">
+                        Nụ cười anh thương nhất trên đời ✨
+                    </p>
+                </div>
+
+                <!-- Polaroid 3 -->
+                <div class="polaroid-card bg-white p-4 pb-6 rounded-2xl shadow-md border border-charcoal/10 transform rotate-2 relative group">
+                    <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-parchment mb-4">
+                        <img id="polaroidImg3" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 3" onerror="this.src='https://placehold.co/600x750/F5EFE6/C97A7E?text=Ky+Niem+3'" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
+                        
+                    </div>
+                    <p id="polaroidCap3" class="font-script text-xl text-center text-charcoal focus:outline-none focus:bg-parchment/50 rounded px-1" title="Bấm vào chữ để sửa chú thích">
+                        Hẹn ngày tụi mình rút ngắn 13,500km ✈️
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Wax-Sealed Love Letter Section -->
+            <div class="max-w-2xl mx-auto pt-6">
+                <div id="letterClosedBox" onclick="openLoveLetter()" class="cursor-pointer bg-parchment rounded-3xl p-8 sm:p-10 border-2 border-rosegold/30 shadow-xl text-center relative overflow-hidden group transition hover:shadow-2xl">
+                    <p class="text-xs uppercase tracking-[0.25em] text-rosedark font-semibold mb-2">Air Mail • Par Avion</p>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal mb-6">Lá Thư Tay Gửi Từ Sài Gòn</h3>
+
+                    <div class="w-16 h-16 rounded-full bg-rosegold text-white flex items-center justify-center mx-auto wax-seal shadow-lg group-hover:scale-110 transition">
+                        <span class="font-serif font-bold text-xl">❤️</span>
+                    </div>
+                    <p class="text-xs text-charcoal/70 font-medium mt-4">
+                        Chạm vào con dấu sáp để mở lá thư anh viết riêng cho em
+                    </p>
+                </div>
+
+                <div id="letterOpenedBox" class="hidden bg-white rounded-3xl p-8 sm:p-12 border border-rosegold/30 shadow-2xl space-y-6 relative">
+                    <div class="flex items-center justify-between border-b border-rosegold/20 pb-4">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-rosegold font-semibold">From Vietnam With Love</span>
+                            <h4 class="font-serif text-2xl font-bold text-charcoal mt-0.5">Gửi Châu thương yêu,</h4>
+                        </div>
+                        <span class="text-2xl">💌</span>
+                    </div>
+
+                    <div id="displayLetterContent" class="text-sm sm:text-base text-charcoal/85 leading-relaxed space-y-4 whitespace-pre-line font-sans">Gửi Châu yêu của anh ở phương xa,
+
+Chúc mừng sinh nhật em! Dù hôm nay anh không thể trực tiếp đứng trước mặt để ôm em thật chặt hay tự tay thắp nến cho em, nhưng trái tim anh ở Sài Gòn thì đã bay sang Canada từ lúc đồng hồ điểm 00:00 rồi.
+
+Cảm ơn em vì đã luôn mạnh mẽ nơi đất khách, luôn dịu dàng và kiên nhẫn cùng anh đi qua những ngày yêu xa lệch múi giờ. Mong tuổi mới của em luôn ngập tràn nắng ấm, học tập và công việc đều suôn sẻ, mỗi ngày thức dậy đều mỉm cười thật tươi.
+
+Khoảng cách 13,500 km chỉ là con số tạm thời thôi, tụi mình sẽ sớm gặp lại nhau và bù đắp tất cả những cái ôm còn để dành nhé!</div>
+
+                    <div class="pt-4 border-t border-rosegold/15 flex items-center justify-between">
+                        <div class="text-xs text-charcoal/60">
+                            Viết tại Sài Gòn, gửi ngàn cái ôm sang Canada
+                        </div>
+                        <div class="text-right">
+                            <span class="block text-xs text-charcoal/60">Thương em rất nhiều,</span>
+                            <span id="displayBoyfriendName" class="font-script text-2xl text-rosedark font-bold">Đức Anh ❤️</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center pt-8 pb-6 border-t border-rosegold/15 text-xs text-charcoal/50 space-y-1">
+            <p>Được làm với 100% tình yêu từ Việt Nam gửi sang Canada 🇻🇳 ✈️ 🇨🇦</p>
+        </footer>
+
+    </main>
+</div>
+
+    <!-- ==========================================
+         6. FLOATING CREATOR CUSTOMIZATION & GITHUB EXPORT TOOLBAR
+    =========================================== -->
+    
+
+    <!-- Drawer Modal -->
+    
+
+    <!-- ==========================================
+         7. GITHUB PAGES GUIDE & MOBILE QR GENERATOR MODAL
+    =========================================== -->
+    
+
+    <!-- ==========================================
+         JAVASCRIPT LOGIC
+    =========================================== -->
+    <script>
+        let currentPasscode = "2505";
+        let currentCanadaTz = "America/Toronto";
+        let isPlayingMusic = false;
+        let melodyInterval = null;
+        let synth = null;
+
+        let micStream = null;
+        let audioContext = null;
+        let micAnalyser = null;
+        let micAnimFrame = null;
+        let isMicListening = false;
+
+        // 1. Passcode Lock Screen & Mobile Keypad
+        function pressKeypad(key) {
+            const input = document.getElementById('pinInput');
+            document.getElementById('pinError').classList.add('hidden');
+            if (key === 'CLR') {
+                input.value = '';
+                return;
+            }
+            if (key === 'DEL') {
+                input.value = input.value.slice(0, -1);
+                return;
+            }
+            if (input.value.length < 4) {
+                input.value += key;
+                handlePinTyping(input.value);
+            }
+        }
+
+        function handlePinTyping(val) {
+            document.getElementById('pinError').classList.add('hidden');
+            if (val.length === 4 && val === currentPasscode) {
+                verifyPin();
+            }
+        }
+
+        function verifyPin() {
+            const inputVal = document.getElementById('pinInput').value.trim();
+            if (inputVal === currentPasscode) {
+                unlockExperience(false);
+            } else {
+                const err = document.getElementById('pinError');
+                const card = document.getElementById('lockCard');
+                err.classList.remove('hidden');
+                card.classList.remove('shake-anim');
+                void card.offsetWidth;
+                card.classList.add('shake-anim');
+            }
+        }
+
+        function unlockExperience(isQuickPreview) {
+            const lockScreen = document.getElementById('lockScreen');
+            lockScreen.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                lockScreen.classList.add('hidden');
+            }, 700);
+            triggerCelebrationConfetti();
+            playSoftChime();
+        }
+
+        // 2. Dual Real-Time Clocks (Vietnam & Canada)
+        function updateDualClocks() {
+            const now = new Date();
+            try {
+                const vnTimeStr = now.toLocaleTimeString('vi-VN', {
+                    timeZone: 'Asia/Ho_Chi_Minh',
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                const vnDateStr = now.toLocaleDateString('vi-VN', {
+                    timeZone: 'Asia/Ho_Chi_Minh',
+                    weekday: 'long',
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                document.getElementById('vnClock').textContent = vnTimeStr;
+                document.getElementById('vnDate').textContent = vnDateStr;
+
+                const caTimeStr = now.toLocaleTimeString('vi-VN', {
+                    timeZone: currentCanadaTz,
+                    hour12: false,
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                const caDateStr = now.toLocaleDateString('vi-VN', {
+                    timeZone: currentCanadaTz,
+                    weekday: 'long',
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                });
+                document.getElementById('caClock').textContent = caTimeStr;
+                document.getElementById('caDate').textContent = caDateStr;
+            } catch (e) {
+                console.warn(e);
+            }
+        }
+
+        function changeCanadaTimezone(tz) {
+            currentCanadaTz = tz;
+            const cityMap = {
+                'America/Toronto': 'Toronto, Canada',
+                'America/Vancouver': 'Vancouver, Canada',
+                'America/Edmonton': 'Calgary, Canada',
+                'America/Winnipeg': 'Winnipeg, Canada'
+            };
+            if (cityMap[tz]) {
+                document.getElementById('displayCanadaCity').textContent = cityMap[tz];
+            }
+            updateDualClocks();
+        }
+
+        // 3. Touchpoints & Coupons
+        function openTouchpoint(stationNumber) {
+            const closedEl = document.getElementById('station' + stationNumber + 'Closed');
+            const openedEl = document.getElementById('station' + stationNumber + 'Opened');
+            if (closedEl && openedEl) {
+                closedEl.classList.add('hidden');
+                openedEl.classList.remove('hidden');
+                triggerCelebrationConfetti();
+                playSoftChime();
+            }
+        }
+
+        function claimCoupon(cardEl, couponTitle) {
+            const badge = cardEl.querySelector('.coupon-badge');
+            if (badge) {
+                badge.textContent = 'Đã lưu ❤️';
+                badge.classList.remove('bg-rosegold');
+                badge.classList.add('bg-starbucks');
+            }
+            triggerCelebrationConfetti();
+            playSoftChime();
+        }
+
+        // 4. Virtual Birthday Cake & Microphone Detection
+        async function toggleMicBlowDetection() {
+            const btnText = document.getElementById('micBtnText');
+            const btnIcon = document.getElementById('micBtnIcon');
+            const levelWrap = document.getElementById('micLevelWrap');
+            const levelBar = document.getElementById('micLevelBar');
+
+            if (isMicListening) {
+                stopMicBlowDetection();
+                return;
+            }
+
+            try {
+                micStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const source = audioContext.createMediaStreamSource(micStream);
+                micAnalyser = audioContext.createAnalyser();
+                micAnalyser.fftSize = 256;
+                source.connect(micAnalyser);
+
+                isMicListening = true;
+                btnIcon.textContent = "🌬️";
+                btnText.textContent = "Đang nghe... Hãy thổi vào điện thoại!";
+                levelWrap.classList.remove('hidden');
+                levelWrap.classList.add('flex');
+
+                const dataArray = new Uint8Array(micAnalyser.frequencyBinCount);
+
+                const checkBlowVolume = () => {
+                    if (!isMicListening) return;
+                    micAnalyser.getByteFrequencyData(dataArray);
+                    let lowFreqSum = 0;
+                    for (let i = 0; i < 25; i++) {
+                        lowFreqSum += dataArray[i];
+                    }
+                    const avgLow = lowFreqSum / 25;
+                    const percent = Math.min(100, Math.round((avgLow / 140) * 100));
+                    levelBar.style.width = Math.max(6, percent) + '%';
+
+                    if (avgLow > 110) {
+                        blowOutCandle();
+                        stopMicBlowDetection();
+                        return;
+                    }
+                    micAnimFrame = requestAnimationFrame(checkBlowVolume);
+                };
+
+                checkBlowVolume();
+            } catch (err) {
+                btnIcon.textContent = "👆";
+                btnText.textContent = "Chạm trực tiếp vào ngọn nến để thổi nhé!";
+            }
+        }
+
+        function stopMicBlowDetection() {
+            isMicListening = false;
+            if (micAnimFrame) cancelAnimationFrame(micAnimFrame);
+            if (micStream) {
+                micStream.getTracks().forEach(track => track.stop());
+                micStream = null;
+            }
+            if (audioContext) {
+                audioContext.close().catch(() => {});
+                audioContext = null;
+            }
+            const btnText = document.getElementById('micBtnText');
+            const btnIcon = document.getElementById('micBtnIcon');
+            const levelWrap = document.getElementById('micLevelWrap');
+            if (btnIcon) btnIcon.textContent = "🎙️";
+            if (btnText) btnText.textContent = "Bật Micro để thổi nến thật trên điện thoại";
+            if (levelWrap) {
+                levelWrap.classList.add('hidden');
+                levelWrap.classList.remove('flex');
+            }
+        }
+
+        function blowOutCandle() {
+            const flame = document.getElementById('candleFlame');
+            const glow = document.getElementById('flameGlow');
+            const smoke = document.getElementById('candleSmoke');
+            const hint = document.getElementById('blowHintBadge');
+            const wishBox = document.getElementById('wishSuccessBox');
+
+            if (flame.classList.contains('hidden')) return;
+
+            flame.classList.add('hidden');
+            glow.classList.add('hidden');
+            hint.classList.add('hidden');
+            smoke.classList.remove('hidden');
+            wishBox.classList.remove('hidden');
+
+            triggerCelebrationConfetti();
+            if (!isPlayingMusic) {
+                toggleBirthdayMelody();
+            }
+        }
+
+        function relightCandle() {
+            document.getElementById('candleFlame').classList.remove('hidden');
+            document.getElementById('flameGlow').classList.remove('hidden');
+            document.getElementById('blowHintBadge').classList.remove('hidden');
+            document.getElementById('candleSmoke').classList.add('hidden');
+            document.getElementById('wishSuccessBox').classList.add('hidden');
+        }
+
+        // 5. Polaroid Upload & Wax-Sealed Letter
+        function uploadPolaroidImage(event, imgElementId) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const maxDim = 800;
+                    let width = img.width;
+                    let height = img.height;
+                    if (width > height && width > maxDim) {
+                        height = Math.round((height * maxDim) / width);
+                        width = maxDim;
+                    } else if (height > maxDim) {
+                        width = Math.round((width * maxDim) / height);
+                        height = maxDim;
+                    }
+                    canvas.width = width;
+                    canvas.height = height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, width, height);
+                    document.getElementById(imgElementId).src = canvas.toDataURL('image/jpeg', 0.82);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function openLoveLetter() {
+            document.getElementById('letterClosedBox').classList.add('hidden');
+            document.getElementById('letterOpenedBox').classList.remove('hidden');
+            triggerCelebrationConfetti();
+            playSoftChime();
+        }
+
+        // 6. Confetti & Birthday Musicbox (Tone.js)
+        function triggerCelebrationConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 75,
+                    spread: 70,
+                    origin: { y: 0.65 },
+                    colors: ['#C97A7E', '#D4A359', '#F5EFE6', '#FF9800']
+                });
+            }
+        }
+
+        async function playSoftChime() {
+            if (typeof Tone === 'undefined') return;
+            try {
+                await Tone.start();
+                const chime = new Tone.PolySynth(Tone.Synth).toDestination();
+                chime.volume.value = -12;
+                chime.triggerAttackRelease(['C5', 'E5', 'G5', 'C6'], '8n');
+            } catch (e) {}
+        }
+
+        async function toggleBirthdayMelody() {
+            const label = document.getElementById('musicLabel');
+            const icon = document.getElementById('musicIcon');
+
+            if (isPlayingMusic) {
+                isPlayingMusic = false;
+                if (melodyInterval) clearInterval(melodyInterval);
+                label.textContent = 'Bật nhạc sinh nhật';
+                icon.textContent = '🎵';
+                return;
+            }
+
+            if (typeof Tone === 'undefined') return;
+            try {
+                await Tone.start();
+                if (!synth) {
+                    synth = new Tone.PolySynth(Tone.Synth, {
+                        oscillator: { type: 'triangle' },
+                        envelope: { attack: 0.03, decay: 0.3, sustain: 0.2, release: 0.8 }
+                    }).toDestination();
+                    synth.volume.value = -10;
+                }
+
+                isPlayingMusic = true;
+                label.textContent = 'Tắt nhạc';
+                icon.textContent = '🎶';
+
+                const notes = [
+                    'C4', 'C4', 'D4', 'C4', 'F4', 'E4',
+                    'C4', 'C4', 'D4', 'C4', 'G4', 'F4',
+                    'C4', 'C4', 'C5', 'A4', 'F4', 'E4', 'D4',
+                    'Bb4', 'Bb4', 'A4', 'F4', 'G4', 'F4'
+                ];
+                let idx = 0;
+                melodyInterval = setInterval(() => {
+                    if (!isPlayingMusic) return;
+                    synth.triggerAttackRelease(notes[idx], '4n');
+                    idx = (idx + 1) % notes.length;
+                }, 420);
+            } catch (e) {}
+        }
+
+        // 7. Customization & Export to GitHub index.html
+        function toggleCustomizeDrawer() {
+            document.getElementById('customizeDrawer').classList.toggle('hidden');
+        }
+
+        function applyCustomFieldsToDOM() {
+            const gfName = document.getElementById('inputGfName').value.trim() || "Châu Yêu Của Anh";
+            const bfName = document.getElementById('inputBfName').value.trim() || "Đức Anh ❤️";
+            const passcode = document.getElementById('inputPasscode').value.trim() || "2505";
+            const passcodeHint = document.getElementById('inputPasscodeHint').value.trim() || "Ngày đặc biệt của tụi mình (4 chữ số)";
+            const caCity = document.getElementById('inputCaCity').value.trim() || "Toronto, Canada";
+            const daysCount = document.getElementById('inputDaysCount').value.trim() || "365";
+            const starbucksCup = document.getElementById('inputStarbucksCup').value.trim();
+            const meetLink = document.getElementById('inputMeetLink').value.trim() || "https://meet.google.com";
+            const letterText = document.getElementById('inputLetterText').value;
+
+            currentPasscode = passcode;
+            document.getElementById('hintPasscode').textContent = passcode;
+            document.getElementById('displayPasscodeHint').textContent = passcodeHint;
+
+            document.getElementById('displayGirlfriendName').textContent = gfName;
+            document.getElementById('displayBoyfriendName').textContent = bfName;
+            document.getElementById('displayCanadaCity').textContent = caCity;
+            document.getElementById('daysTogetherCount').textContent = daysCount;
+            document.getElementById('starbucksCupText').textContent = starbucksCup;
+            document.getElementById('videoCallLinkBtn').href = meetLink;
+            document.getElementById('displayLetterContent').textContent = letterText;
+        }
+
+        function saveCustomizations() {
+            applyCustomFieldsToDOM();
+            toggleCustomizeDrawer();
+            triggerCelebrationConfetti();
+        }
+
+        function exportCleanGithubHtml() {
+            applyCustomFieldsToDOM();
+
+            const cloneDoc = document.documentElement.cloneNode(true);
+
+            const lockScreen = cloneDoc.querySelector('#lockScreen');
+            if (lockScreen) {
+                lockScreen.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+            }
+            const pinInput = cloneDoc.querySelector('#pinInput');
+            if (pinInput) {
+                pinInput.setAttribute('value', '');
+            }
+
+            ['1', '2', '3'].forEach(num => {
+                const closedEl = cloneDoc.querySelector('#station' + num + 'Closed');
+                const openedEl = cloneDoc.querySelector('#station' + num + 'Opened');
+                if (closedEl) closedEl.classList.remove('hidden');
+                if (openedEl) openedEl.classList.add('hidden');
+            });
+
+            const letterClosed = cloneDoc.querySelector('#letterClosedBox');
+            const letterOpened = cloneDoc.querySelector('#letterOpenedBox');
+            if (letterClosed) letterClosed.classList.remove('hidden');
+            if (letterOpened) letterOpened.classList.add('hidden');
+
+            cloneDoc.querySelectorAll('.admin-only-control').forEach(el => el.remove());
+            cloneDoc.querySelectorAll('[contenteditable="true"]').forEach(el => el.removeAttribute('contenteditable'));
+            cloneDoc.querySelector('body').classList.remove('mobile-frame-preview');
+
+            let htmlString = '<!DOCTYPE html>\n' + cloneDoc.outerHTML;
+            htmlString = htmlString.replace(/let currentPasscode = "[^"]*";/, 'let currentPasscode = "' + currentPasscode + '";');
+
+            const blob = new Blob([htmlString], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'index.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function openQrModal() {
+            document.getElementById('qrGithubModal').classList.remove('hidden');
+            generateRomanticQr();
+        }
+
+        function closeQrModal() {
+            document.getElementById('qrGithubModal').classList.add('hidden');
+        }
+
+        function generateRomanticQr() {
+            const container = document.getElementById('qrcodeContainer');
+            const urlVal = document.getElementById('qrUrlInput').value.trim() || 'https://veducanh-lab.github.io/for-chau/';
+            container.innerHTML = '';
+            if (typeof QRCode !== 'undefined') {
+                new QRCode(container, {
+                    text: urlVal,
+                    width: 150,
+                    height: 150,
+                    colorDark: "#2C2627",
+                    colorLight: "#FFFFFF",
+                    correctLevel: QRCode.CorrectLevel.H
+                });
+            }
+        }
+
+        window.onload = function() {
+            updateDualClocks();
+            setInterval(updateDualClocks, 1000);
+        };
+    </script>
+
+</body></html>
