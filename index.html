@@ -1534,7 +1534,45 @@ Cố lên nha bé......</div>
         }
 
         // 3. Touchpoints & Coupons
+        // Mỗi trạm mở theo giờ cố định tại múi giờ Canada đang chọn.
+        const stationOpeningTimes = {
+            1: { hour: 10, minute: 0 },
+            2: { hour: 13, minute: 30 },
+            3: { hour: 17, minute: 30 }
+        };
+
+        function getCanadaTimeParts() {
+            const parts = new Intl.DateTimeFormat('en-CA', {
+                timeZone: currentCanadaTz,
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit'
+            }).formatToParts(new Date());
+
+            return {
+                hour: Number(parts.find(part => part.type === 'hour').value),
+                minute: Number(parts.find(part => part.type === 'minute').value)
+            };
+        }
+
+        function isStationOpen(stationNumber) {
+            const openingTime = stationOpeningTimes[stationNumber];
+            if (!openingTime) return false;
+
+            const now = getCanadaTimeParts();
+            const nowMinutes = now.hour * 60 + now.minute;
+            const openingMinutes = openingTime.hour * 60 + openingTime.minute;
+            return nowMinutes >= openingMinutes;
+        }
+
         function openTouchpoint(stationNumber) {
+            if (!isStationOpen(stationNumber)) {
+                const openingTime = stationOpeningTimes[stationNumber];
+                const timeLabel = `${String(openingTime.hour).padStart(2, '0')}:${String(openingTime.minute).padStart(2, '0')}`;
+                alert(`Bé thật là tò mò....\nTrạm này sẽ mở lúc ${timeLabel} theo giờ Canada.`);
+                return;
+            }
+
             const closedEl = document.getElementById('station' + stationNumber + 'Closed');
             const openedEl = document.getElementById('station' + stationNumber + 'Opened');
             if (closedEl && openedEl) {
