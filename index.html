@@ -1,4 +1,4 @@
-        <!DOCTYPE html>
+﻿        <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth"><head><script data-bard-client-injected="true">(function(firebaseConfig, initialAuthToken, appId) {
         window.__firebase_config = firebaseConfig;
         window.__initial_auth_token = initialAuthToken;
@@ -725,7 +725,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
 })();</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Châu ❤️ From Saigon to Canada</title>
+    <title>Chúc mừng sinh nhật Châu — Sài Gòn đến Canada</title>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -733,6 +733,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap" rel="stylesheet">
 
     <!-- Canvas Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js" crossorigin="anonymous"></script>
@@ -746,18 +747,24 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             theme: {
                 extend: {
                     colors: {
-                        cream: '#FDFBF7',
-                        parchment: '#F5EFE6',
-                        rosegold: '#C97A7E',
-                        rosedark: '#9E5256',
-                        warmgold: '#D4A359',
-                        charcoal: '#2C2627',
-                        starbucks: '#00704A'
+                        paper: '#F7F4EE',
+                        card: '#FDFBF7',
+                        raised: '#EFE9DF',
+                        ink: '#1F1B16',
+                        'ink-secondary': '#5E554A',
+                        'ink-muted': '#7B7266',
+                        'rose-clay': '#A94D52',
+                        'rose-clay-dark': '#8E3E43',
+                        sage: '#16A34A',
+                        crimson: '#DC2626'
                     },
                     fontFamily: {
-                        serif: ['Arial', 'Helvetica', 'sans-serif'],
-                        sans: ['Arial', 'Helvetica', 'sans-serif'],
-                        script: ['Arial', 'Helvetica', 'sans-serif']
+                        serif: ['Newsreader', 'Georgia', 'serif'],
+                        sans: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+                    },
+                    transitionTimingFunction: {
+                        unslop: 'cubic-bezier(0.22, 1, 0.36, 1)'
                     }
                 }
             }
@@ -765,61 +772,56 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     </script>
 
     <style>
+        :root {
+            --ease-unslop: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
         body {
-            background-color: #FDFBF7;
-            color: #2C2627;
-            font-family: Arial, Helvetica, sans-serif;
+            background-color: #F7F4EE;
+            color: #1F1B16;
+            font-family: 'Instrument Sans', system-ui, sans-serif;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        .bg-editorial {
-            background-image:
-                radial-gradient(circle at 15% 20%, rgba(201, 122, 126, 0.10) 0%, transparent 45%),
-                radial-gradient(circle at 85% 75%, rgba(212, 163, 89, 0.12) 0%, transparent 50%);
+        .hairline {
+            border-color: rgba(31, 27, 22, 0.09);
         }
 
-        @keyframes floatPlane {
-            0%, 100% { transform: translateY(0px) rotate(4deg); }
-            50% { transform: translateY(-6px) rotate(8deg); }
+        .shadow-card {
+            box-shadow: 0 1px 2px rgba(31, 27, 22, 0.05);
         }
-        .plane-icon {
-            animation: floatPlane 3.2s ease-in-out infinite;
+
+        .shadow-float {
+            box-shadow: 0 8px 24px rgba(31, 27, 22, 0.06);
         }
 
         @keyframes flicker {
             0%, 100% { transform: scale(1) rotate(-1deg); opacity: 0.95; }
-            25% { transform: scale(1.06, 0.96) rotate(2deg); opacity: 1; }
-            50% { transform: scale(0.95, 1.05) rotate(-2deg); opacity: 0.9; }
-            75% { transform: scale(1.04, 0.98) rotate(1deg); opacity: 1; }
+            25% { transform: scale(1.04, 0.97) rotate(1.5deg); opacity: 1; }
+            50% { transform: scale(0.96, 1.03) rotate(-1.5deg); opacity: 0.92; }
+            75% { transform: scale(1.03, 0.98) rotate(1deg); opacity: 1; }
         }
         .flame-flicker {
-            animation: flicker 1.4s infinite ease-in-out;
+            animation: flicker 1.6s infinite ease-in-out;
             transform-origin: bottom center;
         }
 
         @keyframes riseSmoke {
-            0% { transform: translateY(0) scale(0.8); opacity: 0.8; }
-            100% { transform: translateY(-45px) scale(1.6); opacity: 0; }
+            0% { transform: translateY(0) scale(0.8); opacity: 0.75; }
+            100% { transform: translateY(-44px) scale(1.5); opacity: 0; }
         }
         .smoke-puff {
-            animation: riseSmoke 2s ease-out forwards;
+            animation: riseSmoke 2s var(--ease-unslop) forwards;
         }
 
         .polaroid-card {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 180ms var(--ease-unslop), box-shadow 180ms var(--ease-unslop);
         }
         .polaroid-card:hover {
-            transform: translateY(-8px) rotate(0deg) scale(1.02) !important;
-            box-shadow: 0 20px 35px -10px rgba(44, 38, 39, 0.18);
+            transform: translateY(-4px) rotate(0deg) !important;
+            box-shadow: 0 8px 24px rgba(31, 27, 22, 0.08);
             z-index: 20;
-        }
-
-        @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(201, 122, 126, 0.5); }
-            50% { box-shadow: 0 0 0 14px rgba(201, 122, 126, 0); }
-        }
-        .wax-seal {
-            animation: pulseGlow 2.5s infinite;
         }
 
         @keyframes shakeError {
@@ -828,11 +830,11 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             40%, 80% { transform: translateX(8px); }
         }
         .shake-anim {
-            animation: shakeError 0.4s ease-in-out;
+            animation: shakeError 0.4s var(--ease-unslop);
         }
 
         body.mobile-frame-preview {
-            background-color: #1E191A;
+            background-color: #1F1B16;
             display: flex;
             justify-content: center;
             padding: 20px 0;
@@ -841,16 +843,16 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             width: 390px;
             max-width: 100vw;
             min-height: 844px;
-            background-color: #FDFBF7;
-            border-radius: 42px;
-            border: 10px solid #3A3234;
-            box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+            background-color: #F7F4EE;
+            border-radius: 32px;
+            border: 8px solid #3A322C;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.35);
             overflow-x: hidden;
             position: relative;
         }
     </style>
-<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:"Plus Jakarta Sans", sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.-bottom-10{bottom:-2.5rem}.-left-10{left:-2.5rem}.-right-10{right:-2.5rem}.-right-6{right:-1.5rem}.-top-10{top:-2.5rem}.-top-6{top:-1.5rem}.bottom-2{bottom:0.5rem}.bottom-4{bottom:1rem}.right-2{right:0.5rem}.right-4{right:1rem}.top-0{top:0px}.top-10{top:2.5rem}.z-10{z-index:10}.z-30{z-index:30}.z-40{z-index:40}.z-50{z-index:50}.z-\[60\]{z-index:60}.mx-1{margin-left:0.25rem;margin-right:0.25rem}.mx-auto{margin-left:auto;margin-right:auto}.my-2{margin-top:0.5rem;margin-bottom:0.5rem}.my-6{margin-top:1.5rem;margin-bottom:1.5rem}.mb-1{margin-bottom:0.25rem}.mb-1\.5{margin-bottom:0.375rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.mb-5{margin-bottom:1.25rem}.mb-6{margin-bottom:1.5rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-5{margin-top:1.25rem}.mt-6{margin-top:1.5rem}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.aspect-\[4\/5\]{aspect-ratio:4/5}.h-0\.5{height:0.125rem}.h-14{height:3.5rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-2\.5{height:0.625rem}.h-24{height:6rem}.h-3{height:0.75rem}.h-4{height:1rem}.h-56{height:14rem}.h-7{height:1.75rem}.h-8{height:2rem}.h-96{height:24rem}.h-full{height:100%}.max-h-\[90vh\]{max-height:90vh}.min-h-screen{min-height:100vh}.w-14{width:3.5rem}.w-16{width:4rem}.w-2\.5{width:0.625rem}.w-20{width:5rem}.w-24{width:6rem}.w-3{width:0.75rem}.w-4{width:1rem}.w-44{width:11rem}.w-56{width:14rem}.w-7{width:1.75rem}.w-8{width:2rem}.w-96{width:24rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-4xl{max-width:56rem}.max-w-5xl{max-width:64rem}.max-w-\[240px\]{max-width:240px}.max-w-lg{max-width:32rem}.max-w-md{max-width:28rem}.max-w-xl{max-width:36rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.-rotate-2{--tw-rotate:-2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-1{--tw-rotate:1deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.rotate-2{--tw-rotate:2deg;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}@keyframes ping{75%, 100%{transform:scale(2);opacity:0}}.animate-ping{animation:ping 1s cubic-bezier(0, 0, 0.2, 1) infinite}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.select-none{-webkit-user-select:none;user-select:none}.scroll-mt-20{scroll-margin-top:5rem}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.items-baseline{align-items:baseline}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1{gap:0.25rem}.gap-1\.5{gap:0.375rem}.gap-2{gap:0.5rem}.gap-2\.5{gap:0.625rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-1\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.375rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.375rem * var(--tw-space-y-reverse))}.space-y-12 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(3rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(3rem * var(--tw-space-y-reverse))}.space-y-16 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(4rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(4rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-3\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.875rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.875rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.space-y-8 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(2rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(2rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-visible{overflow:visible}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.whitespace-pre-line{white-space:pre-line}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-3xl{border-radius:1.5rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-b-2{border-bottom-width:2px}.border-l{border-left-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-charcoal\/10{border-color:rgb(44 38 39 / 0.1)}.border-charcoal\/20{border-color:rgb(44 38 39 / 0.2)}.border-rosegold\/15{border-color:rgb(201 122 126 / 0.15)}.border-rosegold\/20{border-color:rgb(201 122 126 / 0.2)}.border-rosegold\/25{border-color:rgb(201 122 126 / 0.25)}.border-rosegold\/30{border-color:rgb(201 122 126 / 0.3)}.border-rosegold\/40{border-color:rgb(201 122 126 / 0.4)}.border-rosegold\/50{border-color:rgb(201 122 126 / 0.5)}.border-starbucks\/15{border-color:rgb(0 112 74 / 0.15)}.border-starbucks\/20{border-color:rgb(0 112 74 / 0.2)}.border-starbucks\/30{border-color:rgb(0 112 74 / 0.3)}.border-starbucks\/40{border-color:rgb(0 112 74 / 0.4)}.border-warmgold\/20{border-color:rgb(212 163 89 / 0.2)}.border-warmgold\/30{border-color:rgb(212 163 89 / 0.3)}.border-warmgold\/40{border-color:rgb(212 163 89 / 0.4)}.border-warmgold\/50{border-color:rgb(212 163 89 / 0.5)}.bg-\[\#F2F8F5\]{--tw-bg-opacity:1;background-color:rgb(242 248 245 / var(--tw-bg-opacity, 1))}.bg-\[\#FCF8EE\]{--tw-bg-opacity:1;background-color:rgb(252 248 238 / var(--tw-bg-opacity, 1))}.bg-charcoal{--tw-bg-opacity:1;background-color:rgb(44 38 39 / var(--tw-bg-opacity, 1))}.bg-charcoal\/50{background-color:rgb(44 38 39 / 0.5)}.bg-charcoal\/60{background-color:rgb(44 38 39 / 0.6)}.bg-cream{--tw-bg-opacity:1;background-color:rgb(253 251 247 / var(--tw-bg-opacity, 1))}.bg-cream\/85{background-color:rgb(253 251 247 / 0.85)}.bg-gray-300\/60{background-color:rgb(209 213 219 / 0.6)}.bg-gray-400\/50{background-color:rgb(156 163 175 / 0.5)}.bg-parchment{--tw-bg-opacity:1;background-color:rgb(245 239 230 / var(--tw-bg-opacity, 1))}.bg-parchment\/40{background-color:rgb(245 239 230 / 0.4)}.bg-parchment\/60{background-color:rgb(245 239 230 / 0.6)}.bg-parchment\/70{background-color:rgb(245 239 230 / 0.7)}.bg-parchment\/80{background-color:rgb(245 239 230 / 0.8)}.bg-parchment\/90{background-color:rgb(245 239 230 / 0.9)}.bg-rosegold{--tw-bg-opacity:1;background-color:rgb(201 122 126 / var(--tw-bg-opacity, 1))}.bg-rosegold\/15{background-color:rgb(201 122 126 / 0.15)}.bg-rosegold\/20{background-color:rgb(201 122 126 / 0.2)}.bg-starbucks{--tw-bg-opacity:1;background-color:rgb(0 112 74 / var(--tw-bg-opacity, 1))}.bg-starbucks\/10{background-color:rgb(0 112 74 / 0.1)}.bg-starbucks\/15{background-color:rgb(0 112 74 / 0.15)}.bg-warmgold{--tw-bg-opacity:1;background-color:rgb(212 163 89 / var(--tw-bg-opacity, 1))}.bg-warmgold\/15{background-color:rgb(212 163 89 / 0.15)}.bg-warmgold\/20{background-color:rgb(212 163 89 / 0.2)}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-white\/15{background-color:rgb(255 255 255 / 0.15)}.bg-white\/90{background-color:rgb(255 255 255 / 0.9)}.bg-white\/95{background-color:rgb(255 255 255 / 0.95)}.bg-gradient-to-b{background-image:linear-gradient(to bottom, var(--tw-gradient-stops))}.from-\[\#231924\]{--tw-gradient-from:#231924 var(--tw-gradient-from-position);--tw-gradient-to:rgb(35 25 36 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.via-\[\#35222E\]{--tw-gradient-to:rgb(53 34 46 / 0)  var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), #35222E var(--tw-gradient-via-position), var(--tw-gradient-to)}.to-\[\#FDFBF7\]{--tw-gradient-to:#FDFBF7 var(--tw-gradient-to-position)}.object-cover{object-fit:cover}.p-2{padding:0.5rem}.p-2\.5{padding:0.625rem}.p-3{padding:0.75rem}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.p-8{padding:2rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-1\.5{padding-left:0.375rem;padding-right:0.375rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-3\.5{padding-top:0.875rem;padding-bottom:0.875rem}.pb-2{padding-bottom:0.5rem}.pb-20{padding-bottom:5rem}.pb-3{padding-bottom:0.75rem}.pb-4{padding-bottom:1rem}.pb-6{padding-bottom:1.5rem}.pl-2\.5{padding-left:0.625rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.pt-4{padding-top:1rem}.pt-5{padding-top:1.25rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.text-center{text-align:center}.text-right{text-align:right}.font-mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}.font-sans{font-family:"Plus Jakarta Sans", sans-serif}.font-script{font-family:"Dancing Script", cursive}.font-serif{font-family:"Cormorant Garamond", Georgia, serif}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-xs{font-size:0.75rem;line-height:1rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.not-italic{font-style:normal}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-\[0\.25em\]{letter-spacing:0.25em}.tracking-\[0\.2em\]{letter-spacing:0.2em}.tracking-\[0\.55em\]{letter-spacing:0.55em}.tracking-wide{letter-spacing:0.025em}.tracking-wider{letter-spacing:0.05em}.tracking-widest{letter-spacing:0.1em}.text-\[\#9B6B21\]{--tw-text-opacity:1;color:rgb(155 107 33 / var(--tw-text-opacity, 1))}.text-charcoal{--tw-text-opacity:1;color:rgb(44 38 39 / var(--tw-text-opacity, 1))}.text-charcoal\/50{color:rgb(44 38 39 / 0.5)}.text-charcoal\/60{color:rgb(44 38 39 / 0.6)}.text-charcoal\/65{color:rgb(44 38 39 / 0.65)}.text-charcoal\/70{color:rgb(44 38 39 / 0.7)}.text-charcoal\/75{color:rgb(44 38 39 / 0.75)}.text-charcoal\/80{color:rgb(44 38 39 / 0.8)}.text-charcoal\/85{color:rgb(44 38 39 / 0.85)}.text-cream{--tw-text-opacity:1;color:rgb(253 251 247 / var(--tw-text-opacity, 1))}.text-red-500{--tw-text-opacity:1;color:rgb(239 68 68 / var(--tw-text-opacity, 1))}.text-rosedark{--tw-text-opacity:1;color:rgb(158 82 86 / var(--tw-text-opacity, 1))}.text-rosegold{--tw-text-opacity:1;color:rgb(201 122 126 / var(--tw-text-opacity, 1))}.text-starbucks{--tw-text-opacity:1;color:rgb(0 112 74 / var(--tw-text-opacity, 1))}.text-warmgold{--tw-text-opacity:1;color:rgb(212 163 89 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.underline{-webkit-text-decoration-line:underline;text-decoration-line:underline}.opacity-90{opacity:0.9}.shadow{--tw-shadow:0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-inner{--tw-shadow:inset 0 2px 4px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:inset 0 2px 4px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-rosegold\/25{--tw-shadow-color:rgb(201 122 126 / 0.25);--tw-shadow:var(--tw-shadow-colored)}.blur-3xl{--tw-blur:blur(64px);filter:var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-500{transition-duration:500ms}.duration-700{transition-duration:700ms}.duration-75{transition-duration:75ms}.selection\:bg-rosegold\/20 *::selection{background-color:rgb(201 122 126 / 0.2)}.selection\:text-rosedark *::selection{--tw-text-opacity:1;color:rgb(158 82 86 / var(--tw-text-opacity, 1))}.selection\:bg-rosegold\/20::selection{background-color:rgb(201 122 126 / 0.2)}.selection\:text-rosedark::selection{--tw-text-opacity:1;color:rgb(158 82 86 / var(--tw-text-opacity, 1))}.hover\:bg-\[\#00593B\]:hover{--tw-bg-opacity:1;background-color:rgb(0 89 59 / var(--tw-bg-opacity, 1))}.hover\:bg-\[\#008c5c\]:hover{--tw-bg-opacity:1;background-color:rgb(0 140 92 / var(--tw-bg-opacity, 1))}.hover\:bg-\[\#B8883E\]:hover{--tw-bg-opacity:1;background-color:rgb(184 136 62 / var(--tw-bg-opacity, 1))}.hover\:bg-red-100:hover{--tw-bg-opacity:1;background-color:rgb(254 226 226 / var(--tw-bg-opacity, 1))}.hover\:bg-rosedark:hover{--tw-bg-opacity:1;background-color:rgb(158 82 86 / var(--tw-bg-opacity, 1))}.hover\:bg-rosegold\/10:hover{background-color:rgb(201 122 126 / 0.1)}.hover\:bg-rosegold\/15:hover{background-color:rgb(201 122 126 / 0.15)}.hover\:bg-rosegold\/20:hover{background-color:rgb(201 122 126 / 0.2)}.hover\:bg-rosegold\/25:hover{background-color:rgb(201 122 126 / 0.25)}.hover\:bg-white:hover{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.hover\:bg-white\/25:hover{background-color:rgb(255 255 255 / 0.25)}.hover\:text-rosedark:hover{--tw-text-opacity:1;color:rgb(158 82 86 / var(--tw-text-opacity, 1))}.hover\:shadow-2xl:hover{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.focus\:border-rosegold:focus{--tw-border-opacity:1;border-color:rgb(201 122 126 / var(--tw-border-opacity, 1))}.focus\:bg-parchment\/50:focus{background-color:rgb(245 239 230 / 0.5)}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.active\:scale-95:active{--tw-scale-x:.95;--tw-scale-y:.95;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.active\:scale-\[0\.99\]:active{--tw-scale-x:0.99;--tw-scale-y:0.99;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-105{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:scale-110{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.group:hover .group-hover\:opacity-100{opacity:1}@media (min-width: 640px){.sm\:inline-block{display:inline-block}.sm\:h-64{height:16rem}.sm\:w-64{width:16rem}.sm\:-translate-y-3{--tw-translate-y:-0.75rem;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:gap-3{gap:0.75rem}.sm\:gap-8{gap:2rem}.sm\:space-y-24 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(6rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(6rem * var(--tw-space-y-reverse))}.sm\:p-10{padding:2.5rem}.sm\:p-12{padding:3rem}.sm\:p-5{padding:1.25rem}.sm\:p-6{padding:1.5rem}.sm\:p-7{padding:1.75rem}.sm\:p-8{padding:2rem}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:px-8{padding-left:2rem;padding-right:2rem}.sm\:py-14{padding-top:3.5rem;padding-bottom:3.5rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-4xl{font-size:2.25rem;line-height:2.5rem}.sm\:text-6xl{font-size:3.75rem;line-height:1}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:justify-start{justify-content:flex-start}.md\:justify-end{justify-content:flex-end}.md\:text-left{text-align:left}.md\:text-right{text-align:right}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style><style>html, body, button, input, select, textarea { font-family: Arial, Helvetica, sans-serif !important; }</style></head>
-<body class="bg-editorial min-h-screen selection:bg-rosegold/20 selection:text-rosedark">
+</head>
+<body class="bg-paper text-ink min-h-screen selection:bg-rose-clay/15 selection:text-ink">
 <div id="appWrapper" class="w-full min-h-screen relative pb-20">
 
     <!-- ==========================================
@@ -861,59 +863,54 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     <!-- ==========================================
          1. PASSCODE LOCK SCREEN OVERLAY
     =========================================== -->
-    <div id="lockScreen" class="fixed inset-0 z-50 bg-gradient-to-b from-[#231924] via-[#35222E] to-[#FDFBF7] flex flex-col items-center justify-center p-4 sm:p-6 transition-all duration-700">
-        <div class="absolute w-96 h-96 rounded-full bg-rosegold/20 blur-3xl -top-10 -left-10 pointer-events-none"></div>
-        <div class="absolute w-96 h-96 rounded-full bg-warmgold/20 blur-3xl -bottom-10 -right-10 pointer-events-none"></div>
-
-        <div id="lockCard" class="max-w-md w-full bg-white/95 backdrop-blur-md border border-rosegold/30 rounded-3xl p-6 sm:p-8 shadow-2xl text-center relative z-10">
-            <div class="w-14 h-14 rounded-full bg-rosegold/15 text-rosegold flex items-center justify-center mx-auto mb-3 shadow-inner">
-                <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-                </svg>
+    <div id="lockScreen" class="fixed inset-0 z-50 bg-paper flex flex-col items-center justify-center p-4 sm:p-6 transition-opacity duration-300 ease-unslop">
+        <div id="lockCard" class="max-w-md w-full bg-card border hairline rounded-2xl p-6 sm:p-8 shadow-float text-center relative z-10">
+            <div class="w-12 h-12 rounded-lg bg-raised border hairline text-rose-clay flex items-center justify-center mx-auto mb-4">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
             </div>
 
-            <span class="text-[11px] uppercase tracking-[0.25em] text-rosegold font-semibold block mb-1">Special Delivery • Saigon to Canada</span>
-            <h1 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal mb-1.5">Trạm Gửi Yêu Thương</h1>
-            <p id="lockQuestionText" class="text-xs sm:text-sm text-charcoal/70 mb-4 leading-relaxed">
-                Nhập mật mã kỷ niệm 4 số của tụi mình
-                để mở món quà sinh nhật từ bên kia bán cầu nhé!
+            <span class="text-xs font-mono text-ink-muted block mb-2">Bưu phẩm đặc biệt · Sài Gòn — Canada</span>
+            <h1 class="font-serif text-3xl font-medium text-ink leading-tight mb-2">Trạm gửi yêu thương</h1>
+            <p id="lockQuestionText" class="text-sm text-ink-secondary mb-4 leading-relaxed">
+                Nhập mật mã kỷ niệm 4 số của tụi mình để mở món quà sinh nhật từ bên kia bán cầu
             </p>
-            <div class="inline-block px-3 py-1 rounded-full bg-parchment text-[11px] text-rosedark font-medium mb-4">
-                💡 Gợi ý: <span id="displayPasscodeHint">Ngày đặc biệt của tụi mình (4 chữ số)</span>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-raised border hairline text-xs text-ink-secondary mb-5">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-ink-muted shrink-0"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                <span>Gợi ý: <span id="displayPasscodeHint">Ngày đặc biệt của tụi mình (4 chữ số)</span></span>
             </div>
 
             <!-- 4-Digit Display Input -->
-            <div class="flex justify-center gap-3 mb-4">
-                <input type="tel" inputmode="numeric" pattern="[0-9]*" id="pinInput" maxlength="4" placeholder="••••" class="w-44 text-center text-2xl tracking-[0.55em] font-serif font-bold py-2.5 px-4 rounded-2xl bg-parchment/80 border-2 border-rosegold/30 focus:border-rosegold focus:outline-none text-charcoal transition" oninput="handlePinTyping(this.value)" value="">
+            <div class="flex justify-center mb-4">
+                <input type="tel" inputmode="numeric" pattern="[0-9]*" id="pinInput" maxlength="4" placeholder="••••" class="w-44 text-center text-2xl tracking-[0.4em] font-mono font-medium py-2 px-4 rounded-lg bg-raised border hairline focus:border-rose-clay focus:outline-none text-ink transition-colors duration-150" oninput="handlePinTyping(this.value)" value="">
             </div>
 
             <!-- Touch-Friendly Mobile Numeric Keypad -->
             <div class="grid grid-cols-3 gap-2 max-w-[240px] mx-auto mb-5 select-none">
-                <button type="button" onclick="pressKeypad('1')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">1</button>
-                <button type="button" onclick="pressKeypad('2')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">2</button>
-                <button type="button" onclick="pressKeypad('3')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">3</button>
-                <button type="button" onclick="pressKeypad('4')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">4</button>
-                <button type="button" onclick="pressKeypad('5')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">5</button>
-                <button type="button" onclick="pressKeypad('6')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">6</button>
-                <button type="button" onclick="pressKeypad('7')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">7</button>
-                <button type="button" onclick="pressKeypad('8')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">8</button>
-                <button type="button" onclick="pressKeypad('9')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">9</button>
-                <button type="button" onclick="pressKeypad('CLR')" class="py-2.5 rounded-xl bg-parchment/40 hover:bg-red-100 active:scale-95 text-xs font-semibold text-charcoal/70 transition">Xóa</button>
-                <button type="button" onclick="pressKeypad('0')" class="py-2.5 rounded-xl bg-parchment/70 hover:bg-rosegold/20 active:scale-95 font-serif font-bold text-lg text-charcoal transition">0</button>
-                <button type="button" onclick="pressKeypad('DEL')" class="py-2.5 rounded-xl bg-parchment/40 hover:bg-rosegold/20 active:scale-95 text-sm font-semibold text-charcoal/70 transition">⌫</button>
+                <button type="button" onclick="pressKeypad('1')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">1</button>
+                <button type="button" onclick="pressKeypad('2')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">2</button>
+                <button type="button" onclick="pressKeypad('3')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">3</button>
+                <button type="button" onclick="pressKeypad('4')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">4</button>
+                <button type="button" onclick="pressKeypad('5')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">5</button>
+                <button type="button" onclick="pressKeypad('6')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">6</button>
+                <button type="button" onclick="pressKeypad('7')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">7</button>
+                <button type="button" onclick="pressKeypad('8')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">8</button>
+                <button type="button" onclick="pressKeypad('9')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">9</button>
+                <button type="button" onclick="pressKeypad('CLR')" class="h-11 rounded-lg bg-paper border hairline hover:bg-raised active:scale-[0.98] text-xs font-medium text-ink-secondary transition-colors duration-150">Xóa</button>
+                <button type="button" onclick="pressKeypad('0')" class="h-11 rounded-lg bg-raised hover:bg-ink/5 active:scale-[0.98] font-mono font-medium text-base text-ink transition-colors duration-150">0</button>
+                <button type="button" onclick="pressKeypad('DEL')" aria-label="Xóa một số" class="h-11 rounded-lg bg-paper border hairline hover:bg-raised active:scale-[0.98] text-ink-secondary flex items-center justify-center transition-colors duration-150">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 5a2 2 0 0 0-1.344.519l-6.328 5.74a1 1 0 0 0 0 1.481l6.328 5.741A2 2 0 0 0 10 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z"/><path d="m12 9 6 6"/><path d="m18 9-6 6"/></svg>
+                </button>
             </div>
 
-            <p id="pinError" class="text-xs text-red-500 font-medium mb-3 hidden">
-                Ủa chưa đúng rồi bé ơi! Thử lại mật mã gợi ý bên trên nha ❤️
+            <p id="pinError" class="text-xs text-crimson font-medium mb-4 hidden">
+                Mật mã chưa đúng, thử lại theo gợi ý bên trên nhé
             </p>
 
             <!-- Action Buttons -->
-            <div class="flex flex-col gap-2.5">
-                <button onclick="verifyPin()" class="w-full py-3.5 px-6 rounded-2xl bg-rosegold hover:bg-rosedark active:scale-[0.99] text-white font-semibold text-sm tracking-wide shadow-md shadow-rosegold/25 transition flex items-center justify-center gap-2">
-                    <span>Mở Quà</span>
+            <div class="flex flex-col gap-2">
+                <button onclick="verifyPin()" class="w-full h-11 px-5 rounded-lg bg-rose-clay hover:bg-rose-clay-dark active:scale-[0.98] text-card font-medium text-sm transition-colors duration-150 flex items-center justify-center gap-2">
+                    <span>Mở quà</span>
                 </button>
-                
-                
             </div>
         </div>
     </div>
@@ -921,26 +918,30 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     <!-- ==========================================
          TOP FLOATING NAVIGATION & AUDIO BAR
     =========================================== -->
-    <header class="sticky top-0 z-30 backdrop-blur-md bg-cream/85 border-b border-rosegold/15 px-4 sm:px-8 py-3.5">
-        <div class="max-w-5xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-2.5">
-                <span class="w-2.5 h-2.5 rounded-full bg-rosegold animate-ping"></span>
-                <span class="font-serif font-bold text-lg sm:text-xl tracking-wide text-charcoal">
-                    SGN <span class="text-rosegold mx-1">✈</span> YYZ
+    <header class="sticky top-0 z-30 bg-card border-b hairline px-4 sm:px-8 h-16 flex items-center">
+        <div class="max-w-5xl w-full mx-auto flex items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-rose-clay shrink-0"></span>
+                <span class="font-mono font-medium text-sm tracking-tight text-ink flex items-center gap-2">
+                    <span>SGN</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+                    <span>YYZ</span>
                 </span>
-                <span class="hidden sm:inline-block text-xs text-charcoal/60 border-l border-charcoal/20 pl-2.5">
-                    13,500 km • Cùng một bầu trời
+                <span class="hidden sm:inline-block text-xs text-ink-muted border-l hairline pl-3">
+                    13,500 km · Cùng một bầu trời
                 </span>
             </div>
 
-            <div class="flex items-center gap-2 sm:gap-3">
-                <button id="musicToggleBtn" onclick="toggleBirthdayMelody()" class="px-3.5 py-2 rounded-full bg-parchment hover:bg-rosegold/20 text-charcoal text-xs font-semibold flex items-center gap-2 transition shadow-sm">
-                    <span id="musicIcon">🎵</span>
+            <div class="flex items-center gap-2">
+                <button id="musicToggleBtn" onclick="toggleBirthdayMelody()" class="h-9 px-3 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink text-xs font-medium flex items-center gap-2 transition-colors duration-150">
+                    <span id="musicIcon" class="text-ink-secondary flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </span>
                     <span id="musicLabel">Bật nhạc sinh nhật</span>
                 </button>
 
-                <button onclick="triggerCelebrationConfetti()" class="p-2 rounded-full bg-rosegold/15 hover:bg-rosegold/25 text-rosegold transition" title="Bắn pháo giấy chúc mừng">
-                    🎉
+                <button onclick="triggerCelebrationConfetti()" class="w-9 h-9 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink-secondary hover:text-ink flex items-center justify-center transition-colors duration-150" title="Bắn pháo giấy chúc mừng" aria-label="Bắn pháo giấy chúc mừng">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>
                 </button>
             </div>
         </div>
@@ -949,94 +950,100 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     <!-- ==========================================
          MAIN CONTENT CONTAINER
     =========================================== -->
-    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 space-y-16 sm:space-y-24">
+    <main class="max-w-5xl mx-auto px-4 sm:px-8 py-12 sm:py-16 space-y-16 sm:space-y-24">
 
         <!-- ==========================================
              2. HERO SECTION & LIVE DUAL TIME-ZONE BRIDGE
         =========================================== -->
         <section class="text-center space-y-8">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-rosegold/15 text-rosedark text-xs font-semibold tracking-wider uppercase">
-                <span>🎂 Happy Birthday Huyền Châu</span>
-            </div>
-
-            <div class="space-y-3 max-w-3xl mx-auto">
-                <h2 class="font-serif text-4xl sm:text-6xl font-bold text-charcoal leading-tight">
-                    Chúc Mừng Sinh Nhật <br>
-                    <span id="displayGirlfriendName" class="italic text-rosegold font-serif">Bé Của Anh</span>
+            <div class="space-y-4 max-w-2xl mx-auto">
+                <p class="text-xs font-mono text-rose-clay">Sinh nhật Huyền Châu · Sài Gòn — Toronto</p>
+                <h2 class="font-serif text-4xl sm:text-5xl font-medium text-ink leading-[1.08] tracking-[-0.02em]">
+                    Chúc mừng sinh nhật <br>
+                    <span id="displayGirlfriendName" class="text-rose-clay">Bé Của Anh</span>
                 </h2>
-                <p id="displayHeroSubtitle" class="text-sm sm:text-base text-charcoal/75 max-w-xl mx-auto leading-relaxed">
+                <p id="displayHeroSubtitle" class="text-sm sm:text-base text-ink-secondary max-w-xl mx-auto leading-relaxed">
                     Việt Nam đi trước Canada, nên anh ăn sinh nhật trước em 12 tiếng
                 </p>
             </div>
 
             <!-- Interactive Flight Bridge & Dual Live Clocks Card -->
-            <div class="bg-white/90 backdrop-blur-md border border-rosegold/25 rounded-3xl p-6 sm:p-8 shadow-xl max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            <div class="bg-card border hairline rounded-2xl p-6 sm:p-8 shadow-card max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
 
                     <!-- Vietnam Clock -->
-                    <div class="bg-parchment/60 rounded-2xl p-4 sm:p-5 text-center md:text-left border border-warmgold/20">
-                        <div class="flex items-center justify-center md:justify-start gap-2 text-xs font-semibold uppercase tracking-wider text-charcoal/60 mb-1">
-                            <span>🇻🇳 Nơi hoàng tử đang nhớ em</span>
+                    <div class="bg-raised border hairline rounded-xl p-5 text-center md:text-left h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-center md:justify-start gap-2 text-xs text-ink-muted mb-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                                <span>Nơi hoàng tử đang nhớ em</span>
+                            </div>
+                            <div class="text-base font-medium text-ink" id="displayVietnamCity">Sài Gòn, Việt Nam</div>
                         </div>
-                        <div class="text-lg font-serif font-bold text-charcoal" id="displayVietnamCity">Sài Gòn, Việt Nam</div>
-                        <div class="mt-2 flex items-baseline justify-center md:justify-start gap-1.5">
-                            <span id="vnClock" class="font-mono text-2xl sm:text-3xl font-bold text-rosegold">14:22:10</span>
-                            <span class="text-xs text-charcoal/60 font-medium">GMT+7</span>
+                        <div class="mt-3">
+                            <div class="flex items-baseline justify-center md:justify-start gap-2">
+                                <span id="vnClock" class="font-mono tabular-nums text-2xl sm:text-3xl font-medium text-rose-clay">14:22:10</span>
+                                <span class="text-xs font-mono text-ink-muted">GMT+7</span>
+                            </div>
+                            <p id="vnDate" class="text-xs text-ink-muted mt-1">Thứ Năm, 05/11/2026</p>
                         </div>
-                        <p id="vnDate" class="text-xs text-charcoal/60 mt-1">Thứ Năm, 05/11/2026</p>
                     </div>
 
-                    <!-- Animated Flight Path Bridge -->
+                    <!-- Flight Path Bridge -->
                     <div class="flex flex-col items-center justify-center py-2">
-                        <div class="text-xs font-semibold text-rosedark tracking-widest uppercase mb-2">
-                            Khoảng cách <span id="displayDistanceKm">13,500</span> km
+                        <div class="text-xs font-mono text-ink-secondary mb-3">
+                            Khoảng cách <span id="displayDistanceKm" class="tabular-nums text-ink font-medium">13,500</span> km
                         </div>
                         <div class="w-full flex items-center gap-2">
-                            <div class="w-3 h-3 rounded-full bg-rosegold shrink-0"></div>
-                            <div class="h-0.5 flex-1 border-b-2 border-dashed border-rosegold/50 relative flex items-center justify-center">
-                                <span class="plane-icon bg-cream px-2 text-xl">✈️</span>
+                            <div class="w-2 h-2 rounded-full bg-rose-clay shrink-0"></div>
+                            <div class="h-px flex-1 border-b border-dashed border-ink/25 relative flex items-center justify-center">
+                                <span class="bg-card px-2 text-rose-clay">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
+                                </span>
                             </div>
-                            <div class="w-3 h-3 rounded-full bg-warmgold shrink-0"></div>
+                            <div class="w-2 h-2 rounded-full bg-ink-muted shrink-0"></div>
                         </div>
-                        <div class="mt-3 text-xs text-charcoal/70 font-medium">
-                            Đang gửi <span class="text-rosegold font-bold">100% tình cảm</span> sang Canada
+                        <div class="mt-3 text-xs text-ink-secondary">
+                            Đang gửi <span class="text-rose-clay font-medium">100% tình cảm</span> sang Canada
                         </div>
                     </div>
 
                     <!-- Canada Clock -->
-                    <div class="bg-parchment/60 rounded-2xl p-4 sm:p-5 text-center md:text-right border border-warmgold/20">
-                        <div class="flex items-center justify-center md:justify-end gap-2 text-xs font-semibold uppercase tracking-wider text-charcoal/60 mb-1">
-                            <span>🇨🇦 Nơi công chúa đón tuổi mới</span>
+                    <div class="bg-raised border hairline rounded-xl p-5 text-center md:text-right h-full flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-center md:justify-end gap-2 text-xs text-ink-muted mb-1">
+                                <span>Nơi công chúa đón tuổi mới</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+                            </div>
+                            <div class="text-base font-medium text-ink" id="displayCanadaCity">Toronto, Canada</div>
                         </div>
-                        <div class="text-lg font-serif font-bold text-charcoal" id="displayCanadaCity">Toronto, Canada</div>
-                        <div class="mt-2 flex items-baseline justify-center md:justify-end gap-2">
-                            <span id="caClock" class="font-mono text-2xl sm:text-3xl font-bold text-warmgold">02:22:10</span>
-                            <select id="tzSelect" onchange="changeCanadaTimezone(this.value)" class="text-xs bg-white border border-warmgold/30 rounded-lg px-1.5 py-0.5 text-charcoal/70 focus:outline-none cursor-pointer" title="Đổi múi giờ Canada">
-                                <option value="America/Toronto">EST/EDT (Toronto)</option>
-                                <option value="America/Vancouver">PST/PDT (Vancouver)</option>
-                                <option value="America/Edmonton">MST/MDT (Calgary)</option>
-                                <option value="America/Winnipeg">CST/CDT (Winnipeg)</option>
-                            </select>
+                        <div class="mt-3">
+                            <div class="flex items-baseline justify-center md:justify-end gap-2">
+                                <span id="caClock" class="font-mono tabular-nums text-2xl sm:text-3xl font-medium text-ink">02:22:10</span>
+                                <select id="tzSelect" onchange="changeCanadaTimezone(this.value)" class="text-xs font-mono bg-card border hairline rounded-md px-1.5 py-0.5 text-ink-secondary focus:outline-none focus:border-rose-clay cursor-pointer shrink-0" title="Đổi múi giờ Canada">
+                                    <option value="America/Toronto">EST</option>
+                                    <option value="America/Vancouver">PST</option>
+                                    <option value="America/Edmonton">MST</option>
+                                    <option value="America/Winnipeg">CST</option>
+                                </select>
+                            </div>
+                            <p id="caDate" class="text-xs text-ink-muted mt-1">Thứ Năm, 05/11/2026</p>
                         </div>
-                        <p id="caDate" class="text-xs text-charcoal/60 mt-1">Thứ Năm, 05/11/2026</p>
                     </div>
 
                 </div>
 
                 <!-- Days Together Counter Bar -->
-<div class="mt-6 pt-5 border-t border-rosegold/15 flex flex-col gap-3 text-xs sm:text-sm text-charcoal/80">
-    <div class="flex flex-col gap-2">
-        <div>❤️ Tụi mình đã đi cùng nhau:
-        </div>
-        <div>
-            <span id="daysTogetherCount" class="px-3 py-1 rounded-full bg-rosegold text-white font-bold">1287</span>
-        </div>
-        <div class="font-medium">ngày yêu thương gian khổ</div>
-    </div>
-    <div class="text-charcoal/65 italic">
-        "Hôm nay có 3 trạm bất ngờ đang đợi em mở khóa bên dưới..."
-    </div>
-</div>
+                <div class="mt-6 pt-6 border-t hairline flex flex-col sm:flex-row items-center justify-between gap-3 text-sm text-ink-secondary">
+                    <div class="flex items-center gap-2 flex-wrap justify-center sm:justify-start">
+                        <span>Tụi mình đã đi cùng nhau</span>
+                        <span id="daysTogetherCount" class="px-2 py-0.5 rounded-md bg-raised border hairline font-mono tabular-nums font-medium text-rose-clay">1287</span>
+                        <span>ngày yêu thương gian khổ</span>
+                    </div>
+                    <div class="text-xs text-ink-muted">
+                        Hôm nay có 3 trạm bất ngờ đang đợi em mở khóa bên dưới
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -1045,180 +1052,184 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         =========================================== -->
         <section class="space-y-8">
             <div class="text-center space-y-2 max-w-2xl mx-auto">
-                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-rosegold">Happy Birthday</span>
-                <h2 class="ftext-xs font-semibold uppercase tracking-[0.2em] text-rosegold">3 Trạm Quà Tặng Hôm Nay Của Em</h2>
-                <p class="text-xs sm:text-sm text-charcoal/70">
-                    Mỗi khung giờ trong ngày sinh nhật, anh đã chuẩn bị sẵn một điểm chạm. Em hãy bấm vào từng trạm để check nhé!
+                <span class="text-xs font-mono text-rose-clay">Lịch trình hôm nay</span>
+                <h2 class="font-serif text-3xl font-medium text-ink leading-tight">3 trạm quà tặng hôm nay của em</h2>
+                <p class="text-sm text-ink-secondary">
+                    Mỗi khung giờ trong ngày sinh nhật, anh đã chuẩn bị sẵn một điểm chạm. Em hãy bấm vào từng trạm để mở nhé
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-                <!-- TOUCHPOINT 1: 08:30 AM STARBUCKS -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-rosegold/25 shadow-lg flex flex-col justify-between relative overflow-hidden">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-starbucks/10 pointer-events-none"></div>
-
+                <!-- TOUCHPOINT 1: 10:30 AM STARBUCKS -->
+                <div class="bg-card rounded-2xl p-6 border hairline shadow-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <span class="px-3 py-1 rounded-full bg-starbucks/15 text-starbucks font-bold text-xs">
-                                ☀️ Trạm 1 • 10:30 Sáng
+                            <span class="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-raised border hairline text-ink font-mono text-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                                <span>Trạm 1 · 10:30 sáng</span>
                             </span>
-                            <span class="text-xs text-charcoal/50 font-medium">Điểm chạm vị giác</span>
+                            <span class="text-xs text-ink-muted">Điểm chạm vị giác</span>
                         </div>
 
-                        <h3 class="font-serif text-2xl font-bold text-charcoal mb-2">Năng Lượng Sáng Sinh Nhật</h3>
-                        <p class="text-xs sm:text-sm text-charcoal/70 leading-relaxed mb-5">
+                        <h3 class="font-serif text-xl font-medium text-ink mb-2">Năng lượng sáng sinh nhật</h3>
+                        <p class="text-sm text-ink-secondary leading-relaxed mb-5">
                             Bắt đầu ngày mới thật tỉnh táo với món đồ uống được gửi tới cửa nhà em.
                         </p>
 
                         <!-- Closed State -->
-                        <div id="station1Closed" class="bg-parchment/70 rounded-2xl p-5 text-center border border-dashed border-starbucks/40 my-2">
-                            <div class="text-3xl mb-2">☕🥐</div>
-                            <p class="text-xs text-charcoal/70 font-medium mb-3">
-                                Mở phong bì này vào buổi sáng khi thức dậy nhé!
+                        <div id="station1Closed" class="bg-raised rounded-xl p-5 text-center border border-dashed border-ink/20">
+                            <div class="w-10 h-10 rounded-lg bg-card border hairline text-ink-secondary flex items-center justify-center mx-auto mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v2"/><path d="M14 2v2"/><path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1"/><path d="M6 2v2"/></svg>
+                            </div>
+                            <p class="text-xs text-ink-secondary mb-4">
+                                Mở phong bì này vào buổi sáng khi thức dậy
                             </p>
-                            <button onclick="openTouchpoint(1)" class="w-full py-2.5 px-4 rounded-xl bg-starbucks hover:bg-[#00593B] text-white text-xs font-semibold transition shadow">
-                                Mở Phong Bì 10:30 Sáng
+                            <button onclick="openTouchpoint(1)" class="w-full h-10 px-4 rounded-lg bg-rose-clay hover:bg-rose-clay-dark active:scale-[0.98] text-card text-xs font-medium transition-colors duration-150">
+                                Mở phong bì 10:30 sáng
                             </button>
                         </div>
 
                         <!-- Opened State -->
-                        <div id="station1Opened" class="hidden bg-[#F2F8F5] rounded-2xl p-5 border border-starbucks/30 space-y-3 my-2">
-                            <div class="flex items-center justify-between border-b border-starbucks/15 pb-2">
-                                <span class="font-bold text-xs text-starbucks uppercase tracking-wider">Starbucks Order • Canada</span>
-                                <span class="text-[11px] bg-starbucks text-white px-2 py-0.5 rounded-full">Pre-ordered ❤️</span>
+                        <div id="station1Opened" class="hidden bg-raised rounded-xl p-5 border hairline space-y-3">
+                            <div class="flex items-center justify-between border-b hairline pb-2">
+                                <span class="font-medium text-xs text-ink">Starbucks Order · Canada</span>
+                                <span class="text-xs font-mono text-rose-clay">Đã đặt trước</span>
                             </div>
-                            <div class="space-y-1.5 text-xs text-charcoal">
-                                <div class="font-semibold">🥤 1x Món nước cho Châu</div>
-                                <div class="p-2.5 rounded-xl bg-white border border-starbucks/20 mt-2 text-charcoal/85 italic">
-                                    Ghi chú trên ly: <br>
-                                    <strong id="starbucksCupText" class="text-starbucks not-italic">"Happy Birthday Châu ❤️ From Vietnam"</strong>
+                            <div class="space-y-2 text-xs text-ink">
+                                <div class="font-medium">1x Món nước cho Châu</div>
+                                <div class="p-3 rounded-lg bg-card border hairline text-ink-secondary">
+                                    <span class="block text-ink-muted mb-1">Ghi chú trên ly:</span>
+                                    <strong id="starbucksCupText" class="text-rose-clay font-medium">"Happy Birthday Châu ❤️ From Vietnam"</strong>
                                 </div>
                             </div>
-                            <p class="text-[11px] text-charcoal/70 pt-1">
-                                💡 <strong>Nhiệm vụ của em:</strong> Check link anh gửi để nhận phần món uống sáng từ anh nha!
+                            <p class="text-xs text-ink-secondary pt-1">
+                                <strong class="font-medium text-ink">Nhiệm vụ của em:</strong> Check link anh gửi để nhận phần món uống sáng từ anh nha
                             </p>
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-charcoal/10 mt-4 flex items-center justify-between text-[11px] text-charcoal/50">
+                    <div class="pt-4 border-t hairline mt-6 flex items-center justify-between text-xs text-ink-muted">
                         <span>Giao tình yêu đến tận cửa</span>
-                        <span>#MorningLove</span>
+                        <span class="font-mono">01 / 03</span>
                     </div>
                 </div>
 
                 <!-- TOUCHPOINT 2: 14:00 PM LOVE VOUCHERS -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-rosegold/25 shadow-lg flex flex-col justify-between relative overflow-hidden">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-rosegold/15 pointer-events-none"></div>
-
+                <div class="bg-card rounded-2xl p-6 border hairline shadow-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <span class="px-3 py-1 rounded-full bg-rosegold/15 text-rosedark font-bold text-xs">
-                                💌 Trạm 2 • 14:00 Chiều
+                            <span class="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-raised border hairline text-ink font-mono text-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
+                                <span>Trạm 2 · 14:00 chiều</span>
                             </span>
-                            <span class="text-xs text-charcoal/50 font-medium">Đặc quyền công chúa</span>
+                            <span class="text-xs text-ink-muted">Đặc quyền công chúa</span>
                         </div>
 
-                        <h3 class="font-serif text-2xl font-bold text-charcoal mb-2">Hộp Thẻ Đặc Quyền Yêu Xa</h3>
-                        <p class="text-xs sm:text-sm text-charcoal/70 leading-relaxed mb-5">
-                            Những tấm vé "quyền lực" không thời hạn dành riêng cho em để sử dụng bất cứ lúc nào em muốn.
+                        <h3 class="font-serif text-xl font-medium text-ink mb-2">Hộp thẻ đặc quyền yêu xa</h3>
+                        <p class="text-sm text-ink-secondary leading-relaxed mb-5">
+                            Những tấm vé không thời hạn dành riêng cho em để sử dụng bất cứ lúc nào em muốn.
                         </p>
 
                         <!-- Closed State -->
-                        <div id="station2Closed" class="bg-parchment/70 rounded-2xl p-5 text-center border border-dashed border-rosegold/40 my-2">
-                            <div class="text-3xl mb-2">🎟️✨</div>
-                            <p class="text-xs text-charcoal/70 font-medium mb-3">
-                                Bao gồm 3 tấm thẻ quyền lực nhất vũ trụ!
+                        <div id="station2Closed" class="bg-raised rounded-xl p-5 text-center border border-dashed border-ink/20">
+                            <div class="w-10 h-10 rounded-lg bg-card border hairline text-ink-secondary flex items-center justify-center mx-auto mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+                            </div>
+                            <p class="text-xs text-ink-secondary mb-4">
+                                Bao gồm 3 tấm thẻ đặc quyền dành riêng cho em
                             </p>
-                            <button onclick="openTouchpoint(2)" class="w-full py-2.5 px-4 rounded-xl bg-rosegold hover:bg-rosedark text-white text-xs font-semibold transition shadow">
-                                Mở Hộp Voucher Của Em
+                            <button onclick="openTouchpoint(2)" class="w-full h-10 px-4 rounded-lg bg-rose-clay hover:bg-rose-clay-dark active:scale-[0.98] text-card text-xs font-medium transition-colors duration-150">
+                                Mở hộp voucher của em
                             </button>
                         </div>
 
                         <!-- Opened State -->
-                        <div id="station2Opened" class="hidden space-y-2.5 my-2">
-                            <div onclick="claimCoupon(this, 'Thẻ Miễn Phí Giận Dỗi (Anh xin lỗi trước 100%)')" class="cursor-pointer p-3 rounded-xl bg-parchment/80 hover:bg-rosegold/15 border border-rosegold/30 transition flex items-center justify-between">
+                        <div id="station2Opened" class="hidden space-y-2">
+                            <div onclick="claimCoupon(this, 'Thẻ Miễn Phí Giận Dỗi (Anh xin lỗi trước 100%)')" class="cursor-pointer p-3 rounded-lg bg-raised hover:bg-ink/5 border hairline transition-colors duration-150 flex items-center justify-between gap-3">
                                 <div class="text-xs">
-                                    <div class="font-bold text-charcoal">🎟️ 01 Thẻ "Anh Sai Rồi"</div>
-                                    <div class="text-charcoal/65 text-[11px]">Dùng để thắng mọi cuộc tranh luận ngay lập tức</div>
+                                    <div class="font-medium text-ink">01 Thẻ "Anh sai rồi"</div>
+                                    <div class="text-ink-secondary text-xs">Dùng để thắng mọi cuộc tranh luận ngay lập tức</div>
                                 </div>
-                                <span class="coupon-badge text-[10px] font-bold px-2 py-1 rounded-lg bg-rosegold text-white shrink-0">Nhận thẻ</span>
+                                <span class="coupon-badge text-xs font-medium px-2 py-1 rounded-md bg-rose-clay text-card shrink-0">Nhận thẻ</span>
                             </div>
 
-                            <div onclick="claimCoupon(this, '01 Chuyến Foodtour / Trà Sữa Full Topping')" class="cursor-pointer p-3 rounded-xl bg-parchment/80 hover:bg-rosegold/15 border border-rosegold/30 transition flex items-center justify-between">
+                            <div onclick="claimCoupon(this, '01 Chuyến Foodtour / Trà Sữa Full Topping')" class="cursor-pointer p-3 rounded-lg bg-raised hover:bg-ink/5 border hairline transition-colors duration-150 flex items-center justify-between gap-3">
                                 <div class="text-xs">
-                                    <div class="font-bold text-charcoal">🧋 01 Ngày Ăn Sập Tiệm</div>
-                                    <div class="text-charcoal/65 text-[11px]">Tài trợ 100% mọi món em thèm bất kỳ lúc nào</div>
+                                    <div class="font-medium text-ink">01 Ngày ăn sập tiệm</div>
+                                    <div class="text-ink-secondary text-xs">Tài trợ 100% mọi món em thèm bất kỳ lúc nào</div>
                                 </div>
-                                <span class="coupon-badge text-[10px] font-bold px-2 py-1 rounded-lg bg-rosegold text-white shrink-0">Nhận thẻ</span>
+                                <span class="coupon-badge text-xs font-medium px-2 py-1 rounded-md bg-rose-clay text-card shrink-0">Nhận thẻ</span>
                             </div>
 
-                            <div onclick="claimCoupon(this, '1000 Cái Ôm Bù Ngay Khi Gặp Lại')" class="cursor-pointer p-3 rounded-xl bg-parchment/80 hover:bg-rosegold/15 border border-rosegold/30 transition flex items-center justify-between">
+                            <div onclick="claimCoupon(this, '1000 Cái Ôm Bù Ngay Khi Gặp Lại')" class="cursor-pointer p-3 rounded-lg bg-raised hover:bg-ink/5 border hairline transition-colors duration-150 flex items-center justify-between gap-3">
                                 <div class="text-xs">
-                                    <div class="font-bold text-charcoal">✈️ 1000 Cái Ôm Sân Bay</div>
-                                    <div class="text-charcoal/65 text-[11px]">Quy đổi ngay giây phút tụi mình gặp lại nhau</div>
+                                    <div class="font-medium text-ink">1,000 Cái ôm sân bay</div>
+                                    <div class="text-ink-secondary text-xs">Quy đổi ngay giây phút tụi mình gặp lại nhau</div>
                                 </div>
-                                <span class="coupon-badge text-[10px] font-bold px-2 py-1 rounded-lg bg-rosegold text-white shrink-0">Nhận thẻ</span>
+                                <span class="coupon-badge text-xs font-medium px-2 py-1 rounded-md bg-rose-clay text-card shrink-0">Nhận thẻ</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-charcoal/10 mt-4 flex items-center justify-between text-[11px] text-charcoal/50">
+                    <div class="pt-4 border-t hairline mt-6 flex items-center justify-between text-xs text-ink-muted">
                         <span>Hiệu lực: Trọn đời</span>
-                        <span>#UnlimitedLove</span>
+                        <span class="font-mono">02 / 03</span>
                     </div>
                 </div>
 
-                <!-- TOUCHPOINT 3: 20:00 PM CAKE & HOUSEMATE REVEAL -->
-                <div class="bg-white rounded-3xl p-6 sm:p-7 border border-warmgold/40 shadow-lg flex flex-col justify-between relative overflow-hidden">
-                    <div class="absolute -right-6 -top-6 w-24 h-24 rounded-full bg-warmgold/15 pointer-events-none"></div>
-
+                <!-- TOUCHPOINT 3: 18:00 PM CAKE & HOUSEMATE REVEAL -->
+                <div class="bg-card rounded-2xl p-6 border hairline shadow-card flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
-                            <span class="px-3 py-1 rounded-full bg-warmgold/20 text-[#9B6B21] font-bold text-xs">
-                                🌙 Trạm 3 • 18:00 Tối
+                            <span class="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-raised border hairline text-ink font-mono text-xs">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                                <span>Trạm 3 · 18:00 tối</span>
                             </span>
-                            <span class="text-xs text-charcoal/50 font-medium">Điểm chạm bất ngờ nhất</span>
+                            <span class="text-xs text-ink-muted">Điểm chạm bất ngờ</span>
                         </div>
 
-                        <h3 class="font-serif text-2xl font-bold text-charcoal mb-2">Điều Ước Đêm Sinh Nhật</h3>
-                        <p class="text-xs sm:text-sm text-charcoal/70 leading-relaxed mb-5">
-                            Chuẩn bị cho món quá sinh nhật chưa?
+                        <h3 class="font-serif text-xl font-medium text-ink mb-2">Điều ước đêm sinh nhật</h3>
+                        <p class="text-sm text-ink-secondary leading-relaxed mb-5">
+                            Chuẩn bị cho món quà sinh nhật chưa?
                         </p>
 
                         <!-- Closed State -->
-                        <div id="station3Closed" class="bg-parchment/70 rounded-2xl p-5 text-center border border-dashed border-warmgold/50 my-2">
-                            <div class="text-3xl mb-2">🎂🕯️</div>
-                            <p class="text-xs text-charcoal/70 font-medium mb-3">
-                                Chỉ mở khi tụi mình lúc 18:00 tối!
+                        <div id="station3Closed" class="bg-raised rounded-xl p-5 text-center border border-dashed border-ink/20">
+                            <div class="w-10 h-10 rounded-lg bg-card border hairline text-ink-secondary flex items-center justify-center mx-auto mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/></svg>
+                            </div>
+                            <p class="text-xs text-ink-secondary mb-4">
+                                Chỉ mở khi tụi mình gặp nhau lúc 18:00 tối
                             </p>
-                            <button onclick="openTouchpoint(3)" class="w-full py-2.5 px-4 rounded-xl bg-warmgold hover:bg-[#B8883E] text-white text-xs font-semibold transition shadow">
-                                Mở Mật Thư 18:00 Tối
+                            <button onclick="openTouchpoint(3)" class="w-full h-10 px-4 rounded-lg bg-rose-clay hover:bg-rose-clay-dark active:scale-[0.98] text-card text-xs font-medium transition-colors duration-150">
+                                Mở mật thư 18:00 tối
                             </button>
                         </div>
 
                         <!-- Opened State -->
-                        <div id="station3Opened" class="hidden bg-[#FCF8EE] rounded-2xl p-5 border border-warmgold/40 space-y-3 my-2">
-                            <div class="flex items-center gap-2 text-xs font-bold text-[#9B6B21]">
-                                <span>🤫 BÍ MẬT ĐƯỢC BẬT MÍ:</span>
+                        <div id="station3Opened" class="hidden bg-raised rounded-xl p-5 border hairline space-y-3">
+                            <div class="text-xs font-medium text-rose-clay">
+                                Bí mật được bật mí
                             </div>
-                            <p id="cakeRevealMessage" class="text-xs text-charcoal leading-relaxed">
-                                Sao sinh nhật công chúa của anh mà thiếu bánh kem thật được! Anh đã nhờ <strong>"đồng minh cùng nhà"</strong> chuẩn bị sẵn một chiếc bánh kem thật xinh cho em rồi.
+                            <p id="cakeRevealMessage" class="text-xs text-ink leading-relaxed">
+                                Sao sinh nhật công chúa của anh mà thiếu bánh kem thật được. Anh đã nhờ <strong class="font-medium">"đồng minh cùng nhà"</strong> chuẩn bị sẵn một chiếc bánh kem thật xinh cho em rồi.
                             </p>
-                            <div class="p-3 rounded-xl bg-white border border-warmgold/30 text-xs text-rosedark font-semibold text-center animate-pulse">
-                                🚪✨ Em thử lắng nghe xem... hình như có ai đang cầm bánh kem gõ cửa phòng em kìa!
+                            <div class="p-3 rounded-lg bg-card border hairline text-xs text-ink-secondary text-center">
+                                Em thử lắng nghe xem, hình như có ai đang cầm bánh kem gõ cửa phòng em
                             </div>
-                            <div class="pt-1 flex flex-col gap-2">
-                                <a id="videoCallLinkBtn" href="https://meet.google.com" target="_blank" rel="noopener noreferrer" class="w-full py-2.5 px-4 rounded-xl bg-rosegold hover:bg-rosedark text-white text-xs font-semibold text-center transition shadow">
-                                    📹 Vào phòng Video Call với Anh
+                            <div class="pt-1">
+                                <a id="videoCallLinkBtn" href="https://meet.google.com" target="_blank" rel="noopener noreferrer" class="w-full h-10 px-4 rounded-lg bg-rose-clay hover:bg-rose-clay-dark text-card text-xs font-medium flex items-center justify-center gap-2 transition-colors duration-150">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
+                                    <span>Vào phòng Video Call với anh</span>
                                 </a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="pt-4 border-t border-charcoal/10 mt-4 flex items-center justify-between text-[11px] text-charcoal/50">
-                        <span>Special Spy Things 🕵️‍♀️</span>
-                        <span>#20:00Date</span>
+                    <div class="pt-4 border-t hairline mt-6 flex items-center justify-between text-xs text-ink-muted">
+                        <span>Nhiệm vụ bí mật</span>
+                        <span class="font-mono">03 / 03</span>
                     </div>
                 </div>
 
@@ -1228,68 +1239,71 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         <!-- ==========================================
              4. INTERACTIVE VIRTUAL BIRTHDAY CAKE
         =========================================== -->
-        <section id="virtualCakeSection" class="bg-white rounded-3xl p-6 sm:p-12 border border-rosegold/20 shadow-lg text-center max-w-3xl mx-auto scroll-mt-20">
-            <span class="text-xs font-semibold uppercase tracking-[0.2em] text-warmgold">Make A Wish Together</span>
-            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal mt-1">Thổi Nến Tuổi Mới Cùng Anh</h2>
-            <p id="cakeInstruction" class="text-xs sm:text-sm text-charcoal/70 max-w-md mx-auto mt-2">
-                Nhắm mắt lại ước một điều thật đẹp cho tuổi mới, sau đó <strong>chạm vào ngọn nến</strong> hoặc <strong>bật Micro thổi nhẹ vào điện thoại</strong> để thổi tắt nến cùng anh nhé!
+        <section id="virtualCakeSection" class="bg-card rounded-2xl p-6 sm:p-12 border hairline shadow-card text-center max-w-3xl mx-auto scroll-mt-20">
+            <span class="text-xs font-mono text-rose-clay">Điều ước tuổi mới</span>
+            <h2 class="font-serif text-3xl font-medium text-ink mt-2">Thổi nến tuổi mới cùng anh</h2>
+            <p id="cakeInstruction" class="text-sm text-ink-secondary max-w-lg mx-auto mt-2 leading-relaxed">
+                Nhắm mắt lại ước một điều thật đẹp cho tuổi mới, sau đó <strong class="font-medium text-ink">chạm vào ngọn nến</strong> hoặc <strong class="font-medium text-ink">bật Micro thổi nhẹ vào điện thoại</strong> để thổi tắt nến cùng anh
             </p>
 
             <!-- Microphone Blow Detection Control for Mobile -->
-            <div class="mt-5 flex flex-wrap items-center justify-center gap-3">
-                <button id="micBlowBtn" onclick="toggleMicBlowDetection()" class="px-4 py-2.5 rounded-full bg-parchment hover:bg-rosegold/20 border border-rosegold/30 text-charcoal text-xs font-semibold transition flex items-center gap-2 shadow-sm active:scale-95">
-                    <span id="micBtnIcon">🎙️</span>
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <button id="micBlowBtn" onclick="toggleMicBlowDetection()" class="h-10 px-4 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink text-xs font-medium transition-colors duration-150 flex items-center gap-2 active:scale-[0.98]">
+                    <span id="micBtnIcon" class="text-ink-secondary flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+                    </span>
                     <span id="micBtnText">Bật Micro để thổi nến thật trên điện thoại</span>
                 </button>
-                <div id="micLevelWrap" class="hidden items-center gap-2 bg-parchment/80 px-3 py-1.5 rounded-full border border-rosegold/20">
-                    <span class="text-[11px] text-rosedark font-medium">Hơi thổi:</span>
-                    <div class="w-20 h-2 bg-white rounded-full overflow-hidden">
-                        <div id="micLevelBar" class="h-full bg-rosegold transition-all duration-75" style="width: 5%"></div>
+                <div id="micLevelWrap" class="hidden items-center gap-2 bg-raised px-3 h-10 rounded-lg border hairline">
+                    <span class="text-xs text-ink-secondary">Hơi thổi</span>
+                    <div class="w-20 h-2 bg-paper rounded-full overflow-hidden border hairline">
+                        <div id="micLevelBar" class="h-full bg-rose-clay transition-all duration-75" style="width: 5%"></div>
                     </div>
                 </div>
             </div>
 
             <!-- Interactive SVG Cake & Candle -->
             <div class="my-6 flex flex-col items-center justify-center relative select-none">
-                <div onclick="blowOutCandle()" class="cursor-pointer group relative flex flex-col items-center pt-6" title="Chạm vào đây để thổi nến!">
+                <div onclick="blowOutCandle()" class="cursor-pointer group relative flex flex-col items-center pt-4" title="Chạm vào đây để thổi nến">
 
-                    <div id="blowHintBadge" class="mb-3 px-3.5 py-1.5 rounded-full bg-rosegold/15 text-rosedark text-xs font-semibold animate-bounce">
-                        👆 Chạm vào ngọn lửa (hoặc thổi vào Micro)
+                    <div id="blowHintBadge" class="mb-3 px-3 py-1 rounded-md bg-raised border hairline text-ink-secondary text-xs">
+                        Chạm vào ngọn lửa hoặc thổi vào Micro
                     </div>
 
                     <div id="candleSmoke" class="hidden absolute top-10 flex gap-2 pointer-events-none">
-                        <div class="w-3 h-3 rounded-full bg-gray-400/50 smoke-puff"></div>
-                        <div class="w-4 h-4 rounded-full bg-gray-300/60 smoke-puff" style="animation-delay: 0.2s;"></div>
+                        <div class="w-3 h-3 rounded-full bg-ink-muted/30 smoke-puff"></div>
+                        <div class="w-4 h-4 rounded-full bg-ink-muted/20 smoke-puff" style="animation-delay: 0.2s;"></div>
                     </div>
 
                     <svg class="w-56 h-56 sm:w-64 sm:h-64 overflow-visible" viewBox="0 0 200 200">
-                        <circle id="flameGlow" cx="100" cy="42" r="24" fill="rgba(255, 196, 86, 0.35)" class="flame-flicker"></circle>
+                        <circle id="flameGlow" cx="100" cy="42" r="22" fill="rgba(217, 155, 67, 0.25)" class="flame-flicker"></circle>
                         <g id="candleFlame" class="flame-flicker">
-                            <path d="M100 22 C92 35, 90 48, 100 54 C110 48, 108 35, 100 22 Z" fill="#FF9800"></path>
-                            <path d="M100 30 C96 38, 95 46, 100 51 C105 46, 104 38, 100 30 Z" fill="#FFF176"></path>
+                            <path d="M100 22 C92 35, 90 48, 100 54 C110 48, 108 35, 100 22 Z" fill="#E07A2F"></path>
+                            <path d="M100 30 C96 38, 95 46, 100 51 C105 46, 104 38, 100 30 Z" fill="#FDE68A"></path>
                         </g>
-                        <line x1="100" y1="53" x2="100" y2="59" stroke="#3E2723" stroke-width="2" stroke-linecap="round"></line>
-                        <rect x="93" y="58" width="14" height="36" rx="4" fill="#FDFBF7" stroke="#C97A7E" stroke-width="2"></rect>
-                        <path d="M93 68 L107 74 M93 80 L107 86" stroke="#C97A7E" stroke-width="2.5"></path>
-                        <rect x="52" y="94" width="96" height="42" rx="10" fill="#FCE4EC" stroke="#C97A7E" stroke-width="2.5"></rect>
-                        <path d="M52 108 Q64 120 76 108 T100 108 T124 108 T148 108" fill="none" stroke="#C97A7E" stroke-width="3.5" stroke-linecap="round"></path>
-                        <rect x="36" y="132" width="128" height="48" rx="12" fill="#F5EFE6" stroke="#C97A7E" stroke-width="2.5"></rect>
-                        <path d="M36 148 Q52 162 68 148 T100 148 T132 148 T164 148" fill="none" stroke="#D4A359" stroke-width="3.5" stroke-linecap="round"></path>
-                        <circle cx="72" cy="92" r="5" fill="#C97A7E"></circle>
-                        <circle cx="128" cy="92" r="5" fill="#C97A7E"></circle>
-                        <ellipse cx="100" cy="182" rx="82" ry="7" fill="#E6DEC8"></ellipse>
+                        <line x1="100" y1="53" x2="100" y2="59" stroke="#1F1B16" stroke-width="2" stroke-linecap="round"></line>
+                        <rect x="93" y="58" width="14" height="36" rx="4" fill="#FDFBF7" stroke="#A94D52" stroke-width="2"></rect>
+                        <path d="M93 68 L107 74 M93 80 L107 86" stroke="#A94D52" stroke-width="2"></path>
+                        <rect x="52" y="94" width="96" height="42" rx="10" fill="#F5E9E6" stroke="#A94D52" stroke-width="2"></rect>
+                        <path d="M52 108 Q64 120 76 108 T100 108 T124 108 T148 108" fill="none" stroke="#A94D52" stroke-width="3" stroke-linecap="round"></path>
+                        <rect x="36" y="132" width="128" height="48" rx="12" fill="#EFE9DF" stroke="#A94D52" stroke-width="2"></rect>
+                        <path d="M36 148 Q52 162 68 148 T100 148 T132 148 T164 148" fill="none" stroke="#C59B5F" stroke-width="3" stroke-linecap="round"></path>
+                        <circle cx="72" cy="92" r="4.5" fill="#A94D52"></circle>
+                        <circle cx="128" cy="92" r="4.5" fill="#A94D52"></circle>
+                        <ellipse cx="100" cy="182" rx="82" ry="7" fill="#E3DDD2"></ellipse>
                     </svg>
                 </div>
 
-                <div id="wishSuccessBox" class="hidden mt-4 p-5 rounded-2xl bg-parchment/90 border border-warmgold/40 max-w-lg mx-auto space-y-3">
-                    <div class="text-xl font-serif font-bold text-rosedark">
-                        🌟 Điều ước tuổi mới của Châu đã được gửi vào vũ trụ!
+                <div id="wishSuccessBox" class="hidden mt-4 p-6 rounded-xl bg-raised border hairline max-w-lg mx-auto space-y-3">
+                    <div class="text-xl font-serif font-medium text-ink">
+                        Điều ước tuổi mới của Châu đã được gửi đi
                     </div>
-                    <p class="text-xs sm:text-sm text-charcoal/80 leading-relaxed">
-                        Ở đầu dây bên này, anh cũng vừa thổi nến cùng em. Chúc cô gái của anh tuổi mới luôn rạng rỡ, bình an tại Canada và sớm về trong vòng tay anh nhé!
+                    <p class="text-sm text-ink-secondary leading-relaxed">
+                        Ở đầu dây bên này, anh cũng vừa thổi nến cùng em. Chúc cô gái của anh tuổi mới luôn rạng rỡ, bình an tại Canada và sớm về trong vòng tay anh
                     </p>
-                    <button onclick="relightCandle()" class="text-xs font-semibold text-rosegold underline hover:text-rosedark">
-                        🔥 Thắp lại nến để ước thêm điều nữa
+                    <button onclick="relightCandle()" class="inline-flex items-center gap-2 text-xs font-medium text-rose-clay hover:text-rose-clay-dark transition-colors duration-150">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+                        <span>Thắp lại nến để ước thêm điều nữa</span>
                     </button>
                 </div>
             </div>
@@ -1300,75 +1314,74 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         =========================================== -->
         <section class="space-y-12">
             <div class="text-center space-y-2 max-w-2xl mx-auto">
-                <span class="text-xs font-semibold uppercase tracking-[0.2em] text-rosegold">Our Moments</span>
-                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-charcoal">Kỷ Niệm Của Tụi Mình</h2>
-                <p class="text-xs sm:text-sm text-charcoal/70">
+                <span class="text-xs font-mono text-rose-clay">Khoảnh khắc</span>
+                <h2 class="font-serif text-3xl font-medium text-ink">Kỷ niệm của tụi mình</h2>
+                <p class="text-sm text-ink-secondary">
                     Những khoảnh khắc khi nhớ, em lại mở ra xem.
                 </p>
             </div>
 
             <!-- 3 Tilted Polaroid Frames -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-4 px-2">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 px-2">
 
                 <!-- Polaroid 1 -->
-                <div class="polaroid-card bg-white p-4 pb-6 rounded-2xl shadow-md border border-charcoal/10 transform -rotate-2 relative group">
-                    <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-parchment mb-4">
-                        <img id="polaroidImg1" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 1" onerror="this.src='https://placehold.co/600x750/F5EFE6/C97A7E?text=Ky+Niem+1'" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                        
+                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform -rotate-1 relative group">
+                    <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
+                        <img id="polaroidImg1" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 1" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+1'" class="w-full h-full object-cover">
                     </div>
-                    <p id="polaroidCap1" class="font-script text-xl text-center text-charcoal focus:outline-none focus:bg-parchment/50 rounded px-1" title="Bấm vào chữ để sửa chú thích">
-                        Những ngày bình yên bên nhau ❤️
+                    <p id="polaroidCap1" class="font-serif text-lg text-center text-ink focus:outline-none focus:bg-raised rounded px-1" title="Bấm vào chữ để sửa chú thích">
+                        Những ngày bình yên bên nhau
                     </p>
                 </div>
 
                 <!-- Polaroid 2 -->
-                <div class="polaroid-card bg-white p-4 pb-6 rounded-2xl shadow-md border border-charcoal/10 transform rotate-1 sm:-translate-y-3 relative group">
-                    <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-parchment mb-4">
-                        <img id="polaroidImg2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 2" onerror="this.src='https://placehold.co/600x750/F5EFE6/C97A7E?text=Ky+Niem+2'" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                        
+                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform rotate-1 sm:-translate-y-2 relative group">
+                    <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
+                        <img id="polaroidImg2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 2" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+2'" class="w-full h-full object-cover">
                     </div>
-                    <p id="polaroidCap2" class="font-script text-xl text-center text-charcoal focus:outline-none focus:bg-parchment/50 rounded px-1" title="Bấm vào chữ để sửa chú thích">
-                        Nụ cười anh thương nhất trên đời ✨
+                    <p id="polaroidCap2" class="font-serif text-lg text-center text-ink focus:outline-none focus:bg-raised rounded px-1" title="Bấm vào chữ để sửa chú thích">
+                        Nụ cười anh thương nhất trên đời
                     </p>
                 </div>
 
                 <!-- Polaroid 3 -->
-                <div class="polaroid-card bg-white p-4 pb-6 rounded-2xl shadow-md border border-charcoal/10 transform rotate-2 relative group">
-                    <div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-parchment mb-4">
-                        <img id="polaroidImg3" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 3" onerror="this.src='https://placehold.co/600x750/F5EFE6/C97A7E?text=Ky+Niem+3'" class="w-full h-full object-cover transition duration-500 group-hover:scale-105">
-                        
+                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform rotate-1 relative group">
+                    <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
+                        <img id="polaroidImg3" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 3" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+3'" class="w-full h-full object-cover">
                     </div>
-                    <p id="polaroidCap3" class="font-script text-xl text-center text-charcoal focus:outline-none focus:bg-parchment/50 rounded px-1" title="Bấm vào chữ để sửa chú thích">
-                        Hẹn ngày tụi mình rút ngắn 13,500km ✈️
+                    <p id="polaroidCap3" class="font-serif text-lg text-center text-ink focus:outline-none focus:bg-raised rounded px-1" title="Bấm vào chữ để sửa chú thích">
+                        Hẹn ngày tụi mình rút ngắn 13,500 km
                     </p>
                 </div>
 
             </div>
 
             <!-- Wax-Sealed Love Letter Section -->
-            <div class="max-w-2xl mx-auto pt-6">
-                <div id="letterClosedBox" onclick="openLoveLetter()" class="cursor-pointer bg-parchment rounded-3xl p-8 sm:p-10 border-2 border-rosegold/30 shadow-xl text-center relative overflow-hidden group transition hover:shadow-2xl">
-                    <p class="text-xs uppercase tracking-[0.25em] text-rosedark font-semibold mb-2">Air Mail • Par Avion</p>
-                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-charcoal mb-6">Lá Thư Tay Gửi Từ Sài Gòn</h3>
+            <div class="max-w-2xl mx-auto pt-4">
+                <div id="letterClosedBox" onclick="openLoveLetter()" class="cursor-pointer bg-raised rounded-2xl p-8 sm:p-10 border hairline shadow-card text-center relative overflow-hidden group transition-colors duration-150 hover:bg-card">
+                    <p class="text-xs font-mono text-ink-muted mb-2">Thư hàng không · Sài Gòn — Canada</p>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-medium text-ink mb-6">Lá thư tay gửi từ Sài Gòn</h3>
 
-                    <div class="w-16 h-16 rounded-full bg-rosegold text-white flex items-center justify-center mx-auto wax-seal shadow-lg group-hover:scale-110 transition">
-                        <span class="font-serif font-bold text-xl">❤️</span>
+                    <div class="w-14 h-14 rounded-full bg-rose-clay group-hover:bg-rose-clay-dark text-card flex items-center justify-center mx-auto transition-colors duration-150">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
                     </div>
-                    <p class="text-xs text-charcoal/70 font-medium mt-4">
+                    <p class="text-xs text-ink-secondary mt-4">
                         Chạm vào con dấu sáp để mở lá thư anh viết riêng cho em
                     </p>
                 </div>
 
-                <div id="letterOpenedBox" class="hidden bg-white rounded-3xl p-8 sm:p-12 border border-rosegold/30 shadow-2xl space-y-6 relative">
-                    <div class="flex items-center justify-between border-b border-rosegold/20 pb-4">
+                <div id="letterOpenedBox" class="hidden bg-card rounded-2xl p-8 sm:p-12 border hairline shadow-float space-y-6 relative">
+                    <div class="flex items-center justify-between border-b hairline pb-4">
                         <div>
-                            <span class="text-xs uppercase tracking-widest text-rosegold font-semibold">From Vietnam With Love</span>
-                            <h4 class="font-serif text-2xl font-bold text-charcoal mt-0.5">Gửi Châu thương yêu,</h4>
+                            <span class="text-xs font-mono text-rose-clay">Từ Việt Nam với nhiều thương yêu</span>
+                            <h4 class="font-serif text-2xl font-medium text-ink mt-1">Gửi Châu thương yêu,</h4>
                         </div>
-                        <span class="text-2xl">💌</span>
+                        <span class="text-ink-muted">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        </span>
                     </div>
 
-                    <div id="displayLetterContent" class="text-sm sm:text-base text-charcoal/85 leading-relaxed space-y-4 whitespace-pre-line font-sans">Gửi em phương xa,
+                    <div id="displayLetterContent" class="text-sm sm:text-base text-ink-secondary leading-relaxed space-y-4 whitespace-pre-line font-sans">Gửi em phương xa,
 
 Hôm nay là ngày tuyệt vời với em, chúc mừng sinh nhật em! Hôm nay anh chưa thể ở bên cạnh em, chở em đi dạo phố hay đơn giản ôm em nhưng mà làm gì trò thì anh làm được :V
 
@@ -1378,13 +1391,13 @@ Cách có 12 tiếng thui, nên là từ từ rồi gặp lại nhau <3
 
 Cố lên nha bé......</div>
 
-                    <div class="pt-4 border-t border-rosegold/15 flex items-center justify-between">
-                        <div class="text-xs text-charcoal/60">
+                    <div class="pt-4 border-t hairline flex items-center justify-between">
+                        <div class="text-xs text-ink-muted">
                             Soạn tại Sài Gòn, gửi cái ôm sang Soo
                         </div>
                         <div class="text-right">
-                            <span class="block text-xs text-charcoal/60">Thương em,</span>
-                            <span id="displayBoyfriendName" class="font-script text-2xl text-rosedark font-bold">Đức Anh ❤️</span>
+                            <span class="block text-xs text-ink-muted">Thương em,</span>
+                            <span id="displayBoyfriendName" class="font-serif text-2xl text-rose-clay font-medium">Đức Anh</span>
                         </div>
                     </div>
                 </div>
@@ -1392,8 +1405,8 @@ Cố lên nha bé......</div>
         </section>
 
         <!-- Footer -->
-        <footer class="text-center pt-8 pb-6 border-t border-rosegold/15 text-xs text-charcoal/50 space-y-1">
-            <p>Được làm với 100% tình yêu từ Việt Nam gửi sang Canada 🇻🇳 ✈️ 🇨🇦</p>
+        <footer class="text-center pt-8 pb-6 border-t hairline text-xs text-ink-muted">
+            <p>Làm tại Sài Gòn, gửi sang Canada</p>
         </footer>
 
     </main>
@@ -1548,13 +1561,17 @@ Cố lên nha bé......</div>
         function claimCoupon(cardEl, couponTitle) {
             const badge = cardEl.querySelector('.coupon-badge');
             if (badge) {
-                badge.textContent = 'Đã lưu ❤️';
-                badge.classList.remove('bg-rosegold');
-                badge.classList.add('bg-starbucks');
+                badge.textContent = 'Đã lưu';
+                badge.classList.remove('bg-rose-clay');
+                badge.classList.add('bg-sage');
             }
             triggerCelebrationConfetti();
             playSoftChime();
         }
+
+        const LUCIDE_MIC_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>';
+        const LUCIDE_WIND_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>';
+        const LUCIDE_HAND_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2"/><path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2"/><path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg>';
 
         // 4. Virtual Birthday Cake & Microphone Detection
         async function toggleMicBlowDetection() {
@@ -1577,8 +1594,8 @@ Cố lên nha bé......</div>
                 source.connect(micAnalyser);
 
                 isMicListening = true;
-                btnIcon.textContent = "🌬️";
-                btnText.textContent = "Đang nghe... Hãy thổi vào điện thoại!";
+                btnIcon.innerHTML = LUCIDE_WIND_SVG;
+                btnText.textContent = "Đang nghe... Hãy thổi vào điện thoại";
                 levelWrap.classList.remove('hidden');
                 levelWrap.classList.add('flex');
 
@@ -1605,8 +1622,8 @@ Cố lên nha bé......</div>
 
                 checkBlowVolume();
             } catch (err) {
-                btnIcon.textContent = "👆";
-                btnText.textContent = "Chạm trực tiếp vào ngọn nến để thổi nhé!";
+                btnIcon.innerHTML = LUCIDE_HAND_SVG;
+                btnText.textContent = "Chạm trực tiếp vào ngọn nến để thổi nhé";
             }
         }
 
@@ -1624,7 +1641,7 @@ Cố lên nha bé......</div>
             const btnText = document.getElementById('micBtnText');
             const btnIcon = document.getElementById('micBtnIcon');
             const levelWrap = document.getElementById('micLevelWrap');
-            if (btnIcon) btnIcon.textContent = "🎙️";
+            if (btnIcon) btnIcon.innerHTML = LUCIDE_MIC_SVG;
             if (btnText) btnText.textContent = "Bật Micro để thổi nến thật trên điện thoại";
             if (levelWrap) {
                 levelWrap.classList.add('hidden');
@@ -1720,6 +1737,9 @@ Cố lên nha bé......</div>
             } catch (e) {}
         }
 
+        const LUCIDE_MUSIC_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>';
+        const LUCIDE_VOLUME_OFF_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z"/><line x1="22" x2="16" y1="9" y2="15"/><line x1="16" x2="22" y1="9" y2="15"/></svg>';
+
         async function toggleBirthdayMelody() {
             const label = document.getElementById('musicLabel');
             const icon = document.getElementById('musicIcon');
@@ -1728,7 +1748,7 @@ Cố lên nha bé......</div>
                 isPlayingMusic = false;
                 if (melodyInterval) clearInterval(melodyInterval);
                 label.textContent = 'Bật nhạc sinh nhật';
-                icon.textContent = '🎵';
+                icon.innerHTML = LUCIDE_MUSIC_SVG;
                 return;
             }
 
@@ -1745,7 +1765,7 @@ Cố lên nha bé......</div>
 
                 isPlayingMusic = true;
                 label.textContent = 'Tắt nhạc';
-                icon.textContent = '🎶';
+                icon.innerHTML = LUCIDE_VOLUME_OFF_SVG;
 
                 const notes = [
                     'C4', 'C4', 'D4', 'C4', 'F4', 'E4',
