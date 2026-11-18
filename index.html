@@ -863,8 +863,8 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     <!-- ==========================================
          1. PASSCODE LOCK SCREEN OVERLAY
     =========================================== -->
-    <div id="lockScreen" class="fixed inset-0 z-50 bg-paper flex flex-col items-center justify-center p-4 sm:p-6 transition-opacity duration-300 ease-unslop">
-        <div id="lockCard" class="max-w-md w-full bg-card border hairline rounded-2xl p-6 sm:p-8 shadow-float text-center relative z-10">
+    <div id="lockScreen" class="fixed inset-0 z-50 bg-paper overflow-y-auto flex flex-col items-center justify-center p-4 sm:p-6 transition-opacity duration-300 ease-unslop">
+        <div id="lockCard" class="max-w-md w-full my-auto bg-card border hairline rounded-2xl p-6 sm:p-8 shadow-float text-center relative z-10">
             <div class="w-12 h-12 rounded-lg bg-raised border hairline text-rose-clay flex items-center justify-center mx-auto mb-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
             </div>
@@ -918,29 +918,29 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     <!-- ==========================================
          TOP FLOATING NAVIGATION & AUDIO BAR
     =========================================== -->
-    <header class="sticky top-0 z-30 bg-card border-b hairline px-4 sm:px-8 h-16 flex items-center">
-        <div class="max-w-5xl w-full mx-auto flex items-center justify-between gap-4">
-            <div class="flex items-center gap-3">
+    <header class="sticky top-0 z-30 bg-card border-b hairline px-4 sm:px-6 lg:px-8 h-16 flex items-center">
+        <div class="max-w-5xl w-full mx-auto flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2 sm:gap-3 min-w-0">
                 <span class="w-2 h-2 rounded-full bg-rose-clay shrink-0"></span>
-                <span class="font-mono font-medium text-sm tracking-tight text-ink flex items-center gap-2">
+                <span class="font-mono font-medium text-sm tracking-tight text-ink flex items-center gap-2 shrink-0">
                     <span>SGN</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>
                     <span>YYZ</span>
                 </span>
-                <span class="hidden sm:inline-block text-xs text-ink-muted border-l hairline pl-3">
+                <span class="hidden md:inline-block text-xs text-ink-muted border-l hairline pl-3 truncate">
                     13,500 km · Cùng một bầu trời
                 </span>
             </div>
 
-            <div class="flex items-center gap-2">
-                <button id="musicToggleBtn" onclick="toggleBirthdayMelody()" class="h-9 px-3 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink text-xs font-medium flex items-center gap-2 transition-colors duration-150">
+            <div class="flex items-center gap-2 shrink-0">
+                <button id="musicToggleBtn" onclick="toggleBirthdayMelody()" class="h-9 px-3 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink text-xs font-medium flex items-center gap-2 whitespace-nowrap transition-colors duration-150">
                     <span id="musicIcon" class="text-ink-secondary flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                     </span>
                     <span id="musicLabel">Bật nhạc sinh nhật</span>
                 </button>
 
-                <button onclick="triggerCelebrationConfetti()" class="w-9 h-9 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink-secondary hover:text-ink flex items-center justify-center transition-colors duration-150" title="Bắn pháo giấy chúc mừng" aria-label="Bắn pháo giấy chúc mừng">
+                <button onclick="triggerCelebrationConfetti()" class="w-9 h-9 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink-secondary hover:text-ink flex items-center justify-center shrink-0 transition-colors duration-150" title="Bắn pháo giấy chúc mừng" aria-label="Bắn pháo giấy chúc mừng">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5.8 11.3 2 22l10.7-3.79"/><path d="M4 3h.01"/><path d="M22 8h.01"/><path d="M15 2h.01"/><path d="M22 20h.01"/><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10"/><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17"/><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7"/><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z"/></svg>
                 </button>
             </div>
@@ -950,7 +950,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
     <!-- ==========================================
          MAIN CONTENT CONTAINER
     =========================================== -->
-    <main class="max-w-5xl mx-auto px-4 sm:px-8 py-12 sm:py-16 space-y-16 sm:space-y-24">
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16 space-y-16 md:space-y-20 lg:space-y-24">
 
         <!-- ==========================================
              2. HERO SECTION & LIVE DUAL TIME-ZONE BRIDGE
@@ -958,7 +958,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
         <section class="text-center space-y-8">
             <div class="space-y-4 max-w-2xl mx-auto">
                 <p class="text-xs font-mono text-rose-clay">Sinh nhật Huyền Châu · Sài Gòn — Toronto</p>
-                <h2 class="font-serif text-4xl sm:text-5xl font-medium text-ink leading-[1.08] tracking-[-0.02em]">
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-[56px] font-medium text-ink leading-[1.08] tracking-[-0.02em]">
                     Chúc mừng sinh nhật <br>
                     <span id="displayGirlfriendName" class="text-rose-clay">Bé Của Anh</span>
                 </h2>
@@ -968,11 +968,11 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             </div>
 
             <!-- Interactive Flight Bridge & Dual Live Clocks Card -->
-            <div class="bg-card border hairline rounded-2xl p-6 sm:p-8 shadow-card max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+            <div class="bg-card border hairline rounded-2xl p-5 sm:p-6 lg:p-8 shadow-card max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6 items-stretch">
 
                     <!-- Vietnam Clock -->
-                    <div class="bg-raised border hairline rounded-xl p-5 text-center md:text-left h-full flex flex-col justify-between">
+                    <div class="bg-raised border hairline rounded-xl p-4 lg:p-5 text-center md:text-left h-full flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-center md:justify-start gap-2 text-xs text-ink-muted mb-1">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="shrink-0"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
@@ -982,15 +982,15 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                         </div>
                         <div class="mt-3">
                             <div class="flex items-baseline justify-center md:justify-start gap-2">
-                                <span id="vnClock" class="font-mono tabular-nums text-2xl sm:text-3xl font-medium text-rose-clay">14:22:10</span>
-                                <span class="text-xs font-mono text-ink-muted">GMT+7</span>
+                                <span id="vnClock" class="font-mono tabular-nums text-2xl lg:text-3xl font-medium text-rose-clay">14:22:10</span>
+                                <span class="text-xs font-mono text-ink-muted shrink-0">GMT+7</span>
                             </div>
                             <p id="vnDate" class="text-xs text-ink-muted mt-1">Thứ Năm, 05/11/2026</p>
                         </div>
                     </div>
 
                     <!-- Flight Path Bridge -->
-                    <div class="flex flex-col items-center justify-center py-2">
+                    <div class="flex flex-col items-center justify-center py-2 md:py-0 max-w-xs md:max-w-none mx-auto w-full">
                         <div class="text-xs font-mono text-ink-secondary mb-3">
                             Khoảng cách <span id="displayDistanceKm" class="tabular-nums text-ink font-medium">13,500</span> km
                         </div>
@@ -1009,7 +1009,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                     </div>
 
                     <!-- Canada Clock -->
-                    <div class="bg-raised border hairline rounded-xl p-5 text-center md:text-right h-full flex flex-col justify-between">
+                    <div class="bg-raised border hairline rounded-xl p-4 lg:p-5 text-center md:text-right h-full flex flex-col justify-between">
                         <div>
                             <div class="flex items-center justify-center md:justify-end gap-2 text-xs text-ink-muted mb-1">
                                 <span>Nơi công chúa đón tuổi mới</span>
@@ -1019,7 +1019,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                         </div>
                         <div class="mt-3">
                             <div class="flex items-baseline justify-center md:justify-end gap-2">
-                                <span id="caClock" class="font-mono tabular-nums text-2xl sm:text-3xl font-medium text-ink">02:22:10</span>
+                                <span id="caClock" class="font-mono tabular-nums text-2xl lg:text-3xl font-medium text-ink">02:22:10</span>
                                 <select id="tzSelect" onchange="changeCanadaTimezone(this.value)" class="text-xs font-mono bg-card border hairline rounded-md px-1.5 py-0.5 text-ink-secondary focus:outline-none focus:border-rose-clay cursor-pointer shrink-0" title="Đổi múi giờ Canada">
                                     <option value="America/Toronto">EST</option>
                                     <option value="America/Vancouver">PST</option>
@@ -1059,7 +1059,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 <!-- TOUCHPOINT 1: 10:30 AM STARBUCKS -->
                 <div class="bg-card rounded-2xl p-6 border hairline shadow-card flex flex-col justify-between">
@@ -1179,7 +1179,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                 </div>
 
                 <!-- TOUCHPOINT 3: 18:00 PM CAKE & HOUSEMATE REVEAL -->
-                <div class="bg-card rounded-2xl p-6 border hairline shadow-card flex flex-col justify-between">
+                <div class="bg-card rounded-2xl p-6 border hairline shadow-card flex flex-col justify-between md:col-span-2 lg:col-span-1">
                     <div>
                         <div class="flex items-center justify-between gap-2 mb-4">
                             <span class="inline-flex items-center gap-2 px-2 py-1 rounded-md bg-raised border hairline text-ink font-mono text-xs">
@@ -1248,7 +1248,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
 
             <!-- Microphone Blow Detection Control for Mobile -->
             <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <button id="micBlowBtn" onclick="toggleMicBlowDetection()" class="h-10 px-4 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink text-xs font-medium transition-colors duration-150 flex items-center gap-2 active:scale-[0.98]">
+                <button id="micBlowBtn" onclick="toggleMicBlowDetection()" class="min-h-[40px] py-2 px-4 rounded-lg bg-raised hover:bg-ink/5 border hairline text-ink text-xs font-medium transition-colors duration-150 inline-flex items-center justify-center gap-2 active:scale-[0.98] max-w-full text-center">
                     <span id="micBtnIcon" class="text-ink-secondary flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
                     </span>
@@ -1322,10 +1322,10 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             </div>
 
             <!-- 3 Tilted Polaroid Frames -->
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 px-2">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 pt-4">
 
                 <!-- Polaroid 1 -->
-                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform -rotate-1 relative group">
+                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform lg:-rotate-1 relative group">
                     <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
                         <img id="polaroidImg1" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 1" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+1'" class="w-full h-full object-cover">
                     </div>
@@ -1335,7 +1335,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                 </div>
 
                 <!-- Polaroid 2 -->
-                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform rotate-1 sm:-translate-y-2 relative group">
+                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform lg:rotate-1 lg:-translate-y-2 relative group">
                     <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
                         <img id="polaroidImg2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 2" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+2'" class="w-full h-full object-cover">
                     </div>
@@ -1345,7 +1345,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                 </div>
 
                 <!-- Polaroid 3 -->
-                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform rotate-1 relative group">
+                <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform lg:rotate-1 relative group sm:col-span-2 sm:max-w-[336px] sm:mx-auto lg:col-span-1 lg:max-w-none w-full">
                     <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
                         <img id="polaroidImg3" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 3" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+3'" class="w-full h-full object-cover">
                     </div>
@@ -1358,7 +1358,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
 
             <!-- Wax-Sealed Love Letter Section -->
             <div class="max-w-2xl mx-auto pt-4">
-                <div id="letterClosedBox" onclick="openLoveLetter()" class="cursor-pointer bg-raised rounded-2xl p-8 sm:p-10 border hairline shadow-card text-center relative overflow-hidden group transition-colors duration-150 hover:bg-card">
+                <div id="letterClosedBox" onclick="openLoveLetter()" class="cursor-pointer bg-raised rounded-2xl p-6 sm:p-10 border hairline shadow-card text-center relative overflow-hidden group transition-colors duration-150 hover:bg-card">
                     <p class="text-xs font-mono text-ink-muted mb-2">Thư hàng không · Sài Gòn — Canada</p>
                     <h3 class="font-serif text-2xl sm:text-3xl font-medium text-ink mb-6">Lá thư tay gửi từ Sài Gòn</h3>
 
@@ -1370,7 +1370,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                     </p>
                 </div>
 
-                <div id="letterOpenedBox" class="hidden bg-card rounded-2xl p-8 sm:p-12 border hairline shadow-float space-y-6 relative">
+                <div id="letterOpenedBox" class="hidden bg-card rounded-2xl p-6 sm:p-12 border hairline shadow-float space-y-6 relative">
                     <div class="flex items-center justify-between border-b hairline pb-4">
                         <div>
                             <span class="text-xs font-mono text-rose-clay">Từ Việt Nam với nhiều thương yêu</span>
@@ -1391,11 +1391,11 @@ Cách có 12 tiếng thui, nên là từ từ rồi gặp lại nhau <3
 
 Cố lên nha bé......</div>
 
-                    <div class="pt-4 border-t hairline flex items-center justify-between">
+                    <div class="pt-4 border-t hairline flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                         <div class="text-xs text-ink-muted">
                             Soạn tại Sài Gòn, gửi cái ôm sang Soo
                         </div>
-                        <div class="text-right">
+                        <div class="text-left sm:text-right">
                             <span class="block text-xs text-ink-muted">Thương em,</span>
                             <span id="displayBoyfriendName" class="font-serif text-2xl text-rose-clay font-medium">Đức Anh</span>
                         </div>
