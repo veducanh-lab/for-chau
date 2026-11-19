@@ -833,6 +833,14 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
             animation: shakeError 0.4s var(--ease-unslop);
         }
 
+        @keyframes luckyReminder {
+            0%, 100% { opacity: 1; transform: translateY(0); }
+            50% { opacity: 0.55; transform: translateY(-2px); }
+        }
+        .lucky-reminder {
+            animation: luckyReminder 2.2s ease-in-out infinite;
+        }
+
         body.mobile-frame-preview {
             background-color: #1F1B16;
             display: flex;
@@ -1041,19 +1049,19 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                         <span>ngày yêu thương gian khổ</span>
                     </div>
                     <div class="text-xs text-ink-muted">
-                        Hôm nay có 3 trạm bất ngờ đang đợi em mở khóa bên dưới
+                        Hôm nay có 2 trạm bất ngờ đang đợi em mở khóa bên dưới
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- ==========================================
-             3. THE 3 SURPRISE TOUCHPOINT STATIONS
+             3. THE 2 SURPRISE TOUCHPOINT STATIONS
         =========================================== -->
         <section class="space-y-8">
             <div class="text-center space-y-2 max-w-2xl mx-auto">
                 <span class="text-xs font-mono text-rose-clay">Lịch trình hôm nay</span>
-                <h2 class="font-serif text-3xl font-medium text-ink leading-tight">3 trạm quà tặng hôm nay của em</h2>
+                <h2 class="font-serif text-3xl font-medium text-ink leading-tight">2 trạm quà tặng hôm nay của em</h2>
                 <p class="text-sm text-ink-secondary">
                     Mỗi khung giờ trong ngày sinh nhật, anh đã chuẩn bị sẵn một điểm chạm. Em hãy bấm vào từng trạm để mở nhé
                 </p>
@@ -1068,7 +1076,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay shrink-0"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
                             <span>Trạm 1 · 10:30 sáng</span>
                         </span>
-                        <span class="text-xs font-mono text-ink-muted">01 / 03 · Điểm chạm vị giác</span>
+                        <span class="text-xs font-mono text-ink-muted">01 / 02 · Điểm chạm vị giác</span>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
@@ -1115,118 +1123,73 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                     </div>
                 </div>
 
-                <!-- TOUCHPOINT 2: 14:00 PM LOVE VOUCHERS -->
+                <!-- TOUCHPOINT 2: LUCKY ENVELOPE DRAW (0K - 500K - 1000K) -->
                 <div class="bg-card rounded-2xl p-6 sm:p-8 border hairline shadow-card flex flex-col gap-6">
                     <div class="flex items-center justify-between gap-4 pb-4 border-b hairline">
                         <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-raised border hairline text-ink font-mono text-xs whitespace-nowrap">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay shrink-0"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg>
-                            <span>Trạm 2 · 14:00 chiều</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay shrink-0"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+                            <span>Trạm 2 · Thử vận may</span>
                         </span>
-                        <span class="text-xs font-mono text-ink-muted">02 / 03 · Đặc quyền công chúa</span>
+                        <span class="text-xs font-mono text-ink-muted">02 / 02 · Rút thăm may mắn</span>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
                         <div class="md:col-span-5 space-y-2">
-                            <h3 class="font-serif text-2xl font-medium text-ink">Hộp thẻ đặc quyền yêu xa</h3>
+                            <h3 class="font-serif text-2xl font-medium text-ink">Thử vận may tuổi mới</h3>
                             <p class="text-sm text-ink-secondary leading-relaxed">
-                                Những tấm vé không thời hạn dành riêng cho em để sử dụng bất cứ lúc nào em muốn.
+                                Do bánh kem bên này anh không biết chỗ nào ngon, nên tặng hiện kim là uki nhất. Để thử may mắn em trong ngày sinh nhật như thế nào.
                             </p>
-                            <p class="text-xs text-ink-muted pt-2">Hiệu lực: Trọn đời</p>
+                            <p class="text-xs text-ink-muted pt-2">Chọn 1 bao bất kỳ</p>
                         </div>
 
                         <div class="md:col-span-7">
                             <!-- Closed State -->
                             <div id="station2Closed" class="bg-raised rounded-xl p-5 text-center border border-dashed border-ink/20">
                                 <div class="w-10 h-10 rounded-lg bg-card border hairline text-ink-secondary flex items-center justify-center mx-auto mb-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                                 </div>
                                 <p class="text-xs text-ink-secondary mb-4">
-                                    Bao gồm 3 tấm thẻ đặc quyền dành riêng cho em
+                                    Hint: Có 1 bao <strong class="font-mono tabular-nums font-semibold text-rose-clay text-sm">1.000.000đ</strong>
                                 </p>
                                 <button onclick="openTouchpoint(2)" class="w-full h-10 px-4 rounded-lg bg-rose-clay hover:bg-rose-clay-dark active:scale-[0.98] text-card text-xs font-medium transition-colors duration-150">
-                                    Mở hộp voucher của em
+                                    Mở hộp lì xì của em
                                 </button>
                             </div>
 
-                            <!-- Opened State -->
-                            <div id="station2Opened" class="hidden space-y-2">
-                                <div onclick="claimCoupon(this, 'Thẻ Miễn Phí Giận Dỗi (Anh xin lỗi trước 100%)')" class="cursor-pointer p-3 rounded-lg bg-raised hover:bg-ink/5 border hairline transition-colors duration-150 flex items-center justify-between gap-3">
-                                    <div class="text-xs min-w-0">
-                                        <div class="font-medium text-ink">01 Thẻ "Anh sai rồi"</div>
-                                        <div class="text-ink-secondary text-xs">Dùng để thắng mọi cuộc tranh luận ngay lập tức</div>
-                                    </div>
-                                    <span class="coupon-badge text-xs font-medium px-2 py-1 rounded-md bg-rose-clay text-card shrink-0">Nhận thẻ</span>
-                                </div>
-
-                                <div onclick="claimCoupon(this, '01 Chuyến Foodtour / Trà Sữa Full Topping')" class="cursor-pointer p-3 rounded-lg bg-raised hover:bg-ink/5 border hairline transition-colors duration-150 flex items-center justify-between gap-3">
-                                    <div class="text-xs min-w-0">
-                                        <div class="font-medium text-ink">01 Ngày ăn sập tiệm</div>
-                                        <div class="text-ink-secondary text-xs">Tài trợ 100% mọi món em thèm bất kỳ lúc nào</div>
-                                    </div>
-                                    <span class="coupon-badge text-xs font-medium px-2 py-1 rounded-md bg-rose-clay text-card shrink-0">Nhận thẻ</span>
-                                </div>
-
-                                <div onclick="claimCoupon(this, '1000 Cái Ôm Bù Ngay Khi Gặp Lại')" class="cursor-pointer p-3 rounded-lg bg-raised hover:bg-ink/5 border hairline transition-colors duration-150 flex items-center justify-between gap-3">
-                                    <div class="text-xs min-w-0">
-                                        <div class="font-medium text-ink">1,000 Cái ôm sân bay</div>
-                                        <div class="text-ink-secondary text-xs">Quy đổi ngay giây phút tụi mình gặp lại nhau</div>
-                                    </div>
-                                    <span class="coupon-badge text-xs font-medium px-2 py-1 rounded-md bg-rose-clay text-card shrink-0">Nhận thẻ</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TOUCHPOINT 3: 18:00 PM CAKE & HOUSEMATE REVEAL -->
-                <div class="bg-card rounded-2xl p-6 sm:p-8 border hairline shadow-card flex flex-col gap-6">
-                    <div class="flex items-center justify-between gap-4 pb-4 border-b hairline">
-                        <span class="inline-flex items-center gap-2 px-2.5 py-1 rounded-md bg-raised border hairline text-ink font-mono text-xs whitespace-nowrap">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-rose-clay shrink-0"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-                            <span>Trạm 3 · 18:00 tối</span>
-                        </span>
-                        <span class="text-xs font-mono text-ink-muted">03 / 03 · Điểm chạm bất ngờ</span>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                        <div class="md:col-span-5 space-y-2">
-                            <h3 class="font-serif text-2xl font-medium text-ink">Điều ước đêm sinh nhật</h3>
-                            <p class="text-sm text-ink-secondary leading-relaxed">
-                                Chuẩn bị cho món quà sinh nhật chưa?
-                            </p>
-                            <p class="text-xs text-ink-muted pt-2">Nhiệm vụ bí mật</p>
-                        </div>
-
-                        <div class="md:col-span-7">
-                            <!-- Closed State -->
-                            <div id="station3Closed" class="bg-raised rounded-xl p-5 text-center border border-dashed border-ink/20">
-                                <div class="w-10 h-10 rounded-lg bg-card border hairline text-ink-secondary flex items-center justify-center mx-auto mb-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 2 4 2 2.5-2 4-2 2.5 2 4 2 2-1 2-1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/></svg>
-                                </div>
-                                <p class="text-xs text-ink-secondary mb-4">
-                                    Chỉ mở khi tụi mình gặp nhau lúc 18:00 tối
+                            <!-- Opened State: 3 Lucky Envelopes -->
+                            <div id="station2Opened" class="hidden space-y-4">
+                                <p id="luckyInstruction" class="lucky-reminder text-xs font-medium text-rose-clay text-center">
+                                    Suy nghĩ kỹ trước khi chọn nha, chỉ làm được 1 lần thôi
                                 </p>
-                                <button onclick="openTouchpoint(3)" class="w-full h-10 px-4 rounded-lg bg-rose-clay hover:bg-rose-clay-dark active:scale-[0.98] text-card text-xs font-medium transition-colors duration-150">
-                                    Mở mật thư 18:00 tối
-                                </button>
-                            </div>
 
-                            <!-- Opened State -->
-                            <div id="station3Opened" class="hidden bg-raised rounded-xl p-5 border hairline space-y-3">
-                                <div class="text-xs font-medium text-rose-clay">
-                                    Bí mật được bật mí
+                                <div id="luckyCardsGrid" class="grid grid-cols-3 gap-3">
+                                    <button type="button" data-lucky-card="0" onclick="pickLuckyCard(0)" class="lucky-card group bg-raised hover:bg-card border hairline rounded-xl p-4 text-center flex flex-col items-center justify-center gap-2 min-h-[120px] transition-colors duration-150 cursor-pointer">
+                                        <span class="lucky-card-icon w-9 h-9 rounded-lg bg-card border hairline text-rose-clay flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                        </span>
+                                        <span class="lucky-card-value font-mono tabular-nums text-sm font-medium text-ink">Bao 01</span>
+                                        <span class="lucky-card-label text-[11px] text-ink-muted">Chạm để mở</span>
+                                    </button>
+
+                                    <button type="button" data-lucky-card="1" onclick="pickLuckyCard(1)" class="lucky-card group bg-raised hover:bg-card border hairline rounded-xl p-4 text-center flex flex-col items-center justify-center gap-2 min-h-[120px] transition-colors duration-150 cursor-pointer">
+                                        <span class="lucky-card-icon w-9 h-9 rounded-lg bg-card border hairline text-rose-clay flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                        </span>
+                                        <span class="lucky-card-value font-mono tabular-nums text-sm font-medium text-ink">Bao 02</span>
+                                        <span class="lucky-card-label text-[11px] text-ink-muted">Chạm để mở</span>
+                                    </button>
+
+                                    <button type="button" data-lucky-card="2" onclick="pickLuckyCard(2)" class="lucky-card group bg-raised hover:bg-card border hairline rounded-xl p-4 text-center flex flex-col items-center justify-center gap-2 min-h-[120px] transition-colors duration-150 cursor-pointer">
+                                        <span class="lucky-card-icon w-9 h-9 rounded-lg bg-card border hairline text-rose-clay flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                        </span>
+                                        <span class="lucky-card-value font-mono tabular-nums text-sm font-medium text-ink">Bao 03</span>
+                                        <span class="lucky-card-label text-[11px] text-ink-muted">Chạm để mở</span>
+                                    </button>
                                 </div>
-                                <p id="cakeRevealMessage" class="text-xs text-ink leading-relaxed">
-                                    Sao sinh nhật công chúa của anh mà thiếu bánh kem thật được. Anh đã nhờ <strong class="font-medium">"đồng minh cùng nhà"</strong> chuẩn bị sẵn một chiếc bánh kem thật xinh cho em rồi.
-                                </p>
-                                <div class="p-3 rounded-lg bg-card border hairline text-xs text-ink-secondary text-center">
-                                    Em thử lắng nghe xem, hình như có ai đang cầm bánh kem gõ cửa phòng em
-                                </div>
-                                <div class="pt-1">
-                                    <a id="videoCallLinkBtn" href="https://meet.google.com" target="_blank" rel="noopener noreferrer" class="w-full h-10 px-4 rounded-lg bg-rose-clay hover:bg-rose-clay-dark text-card text-xs font-medium flex items-center justify-center gap-2 transition-colors duration-150">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg>
-                                        <span>Vào phòng Video Call với anh</span>
-                                    </a>
+
+                                <div id="luckyResultMsg" class="hidden p-3 rounded-lg bg-raised border hairline text-xs text-ink text-center">
+                                    Trúng <strong class="font-mono font-medium text-rose-clay">1.000.000đ</strong> rồi, hay vậy ta, khó vậy mà cũng trúng cái cao nhất
                                 </div>
                             </div>
                         </div>
@@ -1327,7 +1290,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                 <!-- Polaroid 1 -->
                 <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform lg:-rotate-1 relative group">
                     <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
-                        <img id="polaroidImg1" src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 1" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+1'" class="w-full h-full object-cover">
+                        <img id="polaroidImg1" src="https://cdn.phototourl.com/anon/2026-11-19-38ab206d-645e-47a2-bbb6-d3b11520470c.jpg" alt="Kỷ niệm 1" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+1'" class="w-full h-full object-cover">
                     </div>
                     <p id="polaroidCap1" class="font-serif text-lg text-center text-ink focus:outline-none focus:bg-raised rounded px-1" title="Bấm vào chữ để sửa chú thích">
                         Những ngày bình yên bên nhau
@@ -1337,7 +1300,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                 <!-- Polaroid 2 -->
                 <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform lg:rotate-1 lg:-translate-y-2 relative group">
                     <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
-                        <img id="polaroidImg2" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 2" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+2'" class="w-full h-full object-cover">
+                        <img id="polaroidImg2" src="https://cdn.imagetourls.com/uploads/tyImg/FXcxWskv.jpg" alt="Kỷ niệm 2" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+2'" class="w-full h-full object-cover">
                     </div>
                     <p id="polaroidCap2" class="font-serif text-lg text-center text-ink focus:outline-none focus:bg-raised rounded px-1" title="Bấm vào chữ để sửa chú thích">
                         Nụ cười anh thương nhất trên đời
@@ -1347,7 +1310,7 @@ url:e,reason:"blocked_domain_not_allowlisted"},b.parentOrigin);throw new DOMExce
                 <!-- Polaroid 3 -->
                 <div class="polaroid-card bg-card p-4 pb-6 rounded-2xl shadow-card border hairline transform lg:rotate-1 relative group sm:col-span-2 sm:max-w-[336px] sm:mx-auto lg:col-span-1 lg:max-w-none w-full">
                     <div class="relative aspect-[4/5] rounded-lg overflow-hidden bg-raised mb-4">
-                        <img id="polaroidImg3" src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Kỷ niệm 3" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+3'" class="w-full h-full object-cover">
+                        <img id="polaroidImg3" src="https://cdn.imagetourls.com/uploads/tyImg/1gRhr3AGO.jpg" alt="Kỷ niệm 3" onerror="this.src='https://placehold.co/600x750/EFE9DF/A94D52?text=Ky+Niem+3'" class="w-full h-full object-cover">
                     </div>
                     <p id="polaroidCap3" class="font-serif text-lg text-center text-ink focus:outline-none focus:bg-raised rounded px-1" title="Bấm vào chữ để sửa chú thích">
                         Hẹn ngày tụi mình rút ngắn 13,500 km
@@ -1558,13 +1521,70 @@ Cố lên nha bé......</div>
             }
         }
 
-        function claimCoupon(cardEl, couponTitle) {
-            const badge = cardEl.querySelector('.coupon-badge');
-            if (badge) {
-                badge.textContent = 'Đã lưu';
-                badge.classList.remove('bg-rose-clay');
-                badge.classList.add('bg-sage');
-            }
+        let luckyCardPicked = false;
+
+        function pickLuckyCard(selectedIndex) {
+            if (luckyCardPicked) return;
+            luckyCardPicked = true;
+
+            const cards = document.querySelectorAll('#luckyCardsGrid [data-lucky-card]');
+            const otherValues = Math.random() < 0.5
+                ? ['Chúc bé may mắn lần sau', '500.000đ']
+                : ['500.000đ', 'Chúc bé may mắn lần sau'];
+            let otherIdx = 0;
+
+            cards.forEach((card, idx) => {
+                const valueEl = card.querySelector('.lucky-card-value');
+                const labelEl = card.querySelector('.lucky-card-label');
+                const iconEl = card.querySelector('.lucky-card-icon');
+
+                card.classList.remove('cursor-pointer', 'hover:bg-card');
+                card.classList.add('pointer-events-none');
+
+                if (idx === selectedIndex) {
+                    card.classList.remove('bg-raised', 'hairline');
+                    card.classList.add('bg-rose-clay', 'border-rose-clay', 'text-card');
+                    if (iconEl) {
+                        iconEl.classList.remove('bg-card', 'hairline', 'text-rose-clay');
+                        iconEl.classList.add('bg-card/15', 'border-card/20', 'text-card');
+                    }
+                    if (valueEl) {
+                        valueEl.textContent = '1.000.000đ';
+                        valueEl.classList.remove('text-ink', 'text-sm');
+                        valueEl.classList.add('text-card', 'text-sm', 'sm:text-base');
+                    }
+                    if (labelEl) {
+                        labelEl.textContent = 'Em đã chọn';
+                        labelEl.classList.remove('text-ink-muted');
+                        labelEl.classList.add('text-card/85');
+                    }
+                } else {
+                    const val = otherValues[otherIdx++];
+                    card.classList.add('opacity-70');
+                    if (iconEl) {
+                        iconEl.classList.remove('text-rose-clay');
+                        iconEl.classList.add('text-ink-muted');
+                    }
+                    if (valueEl) {
+                        valueEl.textContent = val;
+                        valueEl.classList.remove('text-ink', 'text-sm', 'font-mono');
+                        if (val === '500.000đ') {
+                            valueEl.classList.add('text-ink-secondary', 'font-mono', 'text-sm', 'sm:text-base');
+                        } else {
+                            valueEl.classList.add('text-ink-secondary', 'font-sans', 'text-xs', 'leading-snug');
+                        }
+                    }
+                    if (labelEl) {
+                        labelEl.textContent = 'Còn lại';
+                    }
+                }
+            });
+
+            const instructionEl = document.getElementById('luckyInstruction');
+            if (instructionEl) instructionEl.classList.add('hidden');
+            const resultEl = document.getElementById('luckyResultMsg');
+            if (resultEl) resultEl.classList.remove('hidden');
+
             triggerCelebrationConfetti();
             playSoftChime();
         }
@@ -1807,7 +1827,8 @@ Cố lên nha bé......</div>
             document.getElementById('displayCanadaCity').textContent = caCity;
             document.getElementById('daysTogetherCount').textContent = daysCount;
             document.getElementById('starbucksCupText').textContent = starbucksCup;
-            document.getElementById('videoCallLinkBtn').href = meetLink;
+            const videoBtn = document.getElementById('videoCallLinkBtn');
+            if (videoBtn) videoBtn.href = meetLink;
             document.getElementById('displayLetterContent').textContent = letterText;
         }
 
