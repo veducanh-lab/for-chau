@@ -1,4 +1,4 @@
-﻿        <!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="vi" class="scroll-smooth"><head><script data-bard-client-injected="true">(function(firebaseConfig, initialAuthToken, appId) {
         window.__firebase_config = firebaseConfig;
         window.__initial_auth_token = initialAuthToken;
@@ -1376,23 +1376,6 @@ Cố lên nha bé......</div>
 </div>
 
     <!-- ==========================================
-         CURIOUS POPUP MODAL (STATION 2 LOCKED)
-    =========================================== -->
-    <div id="curiousPopupModal" onclick="if (event.target === this) closeCuriousPopup()" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/40 p-4">
-        <div class="max-w-sm w-full bg-card border hairline rounded-2xl p-6 shadow-float text-center space-y-4">
-            <div class="w-11 h-11 rounded-lg bg-raised border hairline text-rose-clay flex items-center justify-center mx-auto">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            </div>
-            <p class="font-serif text-xl font-medium text-ink leading-snug">
-                Bé lại tò mò r, 6-7h tối anh dậy mới mở
-            </p>
-            <button type="button" onclick="closeCuriousPopup()" class="w-full h-10 px-4 rounded-lg bg-rose-clay hover:bg-rose-clay-dark active:scale-[0.98] text-card text-xs font-medium transition-colors duration-150">
-                Đóng
-            </button>
-        </div>
-    </div>
-
-    <!-- ==========================================
          6. FLOATING CREATOR CUSTOMIZATION & GITHUB EXPORT TOOLBAR
     =========================================== -->
     
@@ -1526,28 +1509,8 @@ Cố lên nha bé......</div>
             updateDualClocks();
         }
 
-        function openCuriousPopup() {
-            const modal = document.getElementById('curiousPopupModal');
-            if (modal) {
-                modal.classList.remove('hidden');
-                modal.classList.add('flex');
-            }
-        }
-
-        function closeCuriousPopup() {
-            const modal = document.getElementById('curiousPopupModal');
-            if (modal) {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-            }
-        }
-
         // 3. Touchpoints & Coupons
         function openTouchpoint(stationNumber) {
-            if (stationNumber === 2) {
-                openCuriousPopup();
-                return;
-            }
             const closedEl = document.getElementById('station' + stationNumber + 'Closed');
             const openedEl = document.getElementById('station' + stationNumber + 'Opened');
             if (closedEl && openedEl) {
